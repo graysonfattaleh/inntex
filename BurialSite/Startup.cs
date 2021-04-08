@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BurialSite.Models;
+using BurialSite.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using static BurialSite.Services.S3Service;
 
 namespace BurialSite
 {
@@ -29,6 +32,9 @@ namespace BurialSite
             //ahahhhdhdfhdhdh
             services.AddDbContext<ArcDBContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DBConnector")));
+            // what even photo service
+            services.AddSingleton<IS3Service, S3Service>();
+            services.AddAWSService<IAmazonS3>();
 
         }
 
@@ -72,6 +78,7 @@ namespace BurialSite
 
                     );
 
+                // navigation 
                 endpoints.MapControllerRoute("Research",
                    "/Research/Admin",
                    new { Controller = "Research", Action = "MangeUsers" }
@@ -83,6 +90,12 @@ namespace BurialSite
                    new { Controller = "Research", Action = "AddSite" }
 
                     );
+
+                endpoints.MapControllerRoute("Research",
+                  "/Research/UploadPhotos",
+                  new { Controller = "Research", Action = "UploadPhotos" }
+
+                   );
             });
 
             SeedData.EnsurePopulated(app);

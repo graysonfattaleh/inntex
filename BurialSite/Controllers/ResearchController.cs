@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BurialSite.Models;
+using BurialSite.Models.ViewModels;
+using BurialSite.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -15,11 +18,13 @@ namespace BurialSite.Controllers
         // context stuff
         private readonly ILogger<HomeController> _logger;
         private ArcDBContext _context;
+        private readonly IS3Service _s3storage;
         // get context stuff
-        public ResearchController(ILogger<HomeController> logger, ArcDBContext context)
+        public ResearchController(ILogger<HomeController> logger, ArcDBContext context, IS3Service storage)
         {
             _logger = logger;
             _context = context;
+            _s3storage = storage;
         }
 
 
@@ -45,6 +50,39 @@ namespace BurialSite.Controllers
         //Read Burial Site Details
 
         //Upload Photos
+        public IActionResult UploadPhotos()
+        {
+
+            return View(new SavePhotoViewModel { });
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> SavePhotos(SavePhotoViewModel SavePhoto)
+        {
+            // save iploaded photo yeet
+
+      
+            if (ModelState.IsValid)
+            {
+
+                await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
+               //string fileName = UploadFile(SavePhoto);
+                return View("AddSite");
+            }
+            else
+            {
+                return View("UploadPhotos");
+            }
+
+          
+        }
+
+        public IActionResult CreatePhoto()
+        {
+
+            return View();
+        }
 
         // Delete Burial Site?? (just admin maybe?)
 
