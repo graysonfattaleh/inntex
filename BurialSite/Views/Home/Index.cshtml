@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Burials</h1>
+    @model List<TestEnt>
+
+    @foreach (var x in Model)
+    {
+        <p>@x.test_string</p>
+    }
+
+</div>
+
