@@ -22,5 +22,6 @@
   <ItemGroup>
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Research\" />
+    <Folder Include="Infrstructure\" />
   </ItemGroup>
 </Project>

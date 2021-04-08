@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BurialSite.Models
+namespace BurialSite.Models.ViewModels
 {
     public class TestList
     {
