@@ -2,14 +2,21 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+ @model List<TestEnt>
+<section>
+    <div></div>
+    <div class="landing">
+        <div>
+            <h1>Fag el-Gamous</h1>
+               
+            
+        </div>
+        <div>
 
-<div class="text-center">
-    <h1 class="display-4">Burials</h1>
-    @model List<TestEnt>
-
-    @foreach (var x in Model)
-    {
-        <p>@x.test_string</p>
-    }
-
-</div>
+        </div>
+        <div >
+            For the last two decades, the Department of Ancient Scripture has invested its resources on an excavation site southwest of Cairo, Egypt. Along with an uncovered pyramid and Greco-Roman Township, the dig site contained a massive necropolis where thousands of the deceased have been excavated. There is so much that we have learned from theses excavations and are still learning as we do more analysis. Explore <a>here</a> to view the most recent discoveries and uploads from researchers!
+        </div>
+    </div>
+    <div></div>
+</section>

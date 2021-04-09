@@ -10,13 +10,44 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
+
+        <div class="wrapper">
+            <div class=" box box1">
+                <div class="nested">
+                    <div>
+                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </div>
+                    <div class="vl">
+
+                    </div>
+                    <div>
+                        Search
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="box box2"><a asp-area="" asp-controller="Home" asp-action="Index"><img width="211" height="100" src="https://brightspotcdn.byu.edu/7e/29/0288440343ef99077c183af02377/byu-home-monogram.svg" /></a></div>
+            <div class="box box3"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers</a></div>
+            <div class="box box4">box 4</div>
+            <div class="box box5"><a class="nav-link text-dark" asp-area="" asp-controller="Research" asp-action="AddSite">Add Site</a></div>
+
+
+        </div>
+
+      
+
+           
+
+            @*  <div class="wrapper">
+                <div><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></div>
+                <div>byu</div>
+                <div><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers</a></div>
+
+            </div>*@
+          @*  <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BurialSite</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
 
@@ -34,8 +65,8 @@
 
                     </ul>
                 </div>
-            </div>
-        </nav>
+            </div>*@
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -43,10 +74,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - BurialSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer >
+       
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
