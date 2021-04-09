@@ -21,22 +21,25 @@ namespace BurialSite.Models
                 context.Database.Migrate();
             }
 
-            if (!context.Tests.Any())
+            if (!context.BurialLocations.Any())
             {
                 context.AddRange(
-                    new TestEnt
+                   
+                    new BurialLocation
                     {
-                        test_string = "this"
-                    },
-                    new TestEnt
-                    {
-                        test_string = "might"
-                    },
-                    new TestEnt
-                    {
-                        test_string ="work"
+                        BurialLocationId = 1,
+                        Dig_Site_Name = "Gamous",
+                        N_S_Grid_Site_Lower = 33,
+                        E_W_Grid_Site_Lower = 4,
+                        E_W_Grid_Site_Upper = 43,
+                        N_S_Grid_Site_Upper = 11,
+                        
                     }
-                    );
+
+                    
+                  );
+                
+                    
             }
             context.SaveChanges();
 

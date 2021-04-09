@@ -1,9 +1,11 @@
 ﻿using System;
+using BurialSite.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BurialSite.Models
 {
-    public class ArcDBContext : DbContext
+    public class ArcDBContext : IdentityDbContext<ResearchUser,Role,int>
     {
         public ArcDBContext(DbContextOptions<ArcDBContext> options) : base(options)
         {

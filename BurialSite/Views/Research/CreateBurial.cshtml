@@ -5,8 +5,9 @@
 }
  @model AddBurialSiteViewModel
 
-<form method="post" asp-action="SaveBurial">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form method="post" asp-controller="Research" asp-action="SaveBurial">
+    
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Burial.Gamous" class="control-label"></label>
         <input asp-for="Burial.Gamous" class="form-control" />
@@ -663,7 +664,7 @@
         <span asp-validation-for="Burial.BurialLocationId" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary" />
+        <button type="submit" value="Create Burial" class="btn btn-primary" />
     </div>
 
 </form>

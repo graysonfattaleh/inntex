@@ -8,6 +8,7 @@ using BurialSite.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -39,11 +40,15 @@ namespace BurialSite.Controllers
 
         //CRUD FUNCTIONS FOR RESEARCHERS-------------------
 
-        //Add Burial Site
+        //Add Burial Site /////////////////////////////////////////////
         public IActionResult AddSite()
-        { 
+        {
 
-            return View();
+            AddSiteViewModel BurialList = new AddSiteViewModel()
+            {
+                Burials = _context.Burials.Include(b => b.BurialLocation)
+            };
+            return View(BurialList);
         }
 
 
@@ -71,29 +76,57 @@ namespace BurialSite.Controllers
 
         }
 
-        public IActionResult SavePhoto(Burial burial)
+        [HttpPost]
+        public IActionResult SaveBurial(Burial burial)
         {
+            burial.BurialLocation = _context.BurialLocations.Where(b => burial.BurialLocationId == b.BurialLocationId).FirstOrDefault();
+
+
             if (ModelState.IsValid)
             {
+
+                
+                _context.Add(burial);
+                _context.SaveChanges();
                 return View();
             }
             else
             {
-                return View("CreateBurial");
+                List<SelectListItem> CranialOptions = new List<SelectListItem>();
+                CranialOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
+                CranialOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
+                List<SelectListItem> BasilOptions = new List<SelectListItem>();
+                BasilOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
+                BasilOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
+
+
+                AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel
+                {
+                    BasilList = BasilOptions,
+                    CranialStructureList = CranialOptions,
+                    Burial = burial
+                };
+                return View("CreateBurial", burialSiteViewModel);
             }
           
         }
-        //Edit BUrial Site
+        //Edit Burial Site/////////////////////////////////////////////
+        public IActionResult EditBurial()
+        {
+
+            return View();
+        }
 
         //Read Burial Site Details
 
-        //Upload Photos
+        //Upload Photos/////////////////////////////////////////////
         public IActionResult UploadPhotos()
         {
             return View(new SavePhotoViewModel { });
         }
 
-       public IActionResult SaveBurial(Burial burial)
+
+       public IActionResult SavePhoto(Burial burial)
         {
 
             return View();
@@ -103,13 +136,9 @@ namespace BurialSite.Controllers
         public async Task<IActionResult> SavePhotos(SavePhotoViewModel SavePhoto)
         {
             // save iploaded photo yeet
-
-      
             if (ModelState.IsValid)
             {
-
-              string url =  await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
-
+                string url =  await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
                 Console.WriteLine($"\n\n PHOTO URL IS : {url} \n\n");
                //string fileName = UploadFile(SavePhoto);
                 return View("AddSite");
@@ -141,10 +170,10 @@ namespace BurialSite.Controllers
             return View();
         }
 
-        //Add Researcher
+        //Add Researcher/////////////////////////////////////////////
 
-        //Edit Researcher
+        //Edit Researcher/////////////////////////////////////////////
 
-        // Delete Researcher
+        // Delete Researcher/////////////////////////////////////////////
     }
 }

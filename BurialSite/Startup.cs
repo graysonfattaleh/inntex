@@ -36,6 +36,13 @@ namespace BurialSite
             services.AddSingleton<IS3Service, S3Service>();
             services.AddAWSService<IAmazonS3>();
 
+            // add identity service
+            services.AddIdentity<ResearchUser, Role>(options =>
+             {
+                 options.User.RequireUniqueEmail = true;
+             }
+            ).AddEntityFrameworkStores<ArcDBContext>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +64,7 @@ namespace BurialSite
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

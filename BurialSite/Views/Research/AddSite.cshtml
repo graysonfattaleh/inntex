@@ -4,10 +4,83 @@
 @{
 }
 
+@model AddSiteViewModel
+
 <div class="text-center">
-    <h1 class="display-4"> Add Burial Sites</h1>
+    <h1 class="display-4">Burial Sites</h1>
+
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <td>
+                    <p>Burial Number</p>
+                </td>
+                <td>
+                    <p>Burial Location</p>
+                </td>
+                <td>
+                    <p>Burial Spot</p>
+                </td>
+                <td>
+                    <p>Burial Depth</p>
+                </td>
+                <td>
+                    <p>Sex</p>
+                </td>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Burial burial in Model.Burials)
+            {
+            <tr>
+                <td>
+                    <p> @burial.Burial_Number</p>
+                </td>
+                <td>
+                    <p>
+                        @burial.BurialLocation.Dig_Site_Name
+
+                        @burial.BurialLocation.N_S_Grid_Site_Lower / @burial.BurialLocation.N_S_Grid_Site_Upper
+                        @burial.BurialLocation.E_W_Grid_Site_Lower / @burial.BurialLocation.E_W_Grid_Site_Upper
+
+                    </p>
+    
+                </td>
+                <td>
+                    @burial.Depth
+                </td>
+                <td>
+                    @burial.Sex
+                </td>
+                <td>
+                    <a asp-controller="Research" asp-action="UploadPhotos"> <button class="btn btn-warning text-center"> Upload Photos </button></a>
+                </td>
+                <td>
+                    <a asp-controller="Research" asp-action="EditBurial"> <button class="btn btn-secondary text-center">Edit </button></a>
+                </td>
+
+                <td>
+                    <a asp-controller="Research" asp-action="ViewBurialDetails"> <button class="btn btn-secondary text-center">View Details</button></a>
+                </td>
+                <td>
+                    <a asp-controller="Research" asp-action="DeleteBurial"> <button class="btn btn-danger text-center">Delete</button></a>
+                </td>
+
+            </tr>
+            }
+            
+        </tbody>
+    </table>
+
+    @if (Model.Burials.Count() == 0)
+    {
+       
+    }
+
     <a asp-controller="Research" asp-action="CreateBurial"> <button class="btn btn-secondary text-center"> Add New Site </button></a>
 
-    <a asp-controller="Research" asp-action="UploadPhotos"> <button class="btn btn-secondary text-center"> Upload Photos </button></a>
+   
 
 </div>

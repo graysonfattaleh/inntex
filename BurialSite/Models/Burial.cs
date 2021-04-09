@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 #nullable enable
@@ -10,6 +11,16 @@ namespace BurialSite.Models
     // Burial Model; comments are associated with the field above them
     public class Burial
     {
+        public Burial()
+        {
+            OneToOneValues = new HashSet<OneToOneValue>();
+            Notes = new HashSet<Notes>();
+            FileUrl = new HashSet<FileUrl>();
+ 
+            
+
+        }
+
         [Key]
         [Required]
         public int BurialID { get; set; }
@@ -242,10 +253,10 @@ namespace BurialSite.Models
         public string? Initials { get; set; }
         // options are MBB, GM, AWA, and CIE for now
 
+        
+        public int BurialLocationId { get; set; }
 
-        public long BurialLocationId { get; set; }
-
-        public virtual BurialLocation BurialLocation { get; set; }
+        public virtual BurialLocation? BurialLocation { get; set; }
 
         public virtual ICollection<OneToOneValue> OneToOneValues { get; set; }
 

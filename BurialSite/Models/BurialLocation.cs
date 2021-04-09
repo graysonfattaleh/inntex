@@ -9,9 +9,13 @@ namespace BurialSite.Models
 {
     public class BurialLocation
     {
+        public BurialLocation()
+        {
+            Burials = new HashSet<Burial>();
+        }
         [Key]
         [Required]
-        public int BurLocID { get; set; }
+        public int BurialLocationId { get; set; }
         [Required]
         public string? Dig_Site_Name { get; set; }
         public int? N_S_Grid_Site_Upper { get; set; }
