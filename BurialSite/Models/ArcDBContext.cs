@@ -13,6 +13,13 @@ namespace BurialSite.Models
         }
 
         public DbSet<TestEnt> Tests { get; set; }
+        public DbSet<Burial> Burials { get; set; }
+        public DbSet<BurialLocation> BurialLocations { get; set; }
+        public DbSet<FileUrl> FileUrls { get; set; }
+        public DbSet<Notes> Notes { get; set; }
+        public DbSet<OneToOneField> OneToOneFields { get; set; }
+        public DbSet<OneToOneValue> OneToOneValues { get; set; }
+
 
     }
 }

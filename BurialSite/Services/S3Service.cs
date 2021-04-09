@@ -17,7 +17,7 @@ namespace BurialSite.Services
     {
         //private readonly IAmazonS3 _client;
         private readonly AmazonS3Client s3Client;
-        private const string BUCKET_NAME = "arn:aws:s3:us-west-2:249897624530:accesspoint/photoupload";
+        private const string BUCKET_NAME = "arn:aws:s3:us-west-2:249897624530:accesspoint/readwriteinternet";
         //private const string BUCKET_NAME = "arn:aws:s3:::elasticbeanstalk-us-west-2-249897624530";
         private const string FOLDER_NAME = "Uploads";
         private const double DURATION = 24;
@@ -29,8 +29,8 @@ namespace BurialSite.Services
             {
                 RegionEndpoint = RegionEndpoint.USWest2
             };
-            var credentials = new BasicAWSCredentials("AKIATULYPEPJKXC2YSWS", "HyHqKlkiyajtPJjRRmEbnsUZeklrdYNJNna8KDYP");
-            AmazonS3Client s3clientGuy = new AmazonS3Client(credentials, amazonS3Config);
+           var credentials = new BasicAWSCredentials("AKIATULYPEPJKXC2YSWS", "HyHqKlkiyajtPJjRRmEbnsUZeklrdYNJNna8KDYP");
+           AmazonS3Client s3clientGuy = new AmazonS3Client(credentials,amazonS3Config);
             s3Client = s3clientGuy;
         }
 
@@ -55,7 +55,8 @@ namespace BurialSite.Services
                 putObjectRequest.Key = objectKey;
                 putObjectRequest.InputStream = fileToUpload;
                 putObjectRequest.ContentType = file.ContentType;
-                
+
+                Console.WriteLine($" \n \n THIS IS THE OBJECT KEY :::{objectKey} \n \n");
 
                 var response = await s3Client.PutObjectAsync(putObjectRequest);
 

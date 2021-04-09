@@ -13,8 +13,6 @@ namespace BurialSite.Models
         [Required]
         public int BurLocID { get; set; }
         [Required]
-        public int BurialID { get; set; }
-        [Required]
         public string? Dig_Site_Name { get; set; }
         public int? N_S_Grid_Site_Upper { get; set; }
         public int? N_S_Grid_Site_Lower { get; set; }
@@ -22,9 +20,9 @@ namespace BurialSite.Models
         public int? E_W_Grid_Site_Lower { get; set; }
         public string? Area { get; set; } = "";
 
+        public virtual ICollection<Burial> Burials { get; set; }
 
-
-
+        public virtual ICollection<YearsExcavatedFrom> YearsExcavatedFroms { get; set; }
 
 
 

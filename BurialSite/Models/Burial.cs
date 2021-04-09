@@ -233,5 +233,16 @@ namespace BurialSite.Models
         public bool? Previously_Sampled { get; set; }
         public string? Initials { get; set; }
         // options are MBB, GM, AWA, and CIE for now
+
+
+        public long BurialLocationId { get; set; }
+
+        public virtual BurialLocation BurialLocation { get; set; }
+
+        public virtual ICollection<OneToOneValue> OneToOneValues { get; set; }
+
+        public virtual ICollection<Notes> Notes { get; set; }
+
+        public virtual ICollection<FileUrl> FileUrl { get; set; }
     }
 }

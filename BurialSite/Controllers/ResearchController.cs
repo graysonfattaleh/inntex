@@ -66,7 +66,9 @@ namespace BurialSite.Controllers
             if (ModelState.IsValid)
             {
 
-                await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
+              string url =  await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
+
+                Console.WriteLine($"\n\n PHOTO URL IS : {url} \n\n");
                //string fileName = UploadFile(SavePhoto);
                 return View("AddSite");
             }
