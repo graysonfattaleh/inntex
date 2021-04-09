@@ -3,15 +3,17 @@ using System;
 using BurialSite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BurialSite.Migrations
 {
     [DbContext(typeof(ArcDBContext))]
-    partial class ArcDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210409151909_fixbool")]
+    partial class fixbool
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,9 +133,8 @@ namespace BurialSite.Migrations
                     b.Property<string>("Burial_Icon2")
                         .HasColumnType("text");
 
-                    b.Property<string>("Burial_Number")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Burial_Number")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Burial_Preservation")
                         .HasColumnType("text");

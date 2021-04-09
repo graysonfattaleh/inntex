@@ -3,15 +3,17 @@ using System;
 using BurialSite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BurialSite.Migrations
 {
     [DbContext(typeof(ArcDBContext))]
-    partial class ArcDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210409164127_new_guy")]
+    partial class new_guy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -18,7 +18,7 @@ namespace BurialSite.Models
         // foreign key
         public int? Gamous { get; set; } 
         [Required]
-        public int Burial_Number { get; set; }
+        public string Burial_Number { get; set; }
 
         public decimal? West_To_Head { get; set; }
 
@@ -64,20 +64,28 @@ namespace BurialSite.Models
 
         public int? Cranial_Sample_Number { get; set; }
 
-        public bool? Basilar_Suture { get; set; }
+        public string? Basilar_Suture { get; set; }
         // True = Closed, False = Open
+
+        [Range(0, 3)]
         public int? Ventral_Arc { get; set; }
         // Range of 0-3
+        [Range(0, 3)]
         public int? Subpubic_Angle { get; set; }
         // Range of 0-3
+        [Range(0, 3)]
         public int? Sciatic_Notch { get; set; }
         // Range of 0-3
+        [Range(0, 3)]
         public int? Pubic_Bone { get; set; }
         // Range of 0-3
+        [Range(0, 3)]
         public int? Preaur_Sulcus { get; set; }
         // Range of 0-3
+        [Range(0, 3)]
         public int? Medial_IP_Ramus { get; set; }
         // Range of 0-3
+        [Range(0, 3)]
         public int? Dorsal_Pitting { get; set; }
         // Range of 0-3
         public decimal? Femur_Head { get; set; }

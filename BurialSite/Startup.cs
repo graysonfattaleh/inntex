@@ -85,17 +85,23 @@ namespace BurialSite
 
                     );
 
-                endpoints.MapControllerRoute("Research",
+                endpoints.MapControllerRoute("ResearchSite",
                    "/Research/AddSite",
                    new { Controller = "Research", Action = "AddSite" }
 
                     );
 
-                endpoints.MapControllerRoute("Research",
+                endpoints.MapControllerRoute("ResearchPhoto",
                   "/Research/UploadPhotos",
                   new { Controller = "Research", Action = "UploadPhotos" }
 
                    );
+                // Research CRUD
+
+                endpoints.MapControllerRoute("AddBurial",
+                    "/Research/AddBurial",
+                    new { Controller = "Research", Action = "CreateBurial" }
+                    );
             });
 
             SeedData.EnsurePopulated(app);

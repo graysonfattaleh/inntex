@@ -7,6 +7,7 @@ using BurialSite.Models.ViewModels;
 using BurialSite.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -45,6 +46,43 @@ namespace BurialSite.Controllers
             return View();
         }
 
+
+        public IActionResult CreateBurial()
+        {
+
+            // list for selector Basil Structure
+
+            List<SelectListItem> CranialOptions = new List<SelectListItem>();
+            CranialOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
+            CranialOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
+            List<SelectListItem> BasilOptions = new List<SelectListItem>();
+            BasilOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
+            BasilOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
+
+
+            AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel
+            {
+                BasilList = BasilOptions,
+                CranialStructureList = CranialOptions
+          };
+
+
+            return View(burialSiteViewModel);
+
+        }
+
+        public IActionResult SavePhoto(Burial burial)
+        {
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            else
+            {
+                return View("CreateBurial");
+            }
+          
+        }
         //Edit BUrial Site
 
         //Read Burial Site Details
@@ -52,10 +90,14 @@ namespace BurialSite.Controllers
         //Upload Photos
         public IActionResult UploadPhotos()
         {
-
             return View(new SavePhotoViewModel { });
         }
 
+       public IActionResult SaveBurial(Burial burial)
+        {
+
+            return View();
+        }
         [HttpPost]
 
         public async Task<IActionResult> SavePhotos(SavePhotoViewModel SavePhoto)
