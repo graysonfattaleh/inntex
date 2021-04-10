@@ -53,7 +53,7 @@ namespace BurialSite.Models
 
         public string? Sex_Method { get; set; }
 
-        public char? Sex { get; set; }
+        public string? Sex { get; set; }
 
         public string? GE_Function_Total { get; set; }
 

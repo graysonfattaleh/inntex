@@ -9,11 +9,18 @@
 <div class="text-center">
     <h1 class="display-4">Burial Sites</h1>
     <div class="row ">
-        <div class="col col-1>">
-            <h2>Tools</h2>
-            <a asp-controller="Research" asp-action="CreateBurial"> <button class="btn btn-secondary text-center"> Add New Site </button></a>
+        <div class="col col-2 ">
+            <div class="navvy">
+                <h2>Tools</h2>
+                <a asp-controller="Research" asp-action="CreateBurial"> <button class="btn btn-secondary text-center"> Add New Site </button></a>
+                <br />
+                <h3>Filters</h3>
+                <vc:filter-list name="FilterList"></vc:filter-list>
+                <div pagination-info="@Model.PaginationInfo" depth-filter="@Context.Request.Query["depthfilter"]"></div>
+                
+            </div>
         </div>
-        <div class="col col-lg-auto>">
+        <div class="col col-9>">
 
             <table class="table table-light table-hover table-bordered">
                 <thead>
@@ -30,8 +37,7 @@
                         <td>
                             Sex
                         </td>
-                        <td>
-                        </td>
+                        
                         <td>
                         </td>
                         <td>
@@ -99,11 +105,8 @@
                 </tbody>
             </table>
         </div>
-        @if (Model.Burials.Count() == 0)
-        {
-
-        }
 
     </div>
+  
 
 </div>

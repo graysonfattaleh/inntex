@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,7 +30,9 @@ namespace BurialSite.Controllers
             _s3storage = storage;
         }
 
-
+        //items per page
+        public int pageSize = 30;
+       
         public IActionResult Index()
         {
             List<TestEnt> tests = _context.Tests.ToList();
@@ -40,38 +43,70 @@ namespace BurialSite.Controllers
 
         //CRUD FUNCTIONS FOR RESEARCHERS-------------------
 
-        //Add Burial Site /////////////////////////////////////////////
-        public IActionResult AddSite()
+        // Burial Site List /////////////////////////////////////////////
+        public IActionResult AddSite(string filterer, int pagenumber = 1)
         {
-
             AddSiteViewModel BurialList = new AddSiteViewModel()
             {
-                Burials = _context.Burials.Include(b => b.BurialLocation).OrderBy(b=>b.BurialID)
+                // get burials
+                Burials = _context.Burials.Include(b => b.BurialLocation)
+                .OrderBy(b=>b.BurialID).Skip((pagenumber -1 ) * pageSize).Take(pageSize),
+                  PaginationInfo = new PageNumberingInfo
+                  {
+                      CurrentPage = pagenumber,
+                      NumItemsPerPage = pageSize,
+                      // either uses all books or just books in cat
+                      TotalNumItems =
+                        filterer == null ? _context.Burials.Count() : _context.Burials.Where(b => b.Category == filterer).Count()
+                  }
             };
             return View(BurialList);
         }
 
+        // Filter Burial List
+        public IActionResult FilterBurials(int locationfilter,string genderfilter,decimal depthfilter, int pagenumber = 1)
+        {
+            // get filteted list
 
+            IEnumerable<Burial> burials = _context.Burials.
+                Where(b => (genderfilter == null || genderfilter == b.Sex) &
+                (depthfilter == 0 || b.Depth < depthfilter) &
+                (locationfilter == -1 || b.BurialLocationId == locationfilter)
+                )
+                .Include(b => b.BurialLocation);
+
+
+       
+            // fcount full set then filter
+            int TotalBurialsInt = burials.Count();
+
+            burials = burials.OrderBy(b => b.BurialID).Skip((pagenumber - 1) * pageSize).Take(pageSize);
+
+            // get stored key values
+           
+
+            AddSiteViewModel FilteredBurialList = new AddSiteViewModel()
+            {
+                // get burials
+                Burials = burials,
+                PaginationInfo = new PageNumberingInfo
+                { 
+                    CurrentPage = pagenumber,
+                    NumItemsPerPage = pageSize,
+                    // either uses all books or just books in cat
+                    TotalNumItems = TotalBurialsInt
+                },
+                
+            };
+
+            return View("AddSite", FilteredBurialList);
+        }
+
+
+        // ADD BURIAL
         public IActionResult CreateBurial()
         {
-
-            // list for selector Basil Structure
-
-            List<SelectListItem> CranialOptions = new List<SelectListItem>();
-            CranialOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
-            CranialOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
-            List<SelectListItem> BasilOptions = new List<SelectListItem>();
-            BasilOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
-            BasilOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
-
-
-            AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel
-            {
-                BasilList = BasilOptions,
-                CranialStructureList = CranialOptions
-          };
-
-
+            AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel();
             return View(burialSiteViewModel);
 
         }

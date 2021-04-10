@@ -7,5 +7,6 @@ namespace BurialSite.Models.ViewModels
     public class AddSiteViewModel
     {
         public IEnumerable<Burial> Burials { get; set; }
+        public PageNumberingInfo PaginationInfo { get; set; }
     }
 }

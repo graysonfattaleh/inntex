@@ -26,6 +26,7 @@ namespace BurialSite.Infrastructure
         public bool StuffWorks { get; set; }
         // use this t store info from the model
         public PageNumberingInfo PaginationInfo { get; set; }
+        public object DepthFilter { get; set; }
 
 
 
@@ -44,6 +45,9 @@ namespace BurialSite.Infrastructure
             // use this instead of string
             IUrlHelper urlBuilder = urlInfo.GetUrlHelper(ViewContext);
 
+            // give filter values that are passed
+            KeyValuePairs["depthfilter"] = DepthFilter;
+
             /// what will be returned
             TagBuilder finishedTag = new TagBuilder("div");
 
@@ -55,7 +59,7 @@ namespace BurialSite.Infrastructure
                 TagBuilder indyTag = new TagBuilder("a");
                 // make a tags
                 // could be string but use url helper to build based on action and key values
-                indyTag.Attributes["href"] = urlBuilder.Action("Index", KeyValuePairs);
+                indyTag.Attributes["href"] = urlBuilder.Action("AddSite", KeyValuePairs);
                 indyTag.InnerHtml.Append($" {i} ");
 
                 // append to whole tag

@@ -1,1 +1,6 @@
-﻿
+﻿.nav_guy {
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 250px; /* Stay at the top */
+    left: 0px;
+}

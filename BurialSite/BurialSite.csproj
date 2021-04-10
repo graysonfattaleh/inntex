@@ -31,5 +31,8 @@
     <Folder Include="Views\Research\" />
     <Folder Include="Infrstructure\" />
     <Folder Include="Services\" />
+    <Folder Include="Components\" />
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="Views\Shared\Components\FilterList\" />
   </ItemGroup>
 </Project>
