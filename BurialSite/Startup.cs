@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using static BurialSite.Services.S3Service;
+using Microsoft.AspNetCore.Identity;
 
 namespace BurialSite
 {
@@ -28,7 +29,6 @@ namespace BurialSite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             //ahahhhdhdfhdhdh
             services.AddDbContext<ArcDBContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("DBConnector")));
@@ -40,9 +40,24 @@ namespace BurialSite
             services.AddIdentity<ResearchUser, Role>(options =>
              {
                  options.User.RequireUniqueEmail = true;
+                 options.SignIn.RequireConfirmedAccount = true;
              }
-            ).AddEntityFrameworkStores<ArcDBContext>();
+            )
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<ArcDBContext>()
+                .AddDefaultTokenProviders();
+            services.AddControllersWithViews();
+            services.AddRazorPages();
 
+            services.AddAuthorization(
+                options =>
+                {
+                    options.AddPolicy("researcherpolicy",
+                        builder => builder.RequireRole("SuperAdmin", "Researcher"));
+                    options.AddPolicy("superadminpolicy",
+                        builder => builder.RequireRole("SuperAdmin"));
+                }
+                );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,8 +78,8 @@ namespace BurialSite
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -114,6 +129,12 @@ namespace BurialSite
                   "/Research/DeleteBurial",
                   new { Controller = "Research", Action = "DeleteSiteBurial" }
                   );
+
+                // Role management actions
+                endpoints.MapControllerRoute(
+                    name: "role",
+                    pattern: "{controller=Role}/{action=Index}");
+                endpoints.MapRazorPages();
             });
 
             SeedData.EnsurePopulated(app);
