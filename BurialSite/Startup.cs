@@ -110,6 +110,10 @@ namespace BurialSite
                     "/Research/AddBurial",
                     new { Controller = "Research", Action = "CreateBurial" }
                     );
+                endpoints.MapControllerRoute("DeleteBurial",
+                  "/Research/DeleteBurial",
+                  new { Controller = "Research", Action = "DeleteSiteBurial" }
+                  );
             });
 
             SeedData.EnsurePopulated(app);

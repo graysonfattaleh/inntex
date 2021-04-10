@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BurialSite.Migrations
 {
     [DbContext(typeof(ArcDBContext))]
-    [Migration("20210409210431_fixids")]
-    partial class fixids
+    [Migration("20210410000750_makeitnull")]
+    partial class makeitnull
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,23 +70,14 @@ namespace BurialSite.Migrations
                     b.Property<string>("Age_Method")
                         .HasColumnType("text");
 
-                    b.Property<string>("Area")
+                    b.Property<string>("Artifact_Found")
                         .HasColumnType("text");
-
-                    b.Property<string>("Artifact_Description")
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("Artifact_Found")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Artifacts_Description")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Artifacts_Found")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("BYU_Sample")
-                        .HasColumnType("boolean");
+                    b.Property<string>("BYU_Sample")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Bag")
                         .HasColumnType("integer");
@@ -109,11 +100,8 @@ namespace BurialSite.Migrations
                     b.Property<DateTime?>("Body_Analysis")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<bool?>("Bone_Taken")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("BurLocID")
-                        .HasColumnType("integer");
+                    b.Property<string>("Bone_Taken")
+                        .HasColumnType("text");
 
                     b.Property<int>("BurialLocationId")
                         .HasColumnType("integer");
@@ -137,8 +125,8 @@ namespace BurialSite.Migrations
                     b.Property<string>("Burial_Preservation")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Burial_Sample_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Burial_Sample_Taken")
+                        .HasColumnType("text");
 
                     b.Property<string>("Burial_Situation")
                         .HasColumnType("text");
@@ -146,8 +134,8 @@ namespace BurialSite.Migrations
                     b.Property<char?>("Burial_Wrapping")
                         .HasColumnType("character(1)");
 
-                    b.Property<bool?>("Button_Osteoma")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Button_Osteoma")
+                        .HasColumnType("text");
 
                     b.Property<int?>("C14_Calendar_Date")
                         .HasColumnType("integer");
@@ -182,8 +170,8 @@ namespace BurialSite.Migrations
                     b.Property<string>("Cranial_Suture")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Cribra_Orbitala")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Cribra_Orbitala")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("timestamp without time zone");
@@ -215,8 +203,8 @@ namespace BurialSite.Migrations
                     b.Property<decimal?>("Estimate_Living_Stature")
                         .HasColumnType("numeric");
 
-                    b.Property<bool?>("Face_Bundle")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Face_Bundle")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("Femur_Head")
                         .HasColumnType("numeric");
@@ -233,17 +221,17 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Foci")
                         .HasColumnType("integer");
 
-                    b.Property<decimal?>("GE_Function_Total")
-                        .HasColumnType("numeric");
+                    b.Property<string>("GE_Function_Total")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Gamous")
                         .HasColumnType("integer");
 
-                    b.Property<char?>("Gender")
-                        .HasColumnType("character(1)");
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
 
-                    b.Property<char?>("Gender_By_Measurement")
-                        .HasColumnType("character(1)");
+                    b.Property<string>("Gender_By_Measurement")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Gonian")
                         .HasColumnType("integer");
@@ -254,11 +242,11 @@ namespace BurialSite.Migrations
                     b.Property<string>("Hair_Color")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Hair_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Hair_Taken")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Head_Direction")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Head_Direction")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("Humerus_Head")
                         .HasColumnType("numeric");
@@ -293,8 +281,8 @@ namespace BurialSite.Migrations
                     b.Property<decimal?>("Length_Of_Remains")
                         .HasColumnType("numeric");
 
-                    b.Property<bool?>("Linear_Hypoplasia_Enamel")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Linear_Hypoplasia_Enamel")
+                        .HasColumnType("text");
 
                     b.Property<string>("Location")
                         .HasColumnType("text");
@@ -311,8 +299,8 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Medial_IP_Ramus")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Metopic_Suture")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Metopic_Suture")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Month_On_Skull")
                         .HasColumnType("timestamp without time zone");
@@ -344,23 +332,23 @@ namespace BurialSite.Migrations
                     b.Property<string>("Porotic_Hyperostosis_Locations")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Postcrania_At_Magazine")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Postcrania_At_Magazine")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Postcrania_Trauma")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Postcrania_Trauma")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Preaur_Sulcus")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Preservation_Index")
-                        .HasColumnType("integer");
+                    b.Property<string>("Preservation_Index")
+                        .HasColumnType("text");
 
                     b.Property<string>("Preservation_State")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Previously_Sampled")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Previously_Sampled")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Pubic_Bone")
                         .HasColumnType("integer");
@@ -371,17 +359,17 @@ namespace BurialSite.Migrations
                     b.Property<string>("Questions")
                         .HasColumnType("text");
 
+                    b.Property<int?>("Rack")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Rack_And_Shelf")
                         .HasColumnType("text");
-
-                    b.Property<int?>("Rank")
-                        .HasColumnType("integer");
 
                     b.Property<int?>("Robust")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Sample_Collected")
-                        .HasColumnType("boolean");
+                    b.Property<char?>("Sample_Collected")
+                        .HasColumnType("character(1)");
 
                     b.Property<int?>("Sciatic_Notch")
                         .HasColumnType("integer");
@@ -392,14 +380,14 @@ namespace BurialSite.Migrations
                     b.Property<string>("Sex_Method")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Skull_At_Magazine")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Skull_At_Magazine")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Skull_Trauma")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Skull_Trauma")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Soft_Tissue_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Soft_Tissue_Taken")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("South_To_Feet")
                         .HasColumnType("numeric");
@@ -413,11 +401,11 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Supraorbital_Ridges")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Temporal_Mandibular_Joint_Osteoarthritis")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Temporal_Mandibular_Joint_Osteoarthritis")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Textile_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Textile_Taken")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("Tibia_Length")
                         .HasColumnType("numeric");
@@ -425,14 +413,14 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Tomb")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Tooth_Attrition")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tooth_Attrition")
+                        .HasColumnType("text");
 
                     b.Property<string>("Tooth_Eruption")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Tooth_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Tooth_Taken")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Tube_Number")
                         .HasColumnType("integer");
