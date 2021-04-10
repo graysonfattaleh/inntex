@@ -2,27 +2,27 @@
 
 namespace BurialSite.Migrations
 {
-    public partial class fixbool : Migration
+    public partial class makeitnull : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
-                name: "Basilar_Suture",
+                name: "Postcrania_At_Magazine",
                 table: "Burials",
                 type: "text",
                 nullable: true,
-                oldClrType: typeof(bool),
-                oldType: "boolean",
-                oldNullable: true);
+                oldClrType: typeof(string),
+                oldType: "text");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<bool>(
-                name: "Basilar_Suture",
+            migrationBuilder.AlterColumn<string>(
+                name: "Postcrania_At_Magazine",
                 table: "Burials",
-                type: "boolean",
-                nullable: true,
+                type: "text",
+                nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "text",
                 oldNullable: true);

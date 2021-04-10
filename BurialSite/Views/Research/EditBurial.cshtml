@@ -3,3 +3,655 @@
 *@
 @{
 }
+
+
+@model EditBurialViewModel
+<form method="post" asp-controller="Research" asp-action="SaveEditedBurial">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type ="hidden" asp-for="@Model.Burial.BurialID" />
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Gamous" class="control-label"></label>
+        <input asp-for="@Model.Burial.Gamous" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Gamous" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Number" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Number" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Number" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.West_To_Head" class="control-label"></label>
+        <input asp-for="@Model.Burial.West_To_Head" class="form-control" />
+        <span asp-validation-for="@Model.Burial.West_To_Head" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.West_To_Feet" class="control-label"></label>
+        <input asp-for="@Model.Burial.West_To_Feet" class="form-control" />
+        <span asp-validation-for="@Model.Burial.West_To_Feet" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.East_To_Head" class="control-label"></label>
+        <input asp-for="@Model.Burial.East_To_Head" class="form-control" />
+        <span asp-validation-for="@Model.Burial.East_To_Head" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.East_To_Feet" class="control-label"></label>
+        <input asp-for="@Model.Burial.East_To_Feet" class="form-control" />
+        <span asp-validation-for="@Model.Burial.East_To_Feet" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.South_To_Head" class="control-label"></label>
+        <input asp-for="@Model.Burial.South_To_Head" class="form-control" />
+        <span asp-validation-for="@Model.Burial.South_To_Head" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.South_To_Feet" class="control-label"></label>
+        <input asp-for="@Model.Burial.South_To_Feet" class="form-control" />
+        <span asp-validation-for="@Model.Burial.South_To_Feet" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Depth" class="control-label"></label>
+        <input asp-for="@Model.Burial.Depth" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Depth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Preservation_State" class="control-label"></label>
+        <input asp-for="@Model.Burial.Preservation_State" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Preservation_State" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Icon" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Icon" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Icon" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Icon2" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Icon2" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Icon2" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Sex_Method" class="control-label"></label>
+        <input asp-for="@Model.Burial.Sex_Method" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Sex_Method" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Sex" class="control-label"></label>
+        <input asp-for="@Model.Burial.Sex" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Sex" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.GE_Function_Total" class="control-label"></label>
+        <input asp-for="@Model.Burial.GE_Function_Total" class="form-control" />
+        <span asp-validation-for="@Model.Burial.GE_Function_Total" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Gender" class="control-label"></label>
+        <input asp-for="@Model.Burial.Gender" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Gender_By_Measurement" class="control-label"></label>
+        <input asp-for="@Model.Burial.Gender_By_Measurement" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Gender_By_Measurement" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Age_At_Death" class="control-label"></label>
+        <input asp-for="@Model.Burial.Age_At_Death" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Age_At_Death" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Age_Method" class="control-label"></label>
+        <input asp-for="@Model.Burial.Age_Method" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Age_Method" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Hair_Color" class="control-label"></label>
+        <input asp-for="@Model.Burial.Hair_Color" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Hair_Color" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Sample_Collected" class="control-label"></label>
+        <input asp-for="@Model.Burial.Sample_Collected" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Sample_Collected" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Situation" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Situation" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Situation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Length_Of_Remains" class="control-label"></label>
+        <input asp-for="@Model.Burial.Length_Of_Remains" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Length_Of_Remains" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Cranial_Sample_Number" class="control-label"></label>
+        <input asp-for="@Model.Burial.Cranial_Sample_Number" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Cranial_Sample_Number" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+
+        <label asp-for="@Model.Burial.Basilar_Suture" class="control-label"></label>
+        <select asp-for="@Model.Burial.Basilar_Suture" asp-items="@Model.BasilList">
+        </select>
+        <span asp-validation-for="@Model.Burial.Basilar_Suture" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Ventral_Arc" class="control-label"></label>
+        <input asp-for="@Model.Burial.Ventral_Arc" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Ventral_Arc" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Subpubic_Angle" class="control-label"></label>
+        <input asp-for="@Model.Burial.Subpubic_Angle" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Subpubic_Angle" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Sciatic_Notch" class="control-label"></label>
+        <input asp-for="@Model.Burial.Sciatic_Notch" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Sciatic_Notch" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Pubic_Bone" class="control-label"></label>
+        <input asp-for="@Model.Burial.Pubic_Bone" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Pubic_Bone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Preaur_Sulcus" class="control-label"></label>
+        <input asp-for="@Model.Burial.Preaur_Sulcus" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Preaur_Sulcus" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Medial_IP_Ramus" class="control-label"></label>
+        <input asp-for="@Model.Burial.Medial_IP_Ramus" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Medial_IP_Ramus" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Dorsal_Pitting" class="control-label"></label>
+        <input asp-for="@Model.Burial.Dorsal_Pitting" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Dorsal_Pitting" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Femur_Head" class="control-label"></label>
+        <input asp-for="@Model.Burial.Femur_Head" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Femur_Head" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Humerus_Head" class="control-label"></label>
+        <input asp-for="@Model.Burial.Humerus_Head" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Humerus_Head" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Osteophytosis" class="control-label"></label>
+        <input asp-for="@Model.Burial.Osteophytosis" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Osteophytosis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Pubic_Symphysis" class="control-label"></label>
+        <input asp-for="@Model.Burial.Pubic_Symphysis" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Pubic_Symphysis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Femur_Length" class="control-label"></label>
+        <input asp-for="@Model.Burial.Femur_Length" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Femur_Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Humerus_Length" class="control-label"></label>
+        <input asp-for="@Model.Burial.Humerus_Length" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Humerus_Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Tibia_Length" class="control-label"></label>
+        <input asp-for="@Model.Burial.Tibia_Length" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Tibia_Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Robust" class="control-label"></label>
+        <input asp-for="@Model.Burial.Robust" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Robust" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Supraorbital_Ridges" class="control-label"></label>
+        <input asp-for="@Model.Burial.Supraorbital_Ridges" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Supraorbital_Ridges" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Orbit_Edge" class="control-label"></label>
+        <input asp-for="@Model.Burial.Orbit_Edge" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Orbit_Edge" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Parietal_Bossing" class="control-label"></label>
+        <input asp-for="@Model.Burial.Parietal_Bossing" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Parietal_Bossing" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Gonian" class="control-label"></label>
+        <input asp-for="@Model.Burial.Gonian" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Gonian" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Nuchal_Crest" class="control-label"></label>
+        <input asp-for="@Model.Burial.Nuchal_Crest" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Nuchal_Crest" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Zygomatic_Crest" class="control-label"></label>
+        <input asp-for="@Model.Burial.Zygomatic_Crest" class="form-control" min="0" max="3" />
+        <span asp-validation-for="@Model.Burial.Zygomatic_Crest" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Cranial_Suture" class="control-label"></label>
+        <select asp-for="@Model.Burial.Cranial_Suture" asp-items="@Model.CranialStructureList" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Cranial_Suture" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Maximum_Cranial_Length" class="control-label"></label>
+        <input asp-for="@Model.Burial.Maximum_Cranial_Length" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Maximum_Cranial_Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Maximum_Cranial_Breadth" class="control-label"></label>
+        <input asp-for="@Model.Burial.Maximum_Cranial_Breadth" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Maximum_Cranial_Breadth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Basion_Bregma_Height" class="control-label"></label>
+        <input asp-for="@Model.Burial.Basion_Bregma_Height" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Basion_Bregma_Height" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Basion_Nasion" class="control-label"></label>
+        <input asp-for="@Model.Burial.Basion_Nasion" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Basion_Nasion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Basion_Prosthion_Length" class="control-label"></label>
+        <input asp-for="@Model.Burial.Basion_Prosthion_Length" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Basion_Prosthion_Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Bizygomatic_Diameter" class="control-label"></label>
+        <input asp-for="@Model.Burial.Bizygomatic_Diameter" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Bizygomatic_Diameter" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Nasion_Prosthion" class="control-label"></label>
+        <input asp-for="@Model.Burial.Nasion_Prosthion" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Nasion_Prosthion" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Maximum_Nasal_Breadth" class="control-label"></label>
+        <input asp-for="@Model.Burial.Maximum_Nasal_Breadth" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Maximum_Nasal_Breadth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Interorbital_Breadth" class="control-label"></label>
+        <input asp-for="@Model.Burial.Interorbital_Breadth" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Interorbital_Breadth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Artifacts_Description" class="control-label"></label>
+        <input asp-for="@Model.Burial.Artifacts_Description" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Artifacts_Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Preservation_Index" class="control-label"></label>
+        <input asp-for="@Model.Burial.Preservation_Index" class="form-control" placeholder="Use Roman Numerals I,II,III" />
+        <span asp-validation-for="@Model.Burial.Preservation_Index" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Hair_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Hair_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Hair_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Soft_Tissue_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Soft_Tissue_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Soft_Tissue_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Bone_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Bone_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Bone_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Tooth_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Tooth_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Tooth_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Textile_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Textile_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Textile_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Description_Of_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Description_Of_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Description_Of_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Artifact_Found" class="control-label"></label>
+        <input asp-for="@Model.Burial.Artifact_Found" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Artifact_Found" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Estimate_Living_Stature" class="control-label"></label>
+        <input asp-for="@Model.Burial.Estimate_Living_Stature" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Estimate_Living_Stature" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Tooth_Attrition" class="control-label"></label>
+        <input asp-for="@Model.Burial.Tooth_Attrition" class="form-control" placeholder="Use Roman Numerals" />
+        <span asp-validation-for="@Model.Burial.Tooth_Attrition" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Tooth_Eruption" class="control-label"></label>
+        <input asp-for="@Model.Burial.Tooth_Eruption" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Tooth_Eruption" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Pathology_Anomalies" class="control-label"></label>
+        <input asp-for="@Model.Burial.Pathology_Anomalies" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Pathology_Anomalies" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Epiphyseal_Union" class="control-label"></label>
+        <input asp-for="@Model.Burial.Epiphyseal_Union" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Epiphyseal_Union" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Date_Excavated" class="control-label"></label>
+        <input asp-for="@Model.Burial.Date_Excavated" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Date_Excavated" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Head_Direction" class="control-label"></label>
+        <input asp-for="@Model.Burial.Head_Direction" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Head_Direction" class="text-danger"></span>
+    </div>
+   
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Year_On_Skull" class="control-label"></label>
+        <input asp-for="@Model.Burial.Year_On_Skull" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Year_On_Skull" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Month_On_Skull" class="control-label"></label>
+        <input asp-for="@Model.Burial.Month_On_Skull" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Month_On_Skull" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Day_On_Skull" class="control-label"></label>
+        <input asp-for="@Model.Burial.Day_On_Skull" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Day_On_Skull" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Field_Book" class="control-label"></label>
+        <input asp-for="@Model.Burial.Field_Book" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Field_Book" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Field_Book_Page_Number" class="control-label"></label>
+        <input asp-for="@Model.Burial.Field_Book_Page_Number" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Field_Book_Page_Number" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Initials_Of_Data_Entry_Expert" class="control-label"></label>
+        <input asp-for="@Model.Burial.Initials_Of_Data_Entry_Expert" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Initials_Of_Data_Entry_Expert" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Initials_Of_Data_Entry_Checker" class="control-label"></label>
+        <input asp-for="@Model.Burial.Initials_Of_Data_Entry_Checker" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Initials_Of_Data_Entry_Checker" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.BYU_Sample" class="control-label"></label>
+        <input asp-for="@Model.Burial.BYU_Sample" class="form-control" />
+        <span asp-validation-for="@Model.Burial.BYU_Sample" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Body_Analysis" class="control-label"></label>
+        <input asp-for="@Model.Burial.Body_Analysis" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Body_Analysis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Skull_At_Magazine" class="control-label"></label>
+        <input asp-for="@Model.Burial.Skull_At_Magazine" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Skull_At_Magazine" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Postcrania_At_Magazine" class="control-label"></label>
+        <input asp-for="@Model.Burial.Postcrania_At_Magazine" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Postcrania_At_Magazine" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Age" class="control-label"></label>
+        <input asp-for="@Model.Burial.Age" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Rack_And_Shelf" class="control-label"></label>
+        <input asp-for="@Model.Burial.Rack_And_Shelf" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Rack_And_Shelf" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Skull_Trauma" class="control-label"></label>
+        <input asp-for="@Model.Burial.Skull_Trauma" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Skull_Trauma" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Postcrania_Trauma" class="control-label"></label>
+        <input asp-for="@Model.Burial.Postcrania_Trauma" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Postcrania_Trauma" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Cribra_Orbitala" class="control-label"></label>
+        <input asp-for="@Model.Burial.Cribra_Orbitala" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Cribra_Orbitala" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Porotic_Hyperostosis" class="control-label"></label>
+        <input asp-for="@Model.Burial.Porotic_Hyperostosis" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Porotic_Hyperostosis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Porotic_Hyperostosis_Locations" class="control-label"></label>
+        <input asp-for="@Model.Burial.Porotic_Hyperostosis_Locations" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Porotic_Hyperostosis_Locations" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Metopic_Suture" class="control-label"></label>
+        <input asp-for="@Model.Burial.Metopic_Suture" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Metopic_Suture" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Button_Osteoma" class="control-label"></label>
+        <input asp-for="@Model.Burial.Button_Osteoma" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Button_Osteoma" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Osteology_Unknown_Comment" class="control-label"></label>
+        <input asp-for="@Model.Burial.Osteology_Unknown_Comment" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Osteology_Unknown_Comment" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Temporal_Mandibular_Joint_Osteoarthritis" class="control-label"></label>
+        <input asp-for="@Model.Burial.Temporal_Mandibular_Joint_Osteoarthritis" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Temporal_Mandibular_Joint_Osteoarthritis" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Linear_Hypoplasia_Enamel" class="control-label"></label>
+        <input asp-for="@Model.Burial.Linear_Hypoplasia_Enamel" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Linear_Hypoplasia_Enamel" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Tomb" class="control-label"></label>
+        <input asp-for="@Model.Burial.Tomb" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Tomb" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Length" class="control-label"></label>
+        <input asp-for="@Model.Burial.Length" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Length" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Preservation" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Preservation" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Preservation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Wrapping" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Wrapping" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Wrapping" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Adult_Child" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Adult_Child" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Adult_Child" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Age_Code" class="control-label"></label>
+        <input asp-for="@Model.Burial.Age_Code" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Age_Code" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Sample_Taken" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Sample_Taken" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Sample_Taken" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Length_In_Meters" class="control-label"></label>
+        <input asp-for="@Model.Burial.Length_In_Meters" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Length_In_Meters" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Length_In_Centimeters" class="control-label"></label>
+        <input asp-for="@Model.Burial.Length_In_Centimeters" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Length_In_Centimeters" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Length_In_Millimeters" class="control-label"></label>
+        <input asp-for="@Model.Burial.Length_In_Millimeters" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Length_In_Millimeters" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Goods" class="control-label"></label>
+        <input asp-for="@Model.Burial.Goods" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Goods" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Cluster" class="control-label"></label>
+        <input asp-for="@Model.Burial.Cluster" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Cluster" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Face_Bundle" class="control-label"></label>
+        <input asp-for="@Model.Burial.Face_Bundle" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Face_Bundle" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Rack" class="control-label"></label>
+        <input asp-for="@Model.Burial.Rack" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Rack" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Tube_Number" class="control-label"></label>
+        <input asp-for="@Model.Burial.Tube_Number" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Tube_Number" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Burial_Description" class="control-label"></label>
+        <input asp-for="@Model.Burial.Burial_Description" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Burial_Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Foci" class="control-label"></label>
+        <input asp-for="@Model.Burial.Foci" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Foci" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.C14_Sample" class="control-label"></label>
+        <input asp-for="@Model.Burial.C14_Sample" class="form-control" />
+        <span asp-validation-for="@Model.Burial.C14_Sample" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Location" class="control-label"></label>
+        <input asp-for="@Model.Burial.Location" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Questions" class="control-label"></label>
+        <input asp-for="@Model.Burial.Questions" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Questions" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Conventional_14C_Age_BP" class="control-label"></label>
+        <input asp-for="@Model.Burial.Conventional_14C_Age_BP" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Conventional_14C_Age_BP" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.C14_Calendar_Date" class="control-label"></label>
+        <input asp-for="@Model.Burial.C14_Calendar_Date" class="form-control" />
+        <span asp-validation-for="@Model.Burial.C14_Calendar_Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Max" class="control-label"></label>
+        <input asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Max" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Calibrated_95_Calendar_Date_Max" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Min" class="control-label"></label>
+        <input asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Min" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Calibrated_95_Calendar_Date_Min" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Span" class="control-label"></label>
+        <input asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Span" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Calibrated_95_Calendar_Date_Span" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Avg" class="control-label"></label>
+        <input asp-for="@Model.Burial.Calibrated_95_Calendar_Date_Avg" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Calibrated_95_Calendar_Date_Avg" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Category" class="control-label"></label>
+        <input asp-for="@Model.Burial.Category" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Category" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Bag" class="control-label"></label>
+        <input asp-for="@Model.Burial.Bag" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Bag" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Date" class="control-label"></label>
+        <input asp-for="@Model.Burial.Date" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Date" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Previously_Sampled" class="control-label"></label>
+        <input asp-for="@Model.Burial.Previously_Sampled" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Previously_Sampled" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.Initials" class="control-label"></label>
+        <input asp-for="@Model.Burial.Initials" class="form-control" />
+        <span asp-validation-for="@Model.Burial.Initials" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Burial.BurialLocationId" class="control-label"></label>
+        <input asp-for="@Model.Burial.BurialLocationId" class="form-control" />
+        <span asp-validation-for="@Model.Burial.BurialLocationId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" > Edit Burial</button>
+    </div>
+
+</form>

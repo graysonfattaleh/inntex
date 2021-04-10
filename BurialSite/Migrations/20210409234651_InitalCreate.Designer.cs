@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BurialSite.Migrations
 {
     [DbContext(typeof(ArcDBContext))]
-    [Migration("20210409151909_fixbool")]
-    partial class fixbool
+    [Migration("20210409234651_InitalCreate")]
+    partial class InitalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,13 +38,13 @@ namespace BurialSite.Migrations
 
             modelBuilder.Entity("BurialLocationYearsExcavatedFrom", b =>
                 {
-                    b.Property<int>("BurialLocationBurLocID")
+                    b.Property<int>("BurialLocationId")
                         .HasColumnType("integer");
 
                     b.Property<int>("YearsExcavatedFromsYearsExcavatedFromId")
                         .HasColumnType("integer");
 
-                    b.HasKey("BurialLocationBurLocID", "YearsExcavatedFromsYearsExcavatedFromId");
+                    b.HasKey("BurialLocationId", "YearsExcavatedFromsYearsExcavatedFromId");
 
                     b.HasIndex("YearsExcavatedFromsYearsExcavatedFromId");
 
@@ -70,23 +70,14 @@ namespace BurialSite.Migrations
                     b.Property<string>("Age_Method")
                         .HasColumnType("text");
 
-                    b.Property<string>("Area")
+                    b.Property<string>("Artifact_Found")
                         .HasColumnType("text");
-
-                    b.Property<string>("Artifact_Description")
-                        .HasColumnType("text");
-
-                    b.Property<bool?>("Artifact_Found")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Artifacts_Description")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Artifacts_Found")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool?>("BYU_Sample")
-                        .HasColumnType("boolean");
+                    b.Property<string>("BYU_Sample")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Bag")
                         .HasColumnType("integer");
@@ -109,17 +100,11 @@ namespace BurialSite.Migrations
                     b.Property<DateTime?>("Body_Analysis")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<bool?>("Bone_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Bone_Taken")
+                        .HasColumnType("text");
 
-                    b.Property<int>("BurLocID")
+                    b.Property<int>("BurialLocationId")
                         .HasColumnType("integer");
-
-                    b.Property<int>("BurialLocationBurLocID")
-                        .HasColumnType("integer");
-
-                    b.Property<long>("BurialLocationId")
-                        .HasColumnType("bigint");
 
                     b.Property<char?>("Burial_Adult_Child")
                         .HasColumnType("character(1)");
@@ -133,14 +118,15 @@ namespace BurialSite.Migrations
                     b.Property<string>("Burial_Icon2")
                         .HasColumnType("text");
 
-                    b.Property<int>("Burial_Number")
-                        .HasColumnType("integer");
+                    b.Property<string>("Burial_Number")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Burial_Preservation")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Burial_Sample_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Burial_Sample_Taken")
+                        .HasColumnType("text");
 
                     b.Property<string>("Burial_Situation")
                         .HasColumnType("text");
@@ -148,8 +134,8 @@ namespace BurialSite.Migrations
                     b.Property<char?>("Burial_Wrapping")
                         .HasColumnType("character(1)");
 
-                    b.Property<bool?>("Button_Osteoma")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Button_Osteoma")
+                        .HasColumnType("text");
 
                     b.Property<int?>("C14_Calendar_Date")
                         .HasColumnType("integer");
@@ -184,8 +170,8 @@ namespace BurialSite.Migrations
                     b.Property<string>("Cranial_Suture")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Cribra_Orbitala")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Cribra_Orbitala")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("timestamp without time zone");
@@ -217,8 +203,8 @@ namespace BurialSite.Migrations
                     b.Property<decimal?>("Estimate_Living_Stature")
                         .HasColumnType("numeric");
 
-                    b.Property<bool?>("Face_Bundle")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Face_Bundle")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("Femur_Head")
                         .HasColumnType("numeric");
@@ -235,17 +221,17 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Foci")
                         .HasColumnType("integer");
 
-                    b.Property<decimal?>("GE_Function_Total")
-                        .HasColumnType("numeric");
+                    b.Property<string>("GE_Function_Total")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Gamous")
                         .HasColumnType("integer");
 
-                    b.Property<char?>("Gender")
-                        .HasColumnType("character(1)");
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
 
-                    b.Property<char?>("Gender_By_Measurement")
-                        .HasColumnType("character(1)");
+                    b.Property<string>("Gender_By_Measurement")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Gonian")
                         .HasColumnType("integer");
@@ -256,11 +242,11 @@ namespace BurialSite.Migrations
                     b.Property<string>("Hair_Color")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Hair_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Hair_Taken")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Head_Direction")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Head_Direction")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("Humerus_Head")
                         .HasColumnType("numeric");
@@ -295,8 +281,8 @@ namespace BurialSite.Migrations
                     b.Property<decimal?>("Length_Of_Remains")
                         .HasColumnType("numeric");
 
-                    b.Property<bool?>("Linear_Hypoplasia_Enamel")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Linear_Hypoplasia_Enamel")
+                        .HasColumnType("text");
 
                     b.Property<string>("Location")
                         .HasColumnType("text");
@@ -313,8 +299,8 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Medial_IP_Ramus")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Metopic_Suture")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Metopic_Suture")
+                        .HasColumnType("text");
 
                     b.Property<DateTime?>("Month_On_Skull")
                         .HasColumnType("timestamp without time zone");
@@ -346,23 +332,24 @@ namespace BurialSite.Migrations
                     b.Property<string>("Porotic_Hyperostosis_Locations")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Postcrania_At_Magazine")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Postcrania_At_Magazine")
+                        .IsRequired()
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Postcrania_Trauma")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Postcrania_Trauma")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Preaur_Sulcus")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Preservation_Index")
-                        .HasColumnType("integer");
+                    b.Property<string>("Preservation_Index")
+                        .HasColumnType("text");
 
                     b.Property<string>("Preservation_State")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Previously_Sampled")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Previously_Sampled")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Pubic_Bone")
                         .HasColumnType("integer");
@@ -373,17 +360,17 @@ namespace BurialSite.Migrations
                     b.Property<string>("Questions")
                         .HasColumnType("text");
 
+                    b.Property<int?>("Rack")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Rack_And_Shelf")
                         .HasColumnType("text");
-
-                    b.Property<int?>("Rank")
-                        .HasColumnType("integer");
 
                     b.Property<int?>("Robust")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Sample_Collected")
-                        .HasColumnType("boolean");
+                    b.Property<char?>("Sample_Collected")
+                        .HasColumnType("character(1)");
 
                     b.Property<int?>("Sciatic_Notch")
                         .HasColumnType("integer");
@@ -394,14 +381,14 @@ namespace BurialSite.Migrations
                     b.Property<string>("Sex_Method")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Skull_At_Magazine")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Skull_At_Magazine")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Skull_Trauma")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Skull_Trauma")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Soft_Tissue_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Soft_Tissue_Taken")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("South_To_Feet")
                         .HasColumnType("numeric");
@@ -415,11 +402,11 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Supraorbital_Ridges")
                         .HasColumnType("integer");
 
-                    b.Property<bool?>("Temporal_Mandibular_Joint_Osteoarthritis")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Temporal_Mandibular_Joint_Osteoarthritis")
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("Textile_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Textile_Taken")
+                        .HasColumnType("text");
 
                     b.Property<decimal?>("Tibia_Length")
                         .HasColumnType("numeric");
@@ -427,14 +414,14 @@ namespace BurialSite.Migrations
                     b.Property<int?>("Tomb")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("Tooth_Attrition")
-                        .HasColumnType("integer");
+                    b.Property<string>("Tooth_Attrition")
+                        .HasColumnType("text");
 
                     b.Property<string>("Tooth_Eruption")
                         .HasColumnType("text");
 
-                    b.Property<bool?>("Tooth_Taken")
-                        .HasColumnType("boolean");
+                    b.Property<string>("Tooth_Taken")
+                        .HasColumnType("text");
 
                     b.Property<int?>("Tube_Number")
                         .HasColumnType("integer");
@@ -456,14 +443,14 @@ namespace BurialSite.Migrations
 
                     b.HasKey("BurialID");
 
-                    b.HasIndex("BurialLocationBurLocID");
+                    b.HasIndex("BurialLocationId");
 
                     b.ToTable("Burials");
                 });
 
             modelBuilder.Entity("BurialSite.Models.BurialLocation", b =>
                 {
-                    b.Property<int>("BurLocID")
+                    b.Property<int>("BurialLocationId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -487,7 +474,7 @@ namespace BurialSite.Migrations
                     b.Property<int?>("N_S_Grid_Site_Upper")
                         .HasColumnType("integer");
 
-                    b.HasKey("BurLocID");
+                    b.HasKey("BurialLocationId");
 
                     b.ToTable("BurialLocations");
                 });
@@ -582,6 +569,106 @@ namespace BurialSite.Migrations
                     b.ToTable("OneToOneValues");
                 });
 
+            modelBuilder.Entity("BurialSite.Models.ResearchUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("BurialSite.Models.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles");
+                });
+
             modelBuilder.Entity("BurialSite.Models.TestEnt", b =>
                 {
                     b.Property<int>("TestEntId")
@@ -612,6 +699,107 @@ namespace BurialSite.Migrations
                     b.ToTable("YearsExcavatedFrom");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("text");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("text");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
             modelBuilder.Entity("BurialFileUrl", b =>
                 {
                     b.HasOne("BurialSite.Models.Burial", null)
@@ -631,7 +819,7 @@ namespace BurialSite.Migrations
                 {
                     b.HasOne("BurialSite.Models.BurialLocation", null)
                         .WithMany()
-                        .HasForeignKey("BurialLocationBurLocID")
+                        .HasForeignKey("BurialLocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -646,7 +834,7 @@ namespace BurialSite.Migrations
                 {
                     b.HasOne("BurialSite.Models.BurialLocation", "BurialLocation")
                         .WithMany("Burials")
-                        .HasForeignKey("BurialLocationBurLocID")
+                        .HasForeignKey("BurialLocationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -679,6 +867,57 @@ namespace BurialSite.Migrations
                     b.Navigation("Burial");
 
                     b.Navigation("OneToOneField");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.HasOne("BurialSite.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.HasOne("BurialSite.Models.ResearchUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.HasOne("BurialSite.Models.ResearchUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.HasOne("BurialSite.Models.Role", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("BurialSite.Models.ResearchUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.HasOne("BurialSite.Models.ResearchUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BurialSite.Models.Burial", b =>

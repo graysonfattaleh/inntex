@@ -46,7 +46,7 @@ namespace BurialSite.Controllers
 
             AddSiteViewModel BurialList = new AddSiteViewModel()
             {
-                Burials = _context.Burials.Include(b => b.BurialLocation)
+                Burials = _context.Burials.Include(b => b.BurialLocation).OrderBy(b=>b.BurialID)
             };
             return View(BurialList);
         }
@@ -79,31 +79,25 @@ namespace BurialSite.Controllers
         [HttpPost]
         public IActionResult SaveBurial(Burial burial)
         {
-            burial.BurialLocation = _context.BurialLocations.Where(b => burial.BurialLocationId == b.BurialLocationId).FirstOrDefault();
+            //burial.BurialLocation = _context.BurialLocations.Where(b => burial.BurialLocationId == b.BurialLocationId).FirstOrDefault();
 
-
+            int new_id = _context.Burials.OrderBy(b => b.BurialID).Last().BurialID + 1;
+            burial.BurialID = new_id;
             if (ModelState.IsValid)
             {
 
-                
+
                 _context.Add(burial);
                 _context.SaveChanges();
                 return View();
             }
             else
-            {
-                List<SelectListItem> CranialOptions = new List<SelectListItem>();
-                CranialOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
-                CranialOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
-                List<SelectListItem> BasilOptions = new List<SelectListItem>();
-                BasilOptions.Add(new SelectListItem { Text = "Closed", Value = "Closed" });
-                BasilOptions.Add(new SelectListItem { Text = "Open", Value = "Open" });
+            { 
 
 
                 AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel
                 {
-                    BasilList = BasilOptions,
-                    CranialStructureList = CranialOptions,
+               
                     Burial = burial
                 };
                 return View("CreateBurial", burialSiteViewModel);
@@ -111,10 +105,42 @@ namespace BurialSite.Controllers
           
         }
         //Edit Burial Site/////////////////////////////////////////////
-        public IActionResult EditBurial()
+        [HttpPost]
+        public IActionResult EditBurial(int BurialId)
         {
+            Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
 
-            return View();
+
+            // makes options for selector lists
+
+            EditBurialViewModel BurialEdit = new EditBurialViewModel
+            {
+                Burial = burial
+            };
+
+            return View(BurialEdit);
+        }
+
+        [HttpPost]
+        public IActionResult SaveEditedBurial(Burial burial)
+        {
+            _context.Update(burial);
+            _context.SaveChanges();
+
+            if (ModelState.IsValid)
+            {
+              
+                return View();
+            }
+            else{
+                EditBurialViewModel BurialEdit = new EditBurialViewModel
+                {
+                    Burial = burial
+                };
+
+                return View("EditBurial", BurialEdit);
+            }
+           
         }
 
         //Read Burial Site Details
@@ -159,7 +185,14 @@ namespace BurialSite.Controllers
 
         // Delete Burial Site?? (just admin maybe?)
 
+        public IActionResult DeleteBurialSite(int BurialId)
+        {
 
+            Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
+            _context.Remove(burial);
+            _context.SaveChanges();
+            return View();
+        }
 
         // ADMIN CRUD----------------------------------------
 

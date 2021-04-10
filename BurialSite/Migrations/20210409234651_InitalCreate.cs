@@ -4,15 +4,58 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BurialSite.Migrations
 {
-    public partial class initial_new : Migration
+    public partial class InitalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AspNetRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FirstName = table.Column<string>(type: "text", nullable: true),
+                    LastName = table.Column<string>(type: "text", nullable: true),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BurialLocations",
                 columns: table => new
                 {
-                    BurLocID = table.Column<int>(type: "integer", nullable: false)
+                    BurialLocationId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Dig_Site_Name = table.Column<string>(type: "text", nullable: false),
                     N_S_Grid_Site_Upper = table.Column<int>(type: "integer", nullable: true),
@@ -23,7 +66,7 @@ namespace BurialSite.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BurialLocations", x => x.BurLocID);
+                    table.PrimaryKey("PK_BurialLocations", x => x.BurialLocationId);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,14 +125,119 @@ namespace BurialSite.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RoleId = table.Column<int>(type: "integer", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(type: "text", nullable: false),
+                    ProviderKey = table.Column<string>(type: "text", nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserRoles",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    RoleId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "integer", nullable: false),
+                    LoginProvider = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.ForeignKey(
+                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Burials",
                 columns: table => new
                 {
                     BurialID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BurLocID = table.Column<int>(type: "integer", nullable: false),
                     Gamous = table.Column<int>(type: "integer", nullable: true),
-                    Burial_Number = table.Column<int>(type: "integer", nullable: false),
+                    Burial_Number = table.Column<string>(type: "text", nullable: false),
                     West_To_Head = table.Column<decimal>(type: "numeric", nullable: true),
                     West_To_Feet = table.Column<decimal>(type: "numeric", nullable: true),
                     East_To_Head = table.Column<decimal>(type: "numeric", nullable: true),
@@ -102,17 +250,17 @@ namespace BurialSite.Migrations
                     Burial_Icon2 = table.Column<string>(type: "text", nullable: true),
                     Sex_Method = table.Column<string>(type: "text", nullable: true),
                     Sex = table.Column<char>(type: "character(1)", nullable: true),
-                    GE_Function_Total = table.Column<decimal>(type: "numeric", nullable: true),
-                    Gender = table.Column<char>(type: "character(1)", nullable: true),
-                    Gender_By_Measurement = table.Column<char>(type: "character(1)", nullable: true),
+                    GE_Function_Total = table.Column<string>(type: "text", nullable: true),
+                    Gender = table.Column<string>(type: "text", nullable: true),
+                    Gender_By_Measurement = table.Column<string>(type: "text", nullable: true),
                     Age_At_Death = table.Column<decimal>(type: "numeric", nullable: true),
                     Age_Method = table.Column<string>(type: "text", nullable: true),
                     Hair_Color = table.Column<string>(type: "text", nullable: true),
-                    Sample_Collected = table.Column<bool>(type: "boolean", nullable: true),
+                    Sample_Collected = table.Column<char>(type: "character(1)", nullable: true),
                     Burial_Situation = table.Column<string>(type: "text", nullable: true),
                     Length_Of_Remains = table.Column<decimal>(type: "numeric", nullable: true),
                     Cranial_Sample_Number = table.Column<int>(type: "integer", nullable: true),
-                    Basilar_Suture = table.Column<bool>(type: "boolean", nullable: true),
+                    Basilar_Suture = table.Column<string>(type: "text", nullable: true),
                     Ventral_Arc = table.Column<int>(type: "integer", nullable: true),
                     Subpubic_Angle = table.Column<int>(type: "integer", nullable: true),
                     Sciatic_Notch = table.Column<int>(type: "integer", nullable: true),
@@ -145,24 +293,21 @@ namespace BurialSite.Migrations
                     Maximum_Nasal_Breadth = table.Column<decimal>(type: "numeric", nullable: true),
                     Interorbital_Breadth = table.Column<decimal>(type: "numeric", nullable: true),
                     Artifacts_Description = table.Column<string>(type: "text", nullable: true),
-                    Preservation_Index = table.Column<int>(type: "integer", nullable: true),
-                    Hair_Taken = table.Column<bool>(type: "boolean", nullable: true),
-                    Soft_Tissue_Taken = table.Column<bool>(type: "boolean", nullable: true),
-                    Bone_Taken = table.Column<bool>(type: "boolean", nullable: true),
-                    Tooth_Taken = table.Column<bool>(type: "boolean", nullable: true),
-                    Textile_Taken = table.Column<bool>(type: "boolean", nullable: true),
+                    Preservation_Index = table.Column<string>(type: "text", nullable: true),
+                    Hair_Taken = table.Column<string>(type: "text", nullable: true),
+                    Soft_Tissue_Taken = table.Column<string>(type: "text", nullable: true),
+                    Bone_Taken = table.Column<string>(type: "text", nullable: true),
+                    Tooth_Taken = table.Column<string>(type: "text", nullable: true),
+                    Textile_Taken = table.Column<string>(type: "text", nullable: true),
                     Description_Of_Taken = table.Column<string>(type: "text", nullable: true),
-                    Artifact_Found = table.Column<bool>(type: "boolean", nullable: true),
+                    Artifact_Found = table.Column<string>(type: "text", nullable: true),
                     Estimate_Living_Stature = table.Column<decimal>(type: "numeric", nullable: true),
-                    Tooth_Attrition = table.Column<int>(type: "integer", nullable: true),
+                    Tooth_Attrition = table.Column<string>(type: "text", nullable: true),
                     Tooth_Eruption = table.Column<string>(type: "text", nullable: true),
                     Pathology_Anomalies = table.Column<string>(type: "text", nullable: true),
                     Epiphyseal_Union = table.Column<string>(type: "text", nullable: true),
                     Date_Excavated = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Head_Direction = table.Column<bool>(type: "boolean", nullable: true),
-                    Area = table.Column<string>(type: "text", nullable: true),
-                    Artifact_Description = table.Column<string>(type: "text", nullable: true),
-                    Artifacts_Found = table.Column<bool>(type: "boolean", nullable: true),
+                    Head_Direction = table.Column<string>(type: "text", nullable: true),
                     Year_On_Skull = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     Month_On_Skull = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     Day_On_Skull = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -170,36 +315,36 @@ namespace BurialSite.Migrations
                     Field_Book_Page_Number = table.Column<int>(type: "integer", nullable: true),
                     Initials_Of_Data_Entry_Expert = table.Column<string>(type: "text", nullable: true),
                     Initials_Of_Data_Entry_Checker = table.Column<string>(type: "text", nullable: true),
-                    BYU_Sample = table.Column<bool>(type: "boolean", nullable: true),
+                    BYU_Sample = table.Column<string>(type: "text", nullable: true),
                     Body_Analysis = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Skull_At_Magazine = table.Column<bool>(type: "boolean", nullable: true),
-                    Postcrania_At_Magazine = table.Column<bool>(type: "boolean", nullable: true),
+                    Skull_At_Magazine = table.Column<string>(type: "text", nullable: true),
+                    Postcrania_At_Magazine = table.Column<string>(type: "text", nullable: false),
                     Age = table.Column<string>(type: "text", nullable: true),
                     Rack_And_Shelf = table.Column<string>(type: "text", nullable: true),
-                    Skull_Trauma = table.Column<bool>(type: "boolean", nullable: true),
-                    Postcrania_Trauma = table.Column<bool>(type: "boolean", nullable: true),
-                    Cribra_Orbitala = table.Column<bool>(type: "boolean", nullable: true),
+                    Skull_Trauma = table.Column<string>(type: "text", nullable: true),
+                    Postcrania_Trauma = table.Column<string>(type: "text", nullable: true),
+                    Cribra_Orbitala = table.Column<string>(type: "text", nullable: true),
                     Porotic_Hyperostosis = table.Column<string>(type: "text", nullable: true),
                     Porotic_Hyperostosis_Locations = table.Column<string>(type: "text", nullable: true),
-                    Metopic_Suture = table.Column<bool>(type: "boolean", nullable: true),
-                    Button_Osteoma = table.Column<bool>(type: "boolean", nullable: true),
+                    Metopic_Suture = table.Column<string>(type: "text", nullable: true),
+                    Button_Osteoma = table.Column<string>(type: "text", nullable: true),
                     Osteology_Unknown_Comment = table.Column<string>(type: "text", nullable: true),
-                    Temporal_Mandibular_Joint_Osteoarthritis = table.Column<bool>(type: "boolean", nullable: true),
-                    Linear_Hypoplasia_Enamel = table.Column<bool>(type: "boolean", nullable: true),
+                    Temporal_Mandibular_Joint_Osteoarthritis = table.Column<string>(type: "text", nullable: true),
+                    Linear_Hypoplasia_Enamel = table.Column<string>(type: "text", nullable: true),
                     Tomb = table.Column<int>(type: "integer", nullable: true),
                     Length = table.Column<decimal>(type: "numeric", nullable: true),
                     Burial_Preservation = table.Column<string>(type: "text", nullable: true),
                     Burial_Wrapping = table.Column<char>(type: "character(1)", nullable: true),
                     Burial_Adult_Child = table.Column<char>(type: "character(1)", nullable: true),
                     Age_Code = table.Column<char>(type: "character(1)", nullable: true),
-                    Burial_Sample_Taken = table.Column<bool>(type: "boolean", nullable: true),
+                    Burial_Sample_Taken = table.Column<string>(type: "text", nullable: true),
                     Length_In_Meters = table.Column<decimal>(type: "numeric", nullable: true),
                     Length_In_Centimeters = table.Column<decimal>(type: "numeric", nullable: true),
                     Length_In_Millimeters = table.Column<decimal>(type: "numeric", nullable: true),
                     Goods = table.Column<string>(type: "text", nullable: true),
                     Cluster = table.Column<string>(type: "text", nullable: true),
-                    Face_Bundle = table.Column<bool>(type: "boolean", nullable: true),
-                    Rank = table.Column<int>(type: "integer", nullable: true),
+                    Face_Bundle = table.Column<string>(type: "text", nullable: true),
+                    Rack = table.Column<int>(type: "integer", nullable: true),
                     Tube_Number = table.Column<int>(type: "integer", nullable: true),
                     Burial_Description = table.Column<string>(type: "text", nullable: true),
                     Foci = table.Column<int>(type: "integer", nullable: true),
@@ -215,19 +360,18 @@ namespace BurialSite.Migrations
                     Category = table.Column<string>(type: "text", nullable: true),
                     Bag = table.Column<int>(type: "integer", nullable: true),
                     Date = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Previously_Sampled = table.Column<bool>(type: "boolean", nullable: true),
+                    Previously_Sampled = table.Column<string>(type: "text", nullable: true),
                     Initials = table.Column<string>(type: "text", nullable: true),
-                    BurialLocationId = table.Column<long>(type: "bigint", nullable: false),
-                    BurialLocationBurLocID = table.Column<int>(type: "integer", nullable: false)
+                    BurialLocationId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Burials", x => x.BurialID);
                     table.ForeignKey(
-                        name: "FK_Burials_BurialLocations_BurialLocationBurLocID",
-                        column: x => x.BurialLocationBurLocID,
+                        name: "FK_Burials_BurialLocations_BurialLocationId",
+                        column: x => x.BurialLocationId,
                         principalTable: "BurialLocations",
-                        principalColumn: "BurLocID",
+                        principalColumn: "BurialLocationId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -235,17 +379,17 @@ namespace BurialSite.Migrations
                 name: "BurialLocationYearsExcavatedFrom",
                 columns: table => new
                 {
-                    BurialLocationBurLocID = table.Column<int>(type: "integer", nullable: false),
+                    BurialLocationId = table.Column<int>(type: "integer", nullable: false),
                     YearsExcavatedFromsYearsExcavatedFromId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BurialLocationYearsExcavatedFrom", x => new { x.BurialLocationBurLocID, x.YearsExcavatedFromsYearsExcavatedFromId });
+                    table.PrimaryKey("PK_BurialLocationYearsExcavatedFrom", x => new { x.BurialLocationId, x.YearsExcavatedFromsYearsExcavatedFromId });
                     table.ForeignKey(
                         name: "FK_BurialLocationYearsExcavatedFrom_BurialLocations_BurialLoca~",
-                        column: x => x.BurialLocationBurLocID,
+                        column: x => x.BurialLocationId,
                         principalTable: "BurialLocations",
-                        principalColumn: "BurLocID",
+                        principalColumn: "BurialLocationId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BurialLocationYearsExcavatedFrom_YearsExcavatedFrom_YearsEx~",
@@ -329,6 +473,43 @@ namespace BurialSite.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "RoleNameIndex",
+                table: "AspNetRoles",
+                column: "NormalizedName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "EmailIndex",
+                table: "AspNetUsers",
+                column: "NormalizedEmail");
+
+            migrationBuilder.CreateIndex(
+                name: "UserNameIndex",
+                table: "AspNetUsers",
+                column: "NormalizedUserName",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BurialFileUrl_FileUrlId",
                 table: "BurialFileUrl",
                 column: "FileUrlId");
@@ -339,9 +520,9 @@ namespace BurialSite.Migrations
                 column: "YearsExcavatedFromsYearsExcavatedFromId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Burials_BurialLocationBurLocID",
+                name: "IX_Burials_BurialLocationId",
                 table: "Burials",
-                column: "BurialLocationBurLocID");
+                column: "BurialLocationId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Notes_BurialID1",
@@ -362,6 +543,21 @@ namespace BurialSite.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
                 name: "BurialFileUrl");
 
             migrationBuilder.DropTable(
@@ -375,6 +571,12 @@ namespace BurialSite.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tests");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "FileUrls");
