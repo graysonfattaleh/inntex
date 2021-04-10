@@ -23,6 +23,7 @@ namespace BurialSite.Controllers
 
         // READ AND FILTER FUNCTIONS FOR USERS
         // pull up home feed
+        
         public IActionResult Index()
         {
             List<TestEnt> tests = _context.Tests.ToList();

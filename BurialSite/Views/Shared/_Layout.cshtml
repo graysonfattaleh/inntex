@@ -17,7 +17,7 @@
 
         <div class="wrapper">
             <div class="box box1">
-                <p class="box1-1"><a class="box1-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a></p>
+               @* <p class="box1-1"><a class="box1-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a></p>*@
 
 
 
@@ -27,7 +27,40 @@
             <div class="box box3">
                 <div class="nested">
                     <div class="nested1">
-                        <p class="nested1-1"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers   </a></p>
+                        @*<p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Register">Register</a></p>*@
+                        @* <p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Login">Login</a></p>*@
+
+                        @inject SignInManager<ResearchUser> SignInManager
+                        @inject UserManager<ResearchUser> UserManager
+                        @inject IAuthorizationService AuthorizationService
+
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
+                        {
+
+                        }
+
+
+
+                            @* <ul class="navbar-nav">*@
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+
+                                <a class="nested1-1" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+
+
+                                @* <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+                </form>*@
+
+                            }
+                            else
+                            {
+                                <p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Login">Login</a></p>
+                            }
+                            @*  </ul>*@
+
+
+                            @* <p class="nested1-1"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers   </a></p>*@
 
                     </div>
                     <div>
@@ -43,8 +76,9 @@
 
                     </div>
                     <div class="nested3">
-                        <a href="/"></a>
-                        <p class="nested1-4"><i class="fa fa-search"></i></p>
+                        <a href="/">
+                            <p class="nested1-4"><i class="fa fa-search"></i></p>
+                        </a>
 
 
                     </div>
@@ -52,17 +86,39 @@
 
                 </div>
             </div>
-            <div class="box box4">box 4</div>
+            <div class="box box4"></div>
             <div class="box box5">
-                <div class="nested">
+                <div class="pages">
+                    <div>
+                        @* <p class="box5-1">*@<a class="box5-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </div>
+                    <div>
+                        <a class="box5-1" asp-area="" asp-controller="Research" asp-action="AddSite">Manage Sites</a>
+
+                    </div>
                     <div>
                         <a class="box5-1" href="https://www.byu.edu/academics">Academics</a>
+
                     </div>
                     <div>
-                        <a class="box5-1" asp-area="" asp-controller="Research" asp-action="AddSite">Add Site</a>
-                    </div>
-                </div>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
+                            {
+                                <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Super User</a>
+                            }
 
+                            <form class="box5-1" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button type="submit" class="box5-1">Logout</button>
+                            </form>
+                            
+                        }
+
+
+
+                    </div>
+
+                </div>
             </div>
             <div></div>
             <div></div>
@@ -73,33 +129,6 @@
 
 
 
-        @*  <div class="wrapper">
-                <div><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></div>
-                <div>byu</div>
-                <div><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers</a></div>
-
-            </div>*@
-        @*  <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BurialSite</a>
-
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Research" asp-action="AddSite">Add Site</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>*@
 
     </header>
     <div class="container">
@@ -141,7 +170,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Resources</h4>
+                        <h3>OTHER CES SCHOOLS</h3>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="https://www.byuh.edu/">BYU-Hawaii</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="https://www.byu.edu/">BYU-Idaho</a></li>
@@ -152,7 +181,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6 footer-newsletter">
-                        <h4>Other CES Schools</h4>
+                        <h3>CONNECT</h3>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="http://alumni.byu.edu/">BYU Alumni</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="https://byucougars.com/">BYU Athletics</a></li>
@@ -171,7 +200,7 @@
 
             <div class="mr-md-auto text-center text-md-left">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>Fag el Gampus</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span>Fag el Gamous </span></strong>. All Rights Reserved
                 </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->

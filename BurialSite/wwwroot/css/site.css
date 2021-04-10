@@ -53,15 +53,12 @@ button.accept-policy {
 
 /* Sticky footer styles
 -------------------------------------------------- */
-html {
+/*html {
   position: relative;
   min-height: 100%;
-}
+}*/
 
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
+
 /*--------------------------------------------------------------
 # Footer
 --------------------------------------------------------------*/
@@ -75,12 +72,23 @@ body {
         padding: 50px 0 30px 0;
         background: #f9f8f9;
     }
+.row a:link {
+    color: #0062B6;
+}
 
+.row a:hover {
+    color: #0062B6;
+    border-bottom: 2px solid #002D5F;
+}
+
+.row li {
+    color: #0062B6;
+}
 
 
 /* footer
     --------------------------------------------------------------------------------
-
+    d
 */
 
 .wrapper {
@@ -92,19 +100,22 @@ body {
 
 .nested {
     display: grid;
-    grid-template-columns: 4fr 1fr 4fr 1fr;
+    grid-template-columns: 6fr 1fr 2fr 5fr;
+    
+    
 }
+
 
 
 span {
     /*content: "\007C";*/
-    color: black;
-    border-right: 2px solid black
+    color: #002D5F;
+    border-right: 2px solid #002D5F;
 }
 
 
 .vl {
-    border-left: 2px solid black;
+    border-left: 2px solid #002D5F;
     height: 11px;
     position: absolute;
     left: 75%;
@@ -140,8 +151,8 @@ span {
     /*justify-self:end;*/
 }
 
-.box1-1 {
-    text-align: right;
+.box1-5 {
+    text-align: center;
 }
 
 .box2 {
@@ -153,7 +164,7 @@ span {
     padding: 15px;
     width: 100%;
     height: 100%;
-    */
+   
     /*grid-auto-rows: 110px;*/
 }
 
@@ -175,12 +186,20 @@ span {
 
 .box5-1 {
     color: black;
+    text-align: left;
+    font-size: 13px;
 }
 
-    .box5-1 a:hover {
-        color: red;
-        text-decoration: none;
-    }
+.pages {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 3fr;
+    align-items: end;
+}
+
+.pages a:hover {
+    color: black;
+    border-bottom: 3px solid black;
+}
 
 
 a {
@@ -201,18 +220,20 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .landing {
     display: grid;
-    grid-template-rows: 100px 160px 120px;
+    grid-template-rows: 170px 240px 160px;
     text-align: center;
 }
 
 .landing1 {
     background: #001832;
     color: white;
-    font-size: 12px;
+    font-size: 17px;
     padding-left: 30px;
     padding-right: 30px;
     padding-top: 20px;
@@ -222,8 +243,89 @@ body {
 
 .landing2 {
     color: #F3F3EA;
-    font-size: 45px;
+    font-size: 60px;
     padding: 20px;
     font-family: 'Merriweather Sans', sans-serif;
-    padding-bottom: 30px;
+    padding-bottom: 50px;
 }
+ul {
+    list-style-type: none;
+}
+
+
+
+/* professors ----------------------------------------------------------*/
+.professors {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    /*grid-template-rows: 100px 180px 120px;*/
+}
+
+.professors1 {
+    grid-column: 1/5;
+    /*grid-row: 1/3;*/
+    background: #fff;
+    /*text-align: center;
+        margin: auto;
+        padding: 15px;
+        width: 100%;
+        height: 100%;*/
+    color: white;
+
+    font-size: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.researchers{
+    text-align:center;
+    color:black;
+
+}
+
+.professors2-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3px;
+    width: 200px;
+    height: 200px;
+    justify-self: center;
+}
+.professors3-img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 3px;
+    width: 200px;
+    height: 200px;
+   
+    text-align: center;
+}
+
+.professors3 {
+    justify-self: right;
+    text-align: center;
+}
+img:hover {
+    box-shadow: 0 0 2px 1px #002D5F;
+}
+.professors {
+    
+}
+
+.researchers {
+    
+    
+    text-align: right;
+}
+.work {
+    text-align: center;
+    margin: auto;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* professors ----------------------------------------------------------*/
