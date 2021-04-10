@@ -62,83 +62,136 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+    color: #444444;
+    font-size: 12px;
+    background: #f1f0f2;
 }
+
+    #footer .footer-top {
+        padding: 50px 0 30px 0;
+        background: #f9f8f9;
+    }
+
+
+
+/* footer
+    --------------------------------------------------------------------------------
+
+*/
 
 .wrapper {
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
-    text-align: center;
+    /*grid-template-rows: 40px 40px 30px 70px 70px 20px 20px;*/
     /*grid-auto-rows: minmax(1px);*/
 }
 
 .nested {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-.vl {
-    border-left: 2px solid black;
-    height: 10px;
+    grid-template-columns: 4fr 1fr 4fr 1fr;
 }
 
-.wrapper > div:nth-child(odd)
-{
-   
+
+span {
+    /*content: "\007C";*/
+    color: black;
+    border-right: 2px solid black
+}
+
+
+.vl {
+    border-left: 2px solid black;
+    height: 11px;
+    position: absolute;
+    left: 75%;
+}
+
+.nested1-1 {
+    text-align: right;
+}
+
+.nested1-2 {
+    text-align: left;
+}
+
+.nested1-3 {
+    text-align: left;
+}
+
+.nested1-4 {
+    text-align: left;
+}
+
+
+.wrapper > div:nth-child(odd) {
     color: white;
     padding: 15px;
     text-align: center;
- 
     color: white;
     font-size: 11px;
 }
 
 .box1 {
     background: #001832;
-    text-align: center;
-    
+    /*justify-self:end;*/
 }
+
+.box1-1 {
+    text-align: right;
+}
+
 .box2 {
     grid-column: 2/3;
-    grid-row: 1/3;
+    grid-row: 1/4;
     background: #002D5F;
     text-align: center;
-   /* margin: auto;
+    margin: auto;
     padding: 15px;
     width: 100%;
-    height: 100%;*/
+    height: 100%;
+    */
     /*grid-auto-rows: 110px;*/
 }
+
 .box3 {
     text-align: center;
     background: #001832;
-    
 }
+
 .box4 {
     color: black;
     text-align: center;
     background: white;
-    
-}
-.box5 {
-    color: black;
-    text-align: center;
-    background: white;
-   
 }
 
-a{
-    color:white;
+.box5 {
+    text-align: center;
+    background: white;
 }
-    a:hover {
-        color: white;
+
+.box5-1 {
+    color: black;
+}
+
+    .box5-1 a:hover {
+        color: red;
+        text-decoration: none;
     }
 
 
+a {
+    text-decoration: none;
+}
+
+    a:hover {
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+    }
 
 body {
     background-image: url("../img/sand.jpg");
@@ -152,8 +205,25 @@ body {
 
 .landing {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px 160px 120px;
     text-align: center;
 }
 
+.landing1 {
+    background: #001832;
+    color: white;
+    font-size: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
+
+.landing2 {
+    color: #F3F3EA;
+    font-size: 45px;
+    padding: 20px;
+    font-family: 'Merriweather Sans', sans-serif;
+    padding-bottom: 30px;
+}

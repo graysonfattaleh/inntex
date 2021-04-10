@@ -7,45 +7,79 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/stylez.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
 
         <div class="wrapper">
-            <div class=" box box1">
+            <div class="box box1">
+                <p class="box1-1"><a class="box1-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a></p>
+
+
+
+
+            </div>
+            <div class="box box2"><a asp-area="" asp-controller="Home" asp-action="Index"><img width="211" height="100" src="https://brightspotcdn.byu.edu/7e/29/0288440343ef99077c183af02377/byu-home-monogram.svg" /></a></div>
+            <div class="box box3">
                 <div class="nested">
-                    <div>
-                        <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </div>
-                    <div class="vl">
+                    <div class="nested1">
+                        <p class="nested1-1"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers   </a></p>
 
                     </div>
                     <div>
-                        Search
+
+                        <span>@*&#124;*@</span>
+
+                    </div>
+                    <div class="nested2">
+
+                        <p class="nested1-3">Learning Suit</p>
+
+
+
+                    </div>
+                    <div class="nested3">
+                        <a href="/"></a>
+                        <p class="nested1-4"><i class="fa fa-search"></i></p>
+
+
                     </div>
 
 
                 </div>
             </div>
-            <div class="box box2"><a asp-area="" asp-controller="Home" asp-action="Index"><img width="211" height="100" src="https://brightspotcdn.byu.edu/7e/29/0288440343ef99077c183af02377/byu-home-monogram.svg" /></a></div>
-            <div class="box box3"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers</a></div>
             <div class="box box4">box 4</div>
-            <div class="box box5"><a class="nav-link text-dark" asp-area="" asp-controller="Research" asp-action="AddSite">Add Site</a></div>
+            <div class="box box5">
+                <div class="nested">
+                    <div>
+                        <a class="box5-1" href="https://www.byu.edu/academics">Academics</a>
+                    </div>
+                    <div>
+                        <a class="box5-1" asp-area="" asp-controller="Research" asp-action="AddSite">Add Site</a>
+                    </div>
+                </div>
 
+            </div>
+            <div></div>
+            <div></div>
 
         </div>
 
-      
 
-           
 
-            @*  <div class="wrapper">
+
+
+        @*  <div class="wrapper">
                 <div><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></div>
                 <div>byu</div>
                 <div><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers</a></div>
 
             </div>*@
-          @*  <div class="container">
+        @*  <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BurialSite</a>
 
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -74,9 +108,88 @@
         </main>
     </div>
 
-    <footer >
-       
-    </footer>
+    <footer id="footer">
+
+
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-3 col-md-6 footer-contact">
+                        <h3>CONTACT</h3>
+                        <p>
+
+
+                            <strong>Phone:</strong> 801-422-4636<br>
+                            <strong>Email:</strong> fagelgamous@gmail.com<br><br>
+                            Some Building <br>
+                            Provo, UT 84604<br>
+                            United States <br>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-2 col-md-6 footer-links">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.byu.edu/a-z-index">A-Z Index</a></li>
+
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://yjobs.byu.edu/">Careers at BYU</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://lib.byu.edu/">Library</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://oit.byu.edu/">Office Of OIT</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://police.byu.edu/">University Police & Parking</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 footer-links">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.byuh.edu/">BYU-Hawaii</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.byu.edu/">BYU-Idaho</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.byupathway.org/">BYU Pathways Worldwide</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.ensign.edu/">Ensign College</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 footer-newsletter">
+                        <h4>Other CES Schools</h4>
+                        <ul>
+                            <li><i class="bx bx-chevron-right"></i> <a href="http://alumni.byu.edu/">BYU Alumni</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://byucougars.com/">BYU Athletics</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://news.byu.edu/">BYU News</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.byustore.com/">BYU Store</a></li>
+                            <li><i class="bx bx-chevron-right"></i> <a href="https://www.byutv.org/">BYUtv</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container d-md-flex py-4">
+
+            <div class="mr-md-auto text-center text-md-left">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>Fag el Gampus</span></strong>. All Rights Reserved
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
+                    Designed by the Ice Wolves
+                </div>
+            </div>
+            <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+        </div>
+    </footer><!-- End Footer -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
