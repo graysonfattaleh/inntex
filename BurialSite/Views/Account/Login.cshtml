@@ -1,0 +1,12 @@
+﻿@model ResearchUser
+@{ 
+    ViewBag["Title"] = "Login Page";
+}
+
+<div>
+    <h1>Login</h1>
+    <label> Username</label>
+    <input asp-for="UserName"/>
+    <label> Password </label>
+    <input asp-for="PasswordHash" />
+</div>
