@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="LoginPage\Shared\" />
     <Folder Include="Views\Research\" />
     <Folder Include="Infrstructure\" />
     <Folder Include="Services\" />
