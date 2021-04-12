@@ -10,5 +10,7 @@ namespace BurialSite.Models.ViewModels
         [Required]
         public IFormFile PhotoFile { get; set; }
         public string Type { get; set; }
+        public Burial Burial { get; set; }
+    
     }
 }

@@ -8,6 +8,9 @@ namespace BurialSite.Models
         public int FileUrlId { get; set; }
         public string Url { get; set; }
         public string Type { get; set; }
+
         public virtual ICollection<Burial> Burial { get; set; }
+
+        
     }
 }

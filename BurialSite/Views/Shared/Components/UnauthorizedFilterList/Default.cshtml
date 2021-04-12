@@ -1,4 +1,7 @@
-﻿@*
+﻿
+@{
+}
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -7,7 +10,7 @@
 
 <br />
 
-<form method="get" asp-controller="Research" asp-action="FilterBurials">
+<form method="get" asp-controller="Home" asp-action="FilterBurials">
 
     <div class="form-group" style="width:80%;">
         <label for="genderfilter"> Gender </label>
@@ -30,11 +33,11 @@
         <label for="locationfilter"></label>
         <select id="locationfilter" name="locationfilter">
 
-            @foreach (KeyValuePair<string,int> entry in Model.Locations)
+            @foreach (KeyValuePair<string, int> entry in Model.Locations)
             {
-            <option url-helper-locationfilter="" value="@entry.Value">
-               @entry.Key
-            </option>
+                <option url-helper-locationfilter="" value="@entry.Value">
+                    @entry.Key
+                </option>
             }
 
         </select>
@@ -49,4 +52,4 @@
     <br />
 
 </form>
-    <br />
+<br />

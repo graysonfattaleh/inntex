@@ -33,17 +33,11 @@ namespace BurialSite.Controllers
         //items per page
         public int pageSize = 30;
        
-        public IActionResult Index()
-        {
-            List<TestEnt> tests = _context.Tests.ToList();
-
-            return View(tests);
-        }
-
 
         //CRUD FUNCTIONS FOR RESEARCHERS-------------------
 
         // Burial Site List /////////////////////////////////////////////
+
         public IActionResult AddSite(string filterer, int pagenumber = 1)
         {
             AddSiteViewModel BurialList = new AddSiteViewModel()
@@ -63,7 +57,8 @@ namespace BurialSite.Controllers
             return View(BurialList);
         }
 
-        // Filter Burial List
+        // Filter Burial List///////////////////////////////////////////////
+
         public IActionResult FilterBurials(int locationfilter,string genderfilter,decimal depthfilter, int pagenumber = 1)
         {
             // get filteted list
@@ -71,20 +66,15 @@ namespace BurialSite.Controllers
             IEnumerable<Burial> burials = _context.Burials.
                 Where(b => (genderfilter == null || genderfilter == b.Sex) &
                 (depthfilter == 0 || b.Depth < depthfilter) &
-                (locationfilter == -1 || b.BurialLocationId == locationfilter)
+                (locationfilter == -1 || locationfilter == 0 || b.BurialLocationId == locationfilter)
                 )
                 .Include(b => b.BurialLocation);
-
-
        
             // fcount full set then filter
             int TotalBurialsInt = burials.Count();
-
             burials = burials.OrderBy(b => b.BurialID).Skip((pagenumber - 1) * pageSize).Take(pageSize);
 
             // get stored key values
-           
-
             AddSiteViewModel FilteredBurialList = new AddSiteViewModel()
             {
                 // get burials
@@ -103,7 +93,15 @@ namespace BurialSite.Controllers
         }
 
 
-        // ADD BURIAL
+        // View Burial Detials //////////////////////////////////////////////
+        public IActionResult BurialDetails(int BurialId)
+        {
+            Burial burial = _context.Burials.Include(b => b.BurialLocation).Where(b => b.BurialID == BurialId).FirstOrDefault();
+
+            return View(burial);
+        }
+        // ADD BURIAL ///////////////////////////////////////////////////////
+
         public IActionResult CreateBurial()
         {
             AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel();
@@ -114,45 +112,32 @@ namespace BurialSite.Controllers
         [HttpPost]
         public IActionResult SaveBurial(Burial burial)
         {
-            //burial.BurialLocation = _context.BurialLocations.Where(b => burial.BurialLocationId == b.BurialLocationId).FirstOrDefault();
-
             int new_id = _context.Burials.OrderBy(b => b.BurialID).Last().BurialID + 1;
             burial.BurialID = new_id;
             if (ModelState.IsValid)
             {
-
-
                 _context.Add(burial);
                 _context.SaveChanges();
                 return View();
             }
             else
             { 
-
-
                 AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel
                 {
-               
                     Burial = burial
                 };
                 return View("CreateBurial", burialSiteViewModel);
             }
-          
         }
         //Edit Burial Site/////////////////////////////////////////////
         [HttpPost]
         public IActionResult EditBurial(int BurialId)
         {
             Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
-
-
-            // makes options for selector lists
-
             EditBurialViewModel BurialEdit = new EditBurialViewModel
             {
                 Burial = burial
             };
-
             return View(BurialEdit);
         }
 
@@ -172,22 +157,24 @@ namespace BurialSite.Controllers
                 {
                     Burial = burial
                 };
-
                 return View("EditBurial", BurialEdit);
             }
-           
         }
 
         //Read Burial Site Details
 
         //Upload Photos/////////////////////////////////////////////
-        public IActionResult UploadPhotos()
+        public IActionResult UploadPhotos(int BurialId)
         {
-            return View(new SavePhotoViewModel { });
+            Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
+
+            return View(new SavePhotoViewModel {
+                Burial= burial
+            });
         }
 
 
-       public IActionResult SavePhoto(Burial burial)
+       public IActionResult SavePhoto()
         {
 
             return View();
@@ -200,8 +187,15 @@ namespace BurialSite.Controllers
             if (ModelState.IsValid)
             {
                 string url =  await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
-                Console.WriteLine($"\n\n PHOTO URL IS : {url} \n\n");
-               //string fileName = UploadFile(SavePhoto);
+
+                FileUrl FileRecord = new FileUrl
+                {
+          
+                    Url = url,
+                    Type = "Photo"
+                    
+    };
+                
                 return View("AddSite");
             }
             else
@@ -218,7 +212,7 @@ namespace BurialSite.Controllers
             return View();
         }
 
-        // Delete Burial Site?? (just admin maybe?)
+        // Delete Burial Site?? ///////////////////////////////////////////
 
         public IActionResult DeleteBurialSite(int BurialId)
         {

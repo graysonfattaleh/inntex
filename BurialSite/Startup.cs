@@ -130,6 +130,11 @@ namespace BurialSite
                   new { Controller = "Research", Action = "DeleteSiteBurial" }
                   );
 
+                endpoints.MapControllerRoute("BurialDetails",
+               "/Research/BurialDetails",
+               new { Controller = "Research", Action = "BurialDetails" }
+               );
+
                 // Role management actions
                 endpoints.MapControllerRoute(
                     name: "role",
