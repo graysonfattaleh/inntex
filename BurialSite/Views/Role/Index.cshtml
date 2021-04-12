@@ -31,20 +31,37 @@
     <thead>
         <tr>
             <td>Id</td>
-            <td>UserName</td>
+            <td>Email</td>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td colspan="3">Roles</td>
         </tr>
     </thead>
     <tbody>
-        @foreach (var user in Model.Users)
+
+        @foreach (var user in Model.UserRolesDict)
         {
         <tr>
-            <td>@user.Id</td>
-            <td>@user.NormalizedUserName</td>
-            <form asp-action="ManageUserRoles" method="get">
-                <input type="hidden" name="UserId" value="@user.Id" hidden />
-                <button type="submit">Edit User Roles</button>
-            </form>
+            <td>@user.Key.Id</td>
+            <td>@user.Key.Email</td>
+            <td>@(user.Key.FirstName ?? "NO FIRST NAME LISTED")</td>
+            <td>@(user.Key.LastName ?? "NO LAST NAME LISTED")</td>
+            <td>
+                <form asp-action="ManageUserRoles" method="get">
+                    <input type="hidden" name="UserId" value="@user.Key.Id" hidden />
+                    <button type="submit">Edit Roles</button>
+                </form>
+            </td>
+
+            @foreach (var role in user.Value)
+            {
+                <td>
+                    @role
+                </td>
+            }
+
+            
         </tr>
         }
     </tbody>
-</table>  
+    </table>  

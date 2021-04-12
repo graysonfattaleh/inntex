@@ -10,5 +10,7 @@ namespace BurialSite.Models.ViewModels
     {
         public ResearchUser User { get; set; }
         public List<Role> Roles { get; set; }
+        public Dictionary<string, int> UserRoles { get; set; }
+        public bool IsEditingCurrentUser { get; set; }
     }
 }

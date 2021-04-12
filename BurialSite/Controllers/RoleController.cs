@@ -12,29 +12,56 @@ namespace BurialSite.Controllers
 {
     public class RoleController : Controller
     {
-        RoleManager<Role> roleManager;
+        private RoleManager<Role> roleManager;
 
-        UserManager<ResearchUser> userManager;
+        private ArcDBContext _context;
 
-        public RoleController(RoleManager<Role> roleManager, UserManager<ResearchUser> userManager)
+        private UserManager<ResearchUser> userManager;
+
+        private IAuthorizationService authorization;
+
+        public RoleController(RoleManager<Role> roleManager, UserManager<ResearchUser> userManager, IAuthorizationService authorizationService, ArcDBContext arcDBContext)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.authorization = authorizationService;
+            this._context = arcDBContext;
         }
 
         //[AllowAnonymous]
         [Authorize(Policy = "researcherpolicy")]
         public IActionResult Index()
         {
+            Dictionary<ResearchUser, List<string>> researchUserRoles = new Dictionary<ResearchUser, List<string>>();
+            bool isSuperUser = User.IsInRole("SuperAdmin");
+            bool isResearcher = User.IsInRole("Researcher");
+            List<string> currentUserRoleNames = new List<string>();
 
+            string currentUserId = userManager.GetUserId(User);
             var roles = roleManager.Roles.ToList();
-            var users = userManager.Users.ToList();
+            var userRoles = _context.UserRoles.ToList();
+            foreach (ResearchUser user in userManager.Users.ToList())
+            {
+                List<string> userRoleNames = new List<string>();
+                foreach (var userRole in userRoles)
+                {
+                    if (user.Id == userRole.UserId)
+                    {
+                        userRoleNames.Add(roles.Where(r => r.Id == userRole.RoleId).FirstOrDefault().Name);
+                    }
+                }
+                researchUserRoles.Add(user, userRoleNames);
+            }
             return View(new RoleIndexViewModel
             {
                 Roles = roles,
-                Users = users
-            });
+                UserRolesDict = researchUserRoles,
+                IsSuperUser = isSuperUser,
+                IsResearcher = isResearcher
+            }) ;
         }
+
+
 
         //[AllowAnonymous]
         [Authorize(Policy = "superadminpolicy")]
@@ -62,13 +89,35 @@ namespace BurialSite.Controllers
         [HttpGet]
         public IActionResult ManageUserRoles(int UserId)
         {
+            string currentUserId = userManager.GetUserId(User);
             ResearchUser user = userManager.Users.Where(u => u.Id == UserId).FirstOrDefault();
-
+            Dictionary<string, int> userRoleNames = new Dictionary<string, int>();
+            var userRoles = _context.UserRoles.ToList();
+            foreach (var userRole in userRoles)
+            {
+                if (user.Id == userRole.UserId)
+                {
+                    string name = _context.Roles.Where(r => r.Id == userRole.RoleId).FirstOrDefault().Name;
+                    int roleid = _context.Roles.Where(r => r.Id == userRole.RoleId).FirstOrDefault().Id;
+                    userRoleNames.Add(name, roleid);
+                }
+            }
             List<Role> roles = roleManager.Roles.ToList();
+            bool isEditingCurrentUser; 
+            if (Int32.Parse(currentUserId) == UserId)
+            {
+                isEditingCurrentUser = true;
+            }
+            else
+            {
+                isEditingCurrentUser = false;
+            }
             return View(new ManageUserRolesViewModel
             {
                 Roles = roles,
-                User = user
+                User = user,
+                UserRoles = userRoleNames,
+                IsEditingCurrentUser = isEditingCurrentUser,
             });
         }
 
