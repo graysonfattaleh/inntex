@@ -5,53 +5,74 @@
     ViewData["Title"] = "Log in";
 }
 
-<h1>@ViewData["Title"]</h1>
+@*<h1>@ViewData["Title"]</h1>*@
+
+<br />
+<br />
 <div class="loginpage">
     <div class="loginpage-1">
-        <img style="opacity: 0.9;" src="~/img/byuimg.jpg" />
+        <img style="opacity: 1.0;" src="~/img/byuimg.jpg" width="364" height="220"/>
 
     </div>
+    <div @*class="loginpage-3"*@>
+        <div class="arrow-left"></div>
+
+    </div>
+   
     <div class="loginpage-2">
         @*<div class="col-md-4">*@
-            <section>
-                <form id="account" method="post">
-                    <h4>Use a local account to log in.</h4>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Input.Email"></label>
-                        <input asp-for="Input.Email" class="form-control" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+        <section>
+            <form id="account" method="post">
+                <h4 class="term">By signing in, you agree to BYU Account <a href="https://iam-policy.byu.edu/" class="useterm">Terms of Use.</a></h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label><br />
+                    <input asp-for="Input.Email" class="input" /> @*class="form-control"*@
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.Password"></label><br />
+                    <input asp-for="Input.Password" class="input" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="Input.RememberMe">
+                            <input asp-for="Input.RememberMe" />
+                            @Html.DisplayNameFor(m => m.Input.RememberMe)
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Input.Password"></label>
-                        <input asp-for="Input.Password" class="form-control" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label asp-for="Input.RememberMe">
-                                <input asp-for="Input.RememberMe" />
-                                @Html.DisplayNameFor(m => m.Input.RememberMe)
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                    </div>
-                    <div class="form-group">
-                        <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                        </p>
-                        <p>
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                        </p>
-                        <p>
-                            <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                        </p>
-                    </div>
-                </form>
-            </section>
+                </div>
+                <div>
+                    <p>
+                        <a id="forgot-password" class="password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </p>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="signinbutton">Sign in</button>
+                </div>
+                <br />
+                <div class="form-group">
+                   
+                    <p>
+                        <a class="useterm2" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Don't have an account?</a>
+                    </p>
+                    <p>
+                        <a id="resend-confirmation"  class="useterm2" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                    </p>
+                </div>
+                <div>
+                    <p class="duo">
+                        Protect your account with Duo Two-Step Verification.
+                    </p>
+                        <p class="duo">
+
+                        Learn more and sign up at <a href="https://duo.byu.edu/">duo.byu.edu</a>
+                    </p>
+                </div>
+            </form>
+        </section>
         @*</div>*@
 
         @*https://cas.byu.edu/cas/images/byu-bkgd-noblur2.jpg*@
@@ -88,6 +109,10 @@
             </div>*@
     </div>
 </div>
+<br />
+<br />
+<br />
+<br />
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

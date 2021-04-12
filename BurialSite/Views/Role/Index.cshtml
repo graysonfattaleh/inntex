@@ -12,15 +12,17 @@
         </tr>
     </thead>
     <tbody>
+
+
         @foreach (var role in Model.Roles)
         {
-        <tr>
+            <tr>
 
-            <td>@role.Id</td>
-            <td>@role.Name</td>
-        </tr>
-            
-        
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+            </tr>
+
+
         }
     </tbody>
 </table>

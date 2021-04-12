@@ -37,12 +37,12 @@
 
                         @inject SignInManager<ResearchUser> SignInManager
                         @inject UserManager<ResearchUser> UserManager
-                        @* @inject IAuthorizationService AuthorizationService
+                         @inject IAuthorizationService AuthorizationService
 
                             @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
                             {
 
-                            }*@
+                            }
 
 
 
@@ -242,3 +242,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
