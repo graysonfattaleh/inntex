@@ -24,23 +24,31 @@
                 {
                     @if (Model.UserRoles.Values.Contains(role.Id))
                     {
-                        <form asp-action="ManageUserRoles" method="post">
-                            <input type="hidden" name="roleId" value="@role.Id" hidden />
-                            <input type="hidden" name="UserId" value="@Model.User.Id" hidden />
-                            <input type="hidden" name="addOrRemove" value="false" hidden />
-                            <button type="submit">Remove User as @role.Name</button>
-                        </form>
+                <form asp-action="ManageUserRoles" method="post">
+                    <input type="hidden" name="roleId" value="@role.Id" hidden />
+                    <input type="hidden" name="UserId" value="@Model.User.Id" hidden />
+                    <input type="hidden" name="addOrRemove" value="false" hidden />
+                    <input type="hidden" name="deleteUser" value="false" hidden />
+                    <button type="submit">Remove User as @role.Name</button>
+                </form>
                     }
                     else
                     {
-                        <form asp-action="ManageUserRoles" method="post">
-                            <input type="hidden" name="roleId" value="@role.Id" hidden />
-                            <input type="hidden" name="UserId" value="@Model.User.Id" hidden />
-                            <input type="hidden" name="addOrRemove" value="true" hidden />
-                            <button type="submit">Add User as @role.Name</button>
-                        </form>
+            <form asp-action="ManageUserRoles" method="post">
+                <input type="hidden" name="roleId" value="@role.Id" hidden />
+                <input type="hidden" name="UserId" value="@Model.User.Id" hidden />
+                <input type="hidden" name="deleteUser" value="false" hidden />
+                <input type="hidden" name="addOrRemove" value="true" hidden />
+                <button type="submit">Add User as @role.Name</button>
+            </form>
                     }
                 }
+            </td>
+            <td>
+                <form asp-action="DeleteUser" asp-controller="Role" method="get" class="form-group">
+                    <button class="btn btn-danger" type="submit">Delete data and close @Model.User.FirstName @Model.User.LastName's account</button>
+                    <input type="hidden" name="UserId" value="@Model.User.Id" hidden />
+                </form>
             </td>
         </tr>
     </tbody>

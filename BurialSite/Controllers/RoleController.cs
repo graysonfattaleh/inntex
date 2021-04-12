@@ -7,9 +7,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.Extensions.Logging;
 
 namespace BurialSite.Controllers
 {
+    /// <summary>
+    /// The rolecontroller class manages all of the controls that are specific toward
+    /// managing the roles of different users. Basically all of the management for user
+    /// roles and permissions exist in this.
+    /// SuperAdmin permissions are required for all the calls essentially.
+    /// </summary>
     public class RoleController : Controller
     {
         private RoleManager<Role> roleManager;
@@ -18,18 +26,18 @@ namespace BurialSite.Controllers
 
         private UserManager<ResearchUser> userManager;
 
-        private IAuthorizationService authorization;
+        private readonly ILogger<RoleController> _logger;
 
-        public RoleController(RoleManager<Role> roleManager, UserManager<ResearchUser> userManager, IAuthorizationService authorizationService, ArcDBContext arcDBContext)
+        public RoleController(RoleManager<Role> roleManager, UserManager<ResearchUser> userManager, ArcDBContext arcDBContext, ILogger<RoleController> logger)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
-            this.authorization = authorizationService;
             this._context = arcDBContext;
+            this._logger = logger;
         }
 
         //[AllowAnonymous]
-        [Authorize(Policy = "researcherpolicy")]
+        [Authorize(Policy = "superadminpolicy")]
         public IActionResult Index()
         {
             Dictionary<ResearchUser, List<string>> researchUserRoles = new Dictionary<ResearchUser, List<string>>();
@@ -62,15 +70,18 @@ namespace BurialSite.Controllers
         }
 
 
-
-        //[AllowAnonymous]
+        /// <summary>
+        /// This is basically a useless function for now, but actually creates new 
+        /// roles. This is not useful for the time being though, since there are only 2
+        /// roles currently.
+        /// </summary>
+        /// <returns>Creates a new Role</returns>
         [Authorize(Policy = "superadminpolicy")]
         public IActionResult Create()
         {
             return View(new Role());
         }
 
-        //[AllowAnonymous]
         [Authorize(Policy = "superadminpolicy")]
         [HttpPost]
         public async Task<IActionResult> Create(Role role)
@@ -78,13 +89,12 @@ namespace BurialSite.Controllers
             await roleManager.CreateAsync(role);
             return RedirectToAction("Index");
         }
-
+       
         /// <summary>
         /// This is to manage a single user's roles
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
-        //[AllowAnonymous]
         [Authorize(Policy = "superadminpolicy")]
         [HttpGet]
         public IActionResult ManageUserRoles(int UserId)
@@ -121,14 +131,12 @@ namespace BurialSite.Controllers
             });
         }
 
-        //////
-        //[AllowAnonymous]
         [Authorize(Policy = "superadminpolicy")]
         [HttpPost]
-        public async Task<IActionResult> ManageUserRoles(string UserId, string roleId, bool addOrRemove)
+        public async Task<IActionResult> ManageUserRoles(string UserId, string roleId, bool addOrRemove, bool deleteUser)
         {
+
             var role = await roleManager.FindByIdAsync(roleId);
-            //await roleManager.CreateAsync(role);
             var user = await userManager.FindByIdAsync(UserId);
             if (addOrRemove)
             {
@@ -145,6 +153,47 @@ namespace BurialSite.Controllers
 
             return RedirectToAction("Index");
 
+        }
+
+        [Authorize(Policy = "superadminpolicy")]
+        [HttpGet]
+        public IActionResult DeleteUser(int UserId)
+        {
+            ResearchUser user = userManager.Users.Where(u => u.Id == UserId).FirstOrDefault();
+            return View(user);
+        }
+
+
+        [Authorize(Policy = "superadminpolicy")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteUser(string UserId)
+        {
+
+            string currentUserId = userManager.GetUserId(User);
+            int AdminId = Int32.Parse(currentUserId);
+            if (AdminId == Int32.Parse(UserId))
+            {
+                return LocalRedirect("/Identity/Account/Manage/DeletePersonalData");
+            }
+
+            var user = await userManager.FindByIdAsync(UserId.ToString());
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userManager.GetUserId(User)}'.");
+            }
+
+            var result = await userManager.DeleteAsync(user);
+            var userId = await userManager.GetUserIdAsync(user);
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException($"Unexpected error occurred deleting user with ID '{userId}'.");
+            }
+
+            //await signInManager.SignOutAsync();
+
+            _logger.LogInformation("User with ID '{UserId}' was deleted by User with ID '{AdminId}'.", UserId, AdminId);
+
+            return Redirect("/Role/Index");
         }
 
     }
