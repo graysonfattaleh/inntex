@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using BurialSite.Models;
 using BurialSite.Models.ViewModels;
+using BurialSite.Infrstructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,8 @@ namespace BurialSite.Controllers
     {
         private RoleManager<Role> roleManager;
 
+        private DynamicFieldManager fieldManager;
+
         private ArcDBContext _context;
 
         private UserManager<ResearchUser> userManager;
@@ -34,39 +37,14 @@ namespace BurialSite.Controllers
             this.userManager = userManager;
             this._context = arcDBContext;
             this._logger = logger;
+            this.fieldManager = new DynamicFieldManager(_context);
         }
 
         //[AllowAnonymous]
         [Authorize(Policy = "superadminpolicy")]
         public IActionResult Index()
         {
-            Dictionary<ResearchUser, List<string>> researchUserRoles = new Dictionary<ResearchUser, List<string>>();
-            bool isSuperUser = User.IsInRole("SuperAdmin");
-            bool isResearcher = User.IsInRole("Researcher");
-            List<string> currentUserRoleNames = new List<string>();
-
-            string currentUserId = userManager.GetUserId(User);
-            var roles = roleManager.Roles.ToList();
-            var userRoles = _context.UserRoles.ToList();
-            foreach (ResearchUser user in userManager.Users.ToList())
-            {
-                List<string> userRoleNames = new List<string>();
-                foreach (var userRole in userRoles)
-                {
-                    if (user.Id == userRole.UserId)
-                    {
-                        userRoleNames.Add(roles.Where(r => r.Id == userRole.RoleId).FirstOrDefault().Name);
-                    }
-                }
-                researchUserRoles.Add(user, userRoleNames);
-            }
-            return View(new RoleIndexViewModel
-            {
-                Roles = roles,
-                UserRolesDict = researchUserRoles,
-                IsSuperUser = isSuperUser,
-                IsResearcher = isResearcher
-            }) ;
+            return View(GetRoleIndexViewModel());
         }
 
 
@@ -89,7 +67,24 @@ namespace BurialSite.Controllers
             await roleManager.CreateAsync(role);
             return RedirectToAction("Index");
         }
-       
+
+        [Authorize(Policy = "superadminpolicy")]
+        public IActionResult CreateField()
+        {
+            return View(new OneToOneField());
+        }
+
+        [Authorize(Policy = "superadminpolicy")]
+        [HttpPost]
+        public IActionResult CreateField(OneToOneField field)
+        {
+            if (ModelState.IsValid)
+            {
+                fieldManager.CreateField(field);
+            }
+            return View("Index", GetRoleIndexViewModel());
+        }
+
         /// <summary>
         /// This is to manage a single user's roles
         /// </summary>
@@ -194,6 +189,38 @@ namespace BurialSite.Controllers
             _logger.LogInformation("User with ID '{UserId}' was deleted by User with ID '{AdminId}'.", UserId, AdminId);
 
             return Redirect("/Role/Index");
+        }
+
+        private RoleIndexViewModel GetRoleIndexViewModel()
+        {
+            Dictionary<ResearchUser, List<string>> researchUserRoles = new Dictionary<ResearchUser, List<string>>();
+            bool isSuperUser = User.IsInRole("SuperAdmin");
+            bool isResearcher = User.IsInRole("Researcher");
+            List<string> currentUserRoleNames = new List<string>();
+
+            string currentUserId = userManager.GetUserId(User);
+            var roles = roleManager.Roles.ToList();
+            var userRoles = _context.UserRoles.ToList();
+            foreach (ResearchUser user in userManager.Users.ToList())
+            {
+                List<string> userRoleNames = new List<string>();
+                foreach (var userRole in userRoles)
+                {
+                    if (user.Id == userRole.UserId)
+                    {
+                        userRoleNames.Add(roles.Where(r => r.Id == userRole.RoleId).FirstOrDefault().Name);
+                    }
+                }
+                researchUserRoles.Add(user, userRoleNames);
+            }
+            return new RoleIndexViewModel
+            {
+                Fields = _context.OneToOneFields.ToList(),
+                Roles = roles,
+                UserRolesDict = researchUserRoles,
+                IsSuperUser = isSuperUser,
+                IsResearcher = isResearcher
+            };
         }
 
     }

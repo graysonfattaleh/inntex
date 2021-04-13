@@ -16,7 +16,7 @@ namespace BurialSite.Models
         public int OneToOneFieldId { get; set; }
        // [Key]
         public int BurialId { get; set; }
-
+        [Required(AllowEmptyStrings = false)]
         public string Value { get; set; }
         public virtual OneToOneField OneToOneField { get; set; }
         public virtual Burial Burial { get; set; }

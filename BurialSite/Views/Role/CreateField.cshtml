@@ -1,0 +1,46 @@
+﻿@model OneToOneField
+@{
+    ViewData["Title"] = "Create Field";
+}
+
+<h1 style="text-align:center; font-size:24px;">Researcher Roles</h1>
+<div class="container">
+    <h1 style="text-align:center; font-size:24px;">Burial Sites</h1>
+    <div class="manegesites">
+        <div class="manegesites2-1">
+            <div class="scroll">
+                <div class="col col-8>" style="border-radius: 3px;">
+                    <div style="border-radius: 3px;">
+                        <form asp-action="CreateField" method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" class="form-control" />
+                                <label asp-validation-for="Name" class="text-danger"></label>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <input asp-for="Description" class="form-control" />
+                                <label asp-validation-for="Description" class="text-danger"></label>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Type" class="control-label"></label>
+                                <input asp-for="Type" class="form-control" />
+                                <label asp-validation-for="Type" class="text-danger"></label>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Create Field!" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
