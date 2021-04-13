@@ -110,9 +110,8 @@ namespace BurialSite.Controllers
         [Authorize(Policy = "researcherpolicy")]
         public IActionResult CreateBurial()
         {
-            AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel();
+            AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel(_context);
             return View(burialSiteViewModel);
-
         }
         [Authorize(Policy = "researcherpolicy")]
         [HttpPost]
@@ -128,7 +127,7 @@ namespace BurialSite.Controllers
             }
             else
             { 
-                AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel
+                AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel(_context)
                 {
                     Burial = burial
                 };
@@ -141,7 +140,7 @@ namespace BurialSite.Controllers
         public IActionResult EditBurial(int BurialId)
         {
             Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
-            EditBurialViewModel BurialEdit = new EditBurialViewModel
+            EditBurialViewModel BurialEdit = new EditBurialViewModel(_context)
             {
                 Burial = burial
             };
@@ -161,7 +160,7 @@ namespace BurialSite.Controllers
                 return View();
             }
             else{
-                EditBurialViewModel BurialEdit = new EditBurialViewModel
+                EditBurialViewModel BurialEdit = new EditBurialViewModel(_context)
                 {
                     Burial = burial
                 };

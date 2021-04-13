@@ -509,4 +509,10 @@ ul {
     justify-items: start;
     text-align:center;
 }
+.bottom-footer{
+background: #002D5F;
+color: white;
 
+padding-top: 20px;
+padding-bottom: 20px;
+}

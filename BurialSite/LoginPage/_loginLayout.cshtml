@@ -122,15 +122,15 @@
 
                         }
 
-
-
                     </div>
-                    @* @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
-                        {
-                            <div>
-                                <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Super User</a>
-                            </div>
-                        }*@
+
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
+                    {
+                        <div>
+                            <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Super User</a>
+                        </div>
+                    }
+
 
                 </div>
             </div>
@@ -222,7 +222,7 @@
                     </div>
 
                 </div>
-                <div style="text-align:center;" class="col-sm">
+                <div style="text-align:center;">
                     <div class="copyright">
                         Provo, UT 84602, USA
                         &copy; Copyright <strong><span style="color:white">Fag el Gamous</span></strong>. All Rights Reserved
