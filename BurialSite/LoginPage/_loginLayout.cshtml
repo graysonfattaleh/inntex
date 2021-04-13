@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BurialSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @*<link rel = "shortcut icon" type="image/jpg" href="~/img/d0aa6163-84fc-4bcf-a536-3ce9484a317e.jpg"> *@
     @*<link rel="stylesheet" href="~/css/site.css" />*@
     <link rel="stylesheet" href="~/css/csslogin.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -124,20 +125,30 @@
 
                     </div>
 
-                    @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
-                    {
-                        <div>
-                            <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Super User</a>
-                        </div>
-                    }
+                    @*  @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
+        {
+            <div>
+                <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Super User</a>
+            </div>
+        }*@
 
 
+
+                    <div>
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
+                        {
+
+                            <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Admin</a>
+
+                        }
+                    </div>
+                </div>
                 </div>
             </div>
-            <div></div>
-            <div></div>
+        
 
-        </div>
+
+       
 
 
 

@@ -8,8 +8,8 @@
 
 <div class="profile3">
     <h4 style="color:black; text-align:center">@ViewData["Title"]</h4>
-    <div class="row">
-        <div class="col-md-6">
+   @* <div class="row">
+        <div class="col-md-6">*@
             <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
             <p>
                 <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
@@ -20,8 +20,8 @@
             <p>
                 <a id="delete" asp-page="DeletePersonalData" class="btn btn-secondary">Delete</a>
             </p>
-        </div>
-    </div>
+        @*</div>
+    </div>*@
 
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
