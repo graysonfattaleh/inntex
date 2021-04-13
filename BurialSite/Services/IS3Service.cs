@@ -9,6 +9,6 @@ namespace BurialSite.Services
     {
 
        /* Task<S3Response>CreateBucketAsync(string bucketName);*/
-        Task<string> AddItem(IFormFile file, string readerName);
+        Task<string> AddItem(IFormFile file, string burialName, string PhotoType);
     };
 }
