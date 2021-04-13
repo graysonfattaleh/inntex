@@ -8,7 +8,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Burial Sites</h1>
-    <div class="row ">
+    <div class="row justify-content-between">
         <div class="col col-2 ">
             <div class="navvy">
                 <h2>Tools</h2>
@@ -24,7 +24,7 @@
                      url-helper-locationfilter="@Context.Request.Query["locationfilter"]"></div>
             </div>
         </div>
-        <div class="col col-9>">
+        <div class="col col-8>">
 
             <table class="table table-light table-hover table-bordered">
                 <thead>
@@ -87,12 +87,12 @@
 
                             <td>
                                 <a href ="#OptionButtons-@burial.BurialID" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
-                                    <button class="btn btn-primary">Options</button></a>
+                                    <button class="btn btn-warning">Options</button></a>
                                     <br /> <br />
                                     <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
                                         <form method="post" asp-controller="Research" asp-action="UploadPhotos">
                                             <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                            <button class="btn btn-warning text-center"> Upload Photos </button>
+                                            <button class="btn btn-primary text-center"> Upload Photos </button>
                                         </form>
                                         <br />
                                         <form method="post" asp-controller="Research" asp-action="EditBurial">
@@ -102,7 +102,7 @@
                                         <br />
                                         <form method="post" asp-controller="Research" asp-action="BurialDetails">
                                             <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                            <button class="btn btn-secondary text-center">View Details</button>
+                                            <button class="btn btn-primary text-center">View Details</button>
                                         </form>
                                         <br />
                                         <form method="post" asp-controller="Research" asp-action="DeleteBurialSite">

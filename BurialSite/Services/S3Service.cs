@@ -19,7 +19,7 @@ namespace BurialSite.Services
         private readonly AmazonS3Client s3Client;
         private const string BUCKET_NAME = "arn:aws:s3:us-west-2:249897624530:accesspoint/readwriteinternet";
         //private const string BUCKET_NAME = "arn:aws:s3:::elasticbeanstalk-us-west-2-249897624530";
-        private const string FOLDER_NAME = "Uploads";
+        private const string FOLDER_NAME = "NewFolder";
         private const double DURATION = 24;
 
         public S3Service()

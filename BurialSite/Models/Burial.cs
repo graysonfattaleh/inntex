@@ -11,14 +11,14 @@ namespace BurialSite.Models
     // Burial Model; comments are associated with the field above them
     public class Burial
     {
+
+        private readonly ArcDBContext _context;
         public Burial()
         {
             OneToOneValues = new HashSet<OneToOneValue>();
             Notes = new HashSet<Notes>();
-            FileUrl = new HashSet<FileUrl>();
- 
-            
-
+           // FileUrl = new HashSet<FileUrl>();
+           FileUrl = new HashSet<FileUrl>();
         }
 
         [Key]
@@ -260,5 +260,12 @@ namespace BurialSite.Models
         public virtual ICollection<Notes> Notes { get; set; }
 
         public virtual ICollection<FileUrl> FileUrl { get; set; }
+
+        public void AddPhoto(FileUrl PhotoFile)
+        {
+            FileUrl = new List<FileUrl>();
+            FileUrl.Add(PhotoFile);
+        }
+
     }
 }

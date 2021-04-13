@@ -134,6 +134,11 @@ namespace BurialSite
                "/Research/BurialDetails",
                new { Controller = "Research", Action = "BurialDetails" }
                );
+                // for like buria details redirection?
+                endpoints.MapControllerRoute("BurialDetailsGet",
+              "/Research/BurialDetails/{BurialId:int}",
+              new { Controller = "Research", Action = "BurialDetails" }
+              );
 
                 // Role management actions
                 endpoints.MapControllerRoute(

@@ -4,7 +4,7 @@
 @{
 }
 
-@model Burial
+@model BurialDetailsViewModels
 
 
 <div class="white_guy">
@@ -12,793 +12,835 @@
 
     <div class="text-center">
         <h1>
-            @Model.BurialLocation.Dig_Site_Name
+            @Model.burial.BurialLocation.Dig_Site_Name
         </h1>
         <h2>
 
-            NS: @Model.BurialLocation.N_S_Grid_Site_Lower / @Model.BurialLocation.N_S_Grid_Site_Upper <br />
-            EW: @Model.BurialLocation.E_W_Grid_Site_Lower / @Model.BurialLocation.E_W_Grid_Site_Upper<br />
-            #@Model.Burial_Number
+            NS: @Model.burial.BurialLocation.N_S_Grid_Site_Lower / @Model.burial.BurialLocation.N_S_Grid_Site_Upper <br />
+            EW: @Model.burial.BurialLocation.E_W_Grid_Site_Lower / @Model.burial.BurialLocation.E_W_Grid_Site_Upper<br />
+            #@Model.burial.Burial_Number
         </h2>
         <h3 class="sub-heading text-muted">
-            East to Feet/Head: @Model.East_To_Feet / @Model.East_To_Head
+            East to Feet/Head: @Model.burial.East_To_Feet / @Model.burial.East_To_Head
             <br />
-            South to Feet/Head: @Model.South_To_Feet / @Model.South_To_Head
+            South to Feet/Head: @Model.burial.South_To_Feet / @Model.burial.South_To_Head
         </h3>
     </div>
 
-    <a href="#BurialDetailsOne" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
+    <a href="#BurialDetailsOne" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
         <div class="display-header">
-             <h1>Details</h1>
+            <h1>Details</h1>
         </div>
     </a>
 
-    <div id ="BurialDetailsOne" class="collapse multi-collapse">
+    <div id="BurialDetailsOne" class="collapse multi-collapse">
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
                 Gamous
             </dt>
             <dd class="col-sm-10">
-                @Model.Gamous
+                @Model.burial.Gamous
             </dd>
             <dt class="col-sm-2">
                 Burial_Number
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Number
+                @Model.burial.Burial_Number
             </dd>
             <dt class="col-sm-2">
                 West_To_Head
             </dt>
             <dd class="col-sm-10">
-                @Model.West_To_Head
+                @Model.burial.West_To_Head
             </dd>
             <dt class="col-sm-2">
                 West_To_Feet
             </dt>
             <dd class="col-sm-10">
-                @Model.West_To_Feet
+                @Model.burial.West_To_Feet
             </dd>
             <dt class="col-sm-2">
                 East_To_Head
             </dt>
             <dd class="col-sm-10">
-                @Model.East_To_Head
+                @Model.burial.East_To_Head
             </dd>
             <dt class="col-sm-2">
                 East_To_Feet
             </dt>
             <dd class="col-sm-10">
-                @Model.East_To_Feet
+                @Model.burial.East_To_Feet
             </dd>
             <dt class="col-sm-2">
                 South_To_Head
             </dt>
             <dd class="col-sm-10">
-                @Model.South_To_Head
+                @Model.burial.South_To_Head
             </dd>
             <dt class="col-sm-2">
                 South_To_Feet
             </dt>
             <dd class="col-sm-10">
-                @Model.South_To_Feet
+                @Model.burial.South_To_Feet
             </dd>
             <dt class="col-sm-2">
                 Depth
             </dt>
             <dd class="col-sm-10">
-                @Model.Depth
+                @Model.burial.Depth
             </dd>
             <dt class="col-sm-2">
                 Preservation_State
             </dt>
             <dd class="col-sm-10">
-                @Model.Preservation_State
+                @Model.burial.Preservation_State
             </dd>
             <dt class="col-sm-2">
                 Burial_Icon
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Icon
+                @Model.burial.Burial_Icon
             </dd>
             <dt class="col-sm-2">
                 Burial_Icon2
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Icon2
+                @Model.burial.Burial_Icon2
             </dd>
             <dt class="col-sm-2">
                 Sex_Method
             </dt>
             <dd class="col-sm-10">
-                @Model.Sex_Method
+                @Model.burial.Sex_Method
             </dd>
             <dt class="col-sm-2">
                 Sex
             </dt>
             <dd class="col-sm-10">
-                Sex
+                @Model.burial.Sex
             </dd>
             <dt class="col-sm-2">
                 GE_Function_Total
             </dt>
             <dd class="col-sm-10">
-                @Model.GE_Function_Total
+                @Model.burial.GE_Function_Total
             </dd>
             <dt class="col-sm-2">
                 Gender
             </dt>
             <dd class="col-sm-10">
-                @Model.Gender
+                @Model.burial.Gender
             </dd>
             <dt class="col-sm-2">
                 Gender_By_Measurement
             </dt>
             <dd class="col-sm-10">
-                @Model.Gender_By_Measurement
+                @Model.burial.Gender_By_Measurement
             </dd>
             <dt class="col-sm-2">
                 Age_At_Death
             </dt>
             <dd class="col-sm-10">
-                @Model.Age_At_Death
+                @Model.burial.Age_At_Death
             </dd>
             <dt class="col-sm-2">
                 Age_Method
             </dt>
             <dd class="col-sm-10">
-                @Model.Age_Method
+                @Model.burial.Age_Method
             </dd>
             <dt class="col-sm-2">
                 Hair_Color
             </dt>
             <dd class="col-sm-10">
-                @Model.Hair_Color
+                @Model.burial.Hair_Color
             </dd>
             <dt class="col-sm-2">
                 Sample_Collected
             </dt>
             <dd class="col-sm-10">
-                @Model.Sample_Collected
+                @Model.burial.Sample_Collected
             </dd>
             <dt class="col-sm-2">
                 Burial_Situation
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Situation
+                @Model.burial.Burial_Situation
             </dd>
             <dt class="col-sm-2">
                 Length_Of_Remains
             </dt>
             <dd class="col-sm-10">
-                @Model.Length_Of_Remains
+                @Model.burial.Length_Of_Remains
             </dd>
             <dt class="col-sm-2">
                 Cranial_Sample_Number
             </dt>
             <dd class="col-sm-10">
-                @Model.Cranial_Sample_Number
+                @Model.burial.Cranial_Sample_Number
             </dd>
             <dt class="col-sm-2">
                 Basilar_Suture
             </dt>
             <dd class="col-sm-10">
-                @Model.Basilar_Suture
+                @Model.burial.Basilar_Suture
             </dd>
             <dt class="col-sm-2">
                 Ventral_Arc
             </dt>
             <dd class="col-sm-10">
-                @Model.Ventral_Arc
+                @Model.burial.Ventral_Arc
             </dd>
             <dt class="col-sm-2">
                 Subpubic_Angle
             </dt>
             <dd class="col-sm-10">
-                @Model.Subpubic_Angle
+                @Model.burial.Subpubic_Angle
             </dd>
             <dt class="col-sm-2">
                 Sciatic_Notch
             </dt>
             <dd class="col-sm-10">
-                @Model.Sciatic_Notch
+                @Model.burial.Sciatic_Notch
             </dd>
             <dt class="col-sm-2">
                 Pubic_Bone
             </dt>
             <dd class="col-sm-10">
-                @Model.Pubic_Bone
+                @Model.burial.Pubic_Bone
             </dd>
             <dt class="col-sm-2">
                 Preaur_Sulcus
             </dt>
             <dd class="col-sm-10">
-                @Model.Preaur_Sulcus
+                @Model.burial.Preaur_Sulcus
             </dd>
             <dt class="col-sm-2">
                 Medial_IP_Ramus
             </dt>
             <dd class="col-sm-10">
-                @Model.Medial_IP_Ramus
+                @Model.burial.Medial_IP_Ramus
             </dd>
             <dt class="col-sm-2">
                 Dorsal_Pitting
             </dt>
             <dd class="col-sm-10">
-                @Model.Dorsal_Pitting
+                @Model.burial.Dorsal_Pitting
             </dd>
             <dt class="col-sm-2">
                 Femur_Head
             </dt>
             <dd class="col-sm-10">
-                @Model.Femur_Head
+                @Model.burial.Femur_Head
             </dd>
             <dt class="col-sm-2">
                 Humerus_Head
             </dt>
             <dd class="col-sm-10">
-                @Model.Humerus_Head
+                @Model.burial.Humerus_Head
             </dd>
             <dt class="col-sm-2">
                 Osteophytosis
             </dt>
             <dd class="col-sm-10">
-                @Model.Osteophytosis
+                @Model.burial.Osteophytosis
             </dd>
             <dt class="col-sm-2">
                 Pubic_Symphysis
             </dt>
             <dd class="col-sm-10">
-                @Model.Pubic_Symphysis
+                @Model.burial.Pubic_Symphysis
             </dd>
             <dt class="col-sm-2">
                 Femur_Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Femur_Length
+                @Model.burial.Femur_Length
             </dd>
             <dt class="col-sm-2">
                 Humerus_Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Humerus_Length
+                @Model.burial.Humerus_Length
             </dd>
             <dt class="col-sm-2">
                 Tibia_Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Tibia_Length
+                @Model.burial.Tibia_Length
             </dd>
             <dt class="col-sm-2">
                 Robust
             </dt>
             <dd class="col-sm-10">
-                @Model.Robust
+                @Model.burial.Robust
             </dd>
             <dt class="col-sm-2">
                 Supraorbital_Ridges
             </dt>
             <dd class="col-sm-10">
-                @Model.Supraorbital_Ridges
+                @Model.burial.Supraorbital_Ridges
             </dd>
             <dt class="col-sm-2">
                 Orbit_Edge
             </dt>
             <dd class="col-sm-10">
-                @Model.Orbit_Edge
+                @Model.burial.Orbit_Edge
             </dd>
             <dt class="col-sm-2">
                 Parietal_Bossing
             </dt>
             <dd class="col-sm-10">
-                @Model.Parietal_Bossing
+                @Model.burial.Parietal_Bossing
             </dd>
             <dt class="col-sm-2">
                 Gonian
             </dt>
             <dd class="col-sm-10">
-                @Model.Gonian
+                @Model.burial.Gonian
             </dd>
             <dt class="col-sm-2">
                 Nuchal_Crest
             </dt>
             <dd class="col-sm-10">
-                @Model.Nuchal_Crest
+                @Model.burial.Nuchal_Crest
             </dd>
             <dt class="col-sm-2">
                 Zygomatic_Crest
             </dt>
             <dd class="col-sm-10">
-                @Model.Zygomatic_Crest
+                @Model.burial.Zygomatic_Crest
             </dd>
             <dt class="col-sm-2">
                 Cranial_Suture
             </dt>
             <dd class="col-sm-10">
-                @Model.Cranial_Suture
+                @Model.burial.Cranial_Suture
             </dd>
             <dt class="col-sm-2">
                 Maximum_Cranial_Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Maximum_Cranial_Length
+                @Model.burial.Maximum_Cranial_Length
             </dd>
             <dt class="col-sm-2">
                 Maximum_Cranial_Breadth
             </dt>
             <dd class="col-sm-10">
-                @Model.Maximum_Cranial_Breadth
+                @Model.burial.Maximum_Cranial_Breadth
             </dd>
             <dt class="col-sm-2">
                 Basion_Bregma_Height
             </dt>
             <dd class="col-sm-10">
-                @Model.Basion_Bregma_Height
+                @Model.burial.Basion_Bregma_Height
             </dd>
             <dt class="col-sm-2">
                 Basion_Nasion
             </dt>
             <dd class="col-sm-10">
-                @Model.Basion_Nasion
+                @Model.burial.Basion_Nasion
             </dd>
             <dt class="col-sm-2">
                 Basion_Prosthion_Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Basion_Prosthion_Length
+                @Model.burial.Basion_Prosthion_Length
             </dd>
             <dt class="col-sm-2">
                 Bizygomatic_Diameter
             </dt>
             <dd class="col-sm-10">
-                @Model.Bizygomatic_Diameter
+                @Model.burial.Bizygomatic_Diameter
             </dd>
             <dt class="col-sm-2">
                 Nasion_Prosthion
             </dt>
             <dd class="col-sm-10">
-                @Model.Nasion_Prosthion
+                @Model.burial.Nasion_Prosthion
             </dd>
             <dt class="col-sm-2">
                 Maximum_Nasal_Breadth
             </dt>
             <dd class="col-sm-10">
-                @Model.Maximum_Nasal_Breadth
+                @Model.burial.Maximum_Nasal_Breadth
             </dd>
             <dt class="col-sm-2">
                 Interorbital_Breadth
             </dt>
             <dd class="col-sm-10">
-                @Model.Interorbital_Breadth
+                @Model.burial.Interorbital_Breadth
             </dd>
             <dt class="col-sm-2">
                 Artifacts_Description
             </dt>
             <dd class="col-sm-10">
-                @Model.Artifacts_Description
+                @Model.burial.Artifacts_Description
             </dd>
             <dt class="col-sm-2">
                 Preservation_Index
             </dt>
             <dd class="col-sm-10">
-                @Model.Preservation_Index
+                @Model.burial.Preservation_Index
             </dd>
             <dt class="col-sm-2">
                 Hair_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Hair_Taken
+                @Model.burial.Hair_Taken
             </dd>
             <dt class="col-sm-2">
                 Soft_Tissue_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Soft_Tissue_Taken
+                @Model.burial.Soft_Tissue_Taken
             </dd>
             <dt class="col-sm-2">
                 Bone_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Bone_Taken
+                @Model.burial.Bone_Taken
             </dd>
             <dt class="col-sm-2">
                 Tooth_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Tooth_Taken
+                @Model.burial.Tooth_Taken
             </dd>
             <dt class="col-sm-2">
                 Textile_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Textile_Taken
+                @Model.burial.Textile_Taken
             </dd>
             <dt class="col-sm-2">
                 Description_Of_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Description_Of_Taken
+                @Model.burial.Description_Of_Taken
             </dd>
             <dt class="col-sm-2">
                 Artifact_Found
             </dt>
             <dd class="col-sm-10">
-                @Model.Artifact_Found
+                @Model.burial.Artifact_Found
             </dd>
             <dt class="col-sm-2">
                 Estimate_Living_Stature
             </dt>
             <dd class="col-sm-10">
-                @Model.Estimate_Living_Stature
+                @Model.burial.Estimate_Living_Stature
             </dd>
             <dt class="col-sm-2">
                 Tooth_Attrition
             </dt>
             <dd class="col-sm-10">
-                @Model.Tooth_Attrition
+                @Model.burial.Tooth_Attrition
             </dd>
             <dt class="col-sm-2">
                 Tooth_Eruption
             </dt>
             <dd class="col-sm-10">
-                @Model.Tooth_Eruption
+                @Model.burial.Tooth_Eruption
             </dd>
             <dt class="col-sm-2">
                 Pathology_Anomalies
             </dt>
             <dd class="col-sm-10">
-                @Model.Pathology_Anomalies
+                @Model.burial.Pathology_Anomalies
             </dd>
             <dt class="col-sm-2">
                 Epiphyseal_Union
             </dt>
             <dd class="col-sm-10">
-                @Model.Epiphyseal_Union
+                @Model.burial.Epiphyseal_Union
             </dd>
             <dt class="col-sm-2">
                 Date_Excavated
             </dt>
             <dd class="col-sm-10">
-                @Model.Date_Excavated
+                @Model.burial.Date_Excavated
             </dd>
             <dt class="col-sm-2">
                 Head_Direction
             </dt>
             <dd class="col-sm-10">
-                @Model.Head_Direction
+                @Model.burial.Head_Direction
             </dd>
             <dt class="col-sm-2">
                 Year_On_Skull
             </dt>
             <dd class="col-sm-10">
-                @Model.Year_On_Skull
+                @Model.burial.Year_On_Skull
             </dd>
             <dt class="col-sm-2">
                 Month_On_Skull
             </dt>
             <dd class="col-sm-10">
-                @Model.Month_On_Skull
+                @Model.burial.Month_On_Skull
             </dd>
             <dt class="col-sm-2">
                 Day_On_Skull
             </dt>
             <dd class="col-sm-10">
-                @Model.Day_On_Skull
+                @Model.burial.Day_On_Skull
             </dd>
             <dt class="col-sm-2">
                 Field_Book
             </dt>
             <dd class="col-sm-10">
-                @Model.Field_Book
+                @Model.burial.Field_Book
             </dd>
             <dt class="col-sm-2">
                 Field_Book_Page_Number
             </dt>
             <dd class="col-sm-10">
-                @Model.Field_Book_Page_Number
+                @Model.burial.Field_Book_Page_Number
             </dd>
             <dt class="col-sm-2">
                 Initials_Of_Data_Entry_Expert
             </dt>
             <dd class="col-sm-10">
-                @Model.Initials_Of_Data_Entry_Expert
+                @Model.burial.Initials_Of_Data_Entry_Expert
             </dd>
             <dt class="col-sm-2">
                 Initials_Of_Data_Entry_Checker
             </dt>
             <dd class="col-sm-10">
-                @Model.Initials_Of_Data_Entry_Checker
+                @Model.burial.Initials_Of_Data_Entry_Checker
             </dd>
             <dt class="col-sm-2">
                 BYU_Sample
             </dt>
             <dd class="col-sm-10">
-                @Model.BYU_Sample
+                @Model.burial.BYU_Sample
             </dd>
             <dt class="col-sm-2">
                 Body_Analysis
             </dt>
             <dd class="col-sm-10">
-                @Model.Body_Analysis
+                @Model.burial.Body_Analysis
             </dd>
             <dt class="col-sm-2">
                 Skull_At_Magazine
             </dt>
             <dd class="col-sm-10">
-                @Model.Skull_At_Magazine
+                @Model.burial.Skull_At_Magazine
             </dd>
             <dt class="col-sm-2">
                 Postcrania_At_Magazine
             </dt>
             <dd class="col-sm-10">
-                @Model.Postcrania_At_Magazine
+                @Model.burial.Postcrania_At_Magazine
             </dd>
             <dt class="col-sm-2">
                 Age
             </dt>
             <dd class="col-sm-10">
-                @Model.Age
+                @Model.burial.Age
             </dd>
             <dt class="col-sm-2">
                 Rack_And_Shelf
             </dt>
             <dd class="col-sm-10">
-                @Model.Rack_And_Shelf
+                @Model.burial.Rack_And_Shelf
             </dd>
             <dt class="col-sm-2">
                 Skull_Trauma
             </dt>
             <dd class="col-sm-10">
-                @Model.Skull_Trauma
+                @Model.burial.Skull_Trauma
             </dd>
             <dt class="col-sm-2">
                 Postcrania_Trauma
             </dt>
             <dd class="col-sm-10">
-                @Model.Postcrania_Trauma
+                @Model.burial.Postcrania_Trauma
             </dd>
             <dt class="col-sm-2">
                 Cribra_Orbitala
             </dt>
             <dd class="col-sm-10">
-                @Model.Cribra_Orbitala
+                @Model.burial.Cribra_Orbitala
             </dd>
             <dt class="col-sm-2">
                 Porotic_Hyperostosis
             </dt>
             <dd class="col-sm-10">
-                @Model.Porotic_Hyperostosis
+                @Model.burial.Porotic_Hyperostosis
             </dd>
             <dt class="col-sm-2">
                 Porotic_Hyperostosis_Locations
             </dt>
             <dd class="col-sm-10">
-                @Model.Porotic_Hyperostosis_Locations
+                @Model.burial.Porotic_Hyperostosis_Locations
             </dd>
             <dt class="col-sm-2">
                 Metopic_Suture
             </dt>
             <dd class="col-sm-10">
-                @Model.Metopic_Suture
+                @Model.burial.Metopic_Suture
             </dd>
             <dt class="col-sm-2">
                 Button_Osteoma
             </dt>
             <dd class="col-sm-10">
-                @Model.Button_Osteoma
+                @Model.burial.Button_Osteoma
             </dd>
             <dt class="col-sm-2">
                 Osteology_Unknown_Comment
             </dt>
             <dd class="col-sm-10">
-                @Model.Osteology_Unknown_Comment
+                @Model.burial.Osteology_Unknown_Comment
             </dd>
             <dt class="col-sm-2">
                 Temporal_Mandibular_Joint_Osteoarthritis
             </dt>
             <dd class="col-sm-10">
-                @Model.Temporal_Mandibular_Joint_Osteoarthritis
+                @Model.burial.Temporal_Mandibular_Joint_Osteoarthritis
             </dd>
             <dt class="col-sm-2">
                 Linear_Hypoplasia_Enamel
             </dt>
             <dd class="col-sm-10">
-                @Model.Linear_Hypoplasia_Enamel
+                @Model.burial.Linear_Hypoplasia_Enamel
             </dd>
             <dt class="col-sm-2">
                 Tomb
             </dt>
             <dd class="col-sm-10">
-                @Model.Tomb
+                @Model.burial.Tomb
             </dd>
             <dt class="col-sm-2">
                 Length
             </dt>
             <dd class="col-sm-10">
-                @Model.Length
+                @Model.burial.Length
             </dd>
             <dt class="col-sm-2">
                 Burial_Preservation
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Preservation
+                @Model.burial.Burial_Preservation
             </dd>
             <dt class="col-sm-2">
                 Burial_Wrapping
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Wrapping
+                @Model.burial.Burial_Wrapping
             </dd>
             <dt class="col-sm-2">
                 Burial_Adult_Child
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Adult_Child
+                @Model.burial.Burial_Adult_Child
             </dd>
             <dt class="col-sm-2">
                 Age_Code
             </dt>
             <dd class="col-sm-10">
-                @Model.Age_Code
+                @Model.burial.Age_Code
             </dd>
             <dt class="col-sm-2">
                 Burial_Sample_Taken
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Sample_Taken
+                @Model.burial.Burial_Sample_Taken
             </dd>
             <dt class="col-sm-2">
                 Length_In_Meters
             </dt>
             <dd class="col-sm-10">
-                @Model.Length_In_Meters
+                @Model.burial.Length_In_Meters
             </dd>
             <dt class="col-sm-2">
                 Length_In_Centimeters
             </dt>
             <dd class="col-sm-10">
-                @Model.Length_In_Centimeters
+                @Model.burial.Length_In_Centimeters
             </dd>
             <dt class="col-sm-2">
                 Length_In_Millimeters
             </dt>
             <dd class="col-sm-10">
-                @Model.Length_In_Millimeters
+                @Model.burial.Length_In_Millimeters
             </dd>
             <dt class="col-sm-2">
                 Goods
             </dt>
             <dd class="col-sm-10">
-                @Model.Goods
+                @Model.burial.Goods
             </dd>
             <dt class="col-sm-2">
                 Cluster
             </dt>
             <dd class="col-sm-10">
-                @Model.Cluster
+                @Model.burial.Cluster
             </dd>
             <dt class="col-sm-2">
                 Face_Bundle
             </dt>
             <dd class="col-sm-10">
-                @Model.Face_Bundle
+                @Model.burial.Face_Bundle
             </dd>
             <dt class="col-sm-2">
                 Rack
             </dt>
             <dd class="col-sm-10">
-                @Model.Rack
+                @Model.burial.Rack
             </dd>
             <dt class="col-sm-2">
                 Tube_Number
             </dt>
             <dd class="col-sm-10">
-                @Model.Tube_Number
+                @Model.burial.Tube_Number
             </dd>
             <dt class="col-sm-2">
                 Burial_Description
             </dt>
             <dd class="col-sm-10">
-                @Model.Burial_Description
+                @Model.burial.Burial_Description
             </dd>
             <dt class="col-sm-2">
                 Foci
             </dt>
             <dd class="col-sm-10">
-                @Model.Foci
+                @Model.burial.Foci
             </dd>
             <dt class="col-sm-2">
                 C14_Sample
             </dt>
             <dd class="col-sm-10">
-                @Model.C14_Sample
+                @Model.burial.C14_Sample
             </dd>
             <dt class="col-sm-2">
                 Location
             </dt>
             <dd class="col-sm-10">
-                @Model.Location
+                @Model.burial.Location
             </dd>
             <dt class="col-sm-2">
                 Questions
             </dt>
             <dd class="col-sm-10">
-                @Model.Questions
+                @Model.burial.Questions
             </dd>
             <dt class="col-sm-2">
                 Conventional_14C_Age_BP
             </dt>
             <dd class="col-sm-10">
-                @Model.Conventional_14C_Age_BP
+                @Model.burial.Conventional_14C_Age_BP
             </dd>
             <dt class="col-sm-2">
                 C14_Calendar_Date
             </dt>
             <dd class="col-sm-10">
-                @Model.C14_Calendar_Date
+                @Model.burial.C14_Calendar_Date
             </dd>
             <dt class="col-sm-2">
                 Calibrated_95_Calendar_Date_Max
             </dt>
             <dd class="col-sm-10">
-                @Model.Calibrated_95_Calendar_Date_Max
+                @Model.burial.Calibrated_95_Calendar_Date_Max
             </dd>
             <dt class="col-sm-2">
                 Calibrated_95_Calendar_Date_Min
             </dt>
             <dd class="col-sm-10">
-                @Model.Calibrated_95_Calendar_Date_Min
+                @Model.burial.Calibrated_95_Calendar_Date_Min
             </dd>
             <dt class="col-sm-2">
                 Calibrated_95_Calendar_Date_Span
             </dt>
             <dd class="col-sm-10">
-                @Model.Calibrated_95_Calendar_Date_Span
+                @Model.burial.Calibrated_95_Calendar_Date_Span
             </dd>
             <dt class="col-sm-2">
                 Calibrated_95_Calendar_Date_Avg
             </dt>
             <dd class="col-sm-10">
-                @Model.Calibrated_95_Calendar_Date_Avg
+                @Model.burial.Calibrated_95_Calendar_Date_Avg
             </dd>
             <dt class="col-sm-2">
                 Category
             </dt>
             <dd class="col-sm-10">
-                @Model.Category
+                @Model.burial.Category
             </dd>
             <dt class="col-sm-2">
                 Bag
             </dt>
             <dd class="col-sm-10">
-                @Model.Bag
+                @Model.burial.Bag
             </dd>
             <dt class="col-sm-2">
                 Date
             </dt>
             <dd class="col-sm-10">
-                @Model.Date
+                @Model.burial.Date
             </dd>
             <dt class="col-sm-2">
                 Previously_Sampled
             </dt>
             <dd class="col-sm-10">
-                @Model.Previously_Sampled
+                @Model.burial.Previously_Sampled
             </dd>
             <dt class="col-sm-2">
                 Initials
             </dt>
             <dd class="col-sm-10">
-                @Model.Initials
+                @Model.burial.Initials
             </dd>
             <dt class="col-sm-2">
                 BurialLocation
             </dt>
             <dd class="col-sm-10">
-                @Model.BurialLocation.Dig_Site_Name
+                @Model.burial.BurialLocation.Dig_Site_Name
             </dd>
         </dl>
-    </divid>
+    </div>
+    <a href="#BurialPhotoDiv" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialPhotoDiv">
+        <div class="display-header">
+            <h1>Photos</h1>
+        </div>
+    </a>
 
-</div>
+    <div id="BurialPhotoDiv" class="collapse multi-collapse">
+        @foreach (FileUrl pic in Model.BurialPhotos)
+        {
+            <img width="500px" src="@pic.Url" />
+            <p>ahh</p>
+        }
+    </div>
+
+    <a href="#BurialNotesDiv" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialPhotoDiv">
+        <div class="display-header">
+            <h1>Notes</h1>
+        </div>
+    </a>
+
+    <div id="BurialNotesDiv" class="collapse multi-collapse">
+        @foreach (Notes note in Model.Notes)
+        {
+            <hr />
+            @note.Data
+    <form method="post" asp-action="DeleteNote">
+        <button class="btn btn-danger">Delete Note</button>
+        <input type="hidden"name="BurialId" id="BurialId" value="@note.BurialID" />
+        <input type="hidden"name="NoteId" id="NoteId" value="@note.NotesId" />
+    </form>
+        }
+        <div class="text-center">
+        <h2> Add Note </h2>
+        <form method="post" asp-action="AddNote">
+
+            <textarea class="textarea" name="NoteData" id="Note Data"></textarea><br />
+            <label for="NoteType">Note Type</label>
+            <input name="NoteType" id="NoteType" />
+            <input type="hidden" name="BurialId" id="BurialId" value="@Model.burial.BurialID" />
+
+            <button class="btn btn-primary"> Add Note </button>
+        </form>
+      </div>  
+ </div>

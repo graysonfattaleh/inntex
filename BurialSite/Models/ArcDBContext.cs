@@ -21,6 +21,7 @@ namespace BurialSite.Models
         public DbSet<Notes> Notes { get; set; }
         public DbSet<OneToOneField> OneToOneFields { get; set; }
         public DbSet<OneToOneValue> OneToOneValues { get; set; }
+      
 
 
     }

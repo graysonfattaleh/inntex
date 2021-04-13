@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using BurialSite.Models;
 using BurialSite.Models.ViewModels;
 using BurialSite.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -32,11 +33,12 @@ namespace BurialSite.Controllers
 
         //items per page
         public int pageSize = 30;
-       
+
 
         //CRUD FUNCTIONS FOR RESEARCHERS-------------------
 
         // Burial Site List /////////////////////////////////////////////
+        [Authorize(Policy = "researcherpolicy")]
 
         public IActionResult AddSite(string filterer, int pagenumber = 1)
         {
@@ -58,6 +60,7 @@ namespace BurialSite.Controllers
         }
 
         // Filter Burial List///////////////////////////////////////////////
+        [Authorize(Policy = "researcherpolicy")]
 
         public IActionResult FilterBurials(int locationfilter,string genderfilter,decimal depthfilter, int pagenumber = 1)
         {
@@ -94,21 +97,24 @@ namespace BurialSite.Controllers
 
 
         // View Burial Detials //////////////////////////////////////////////
+        [HttpPost]
         public IActionResult BurialDetails(int BurialId)
         {
-            Burial burial = _context.Burials.Include(b => b.BurialLocation).Where(b => b.BurialID == BurialId).FirstOrDefault();
-
-            return View(burial);
+            BurialDetailsViewModels burialDetails = new BurialDetailsViewModels(_context, BurialId);
+            
+            return View(burialDetails);
         }
-        // ADD BURIAL ///////////////////////////////////////////////////////
 
+
+        // ADD BURIAL ///////////////////////////////////////////////////////
+        [Authorize(Policy = "researcherpolicy")]
         public IActionResult CreateBurial()
         {
             AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel();
             return View(burialSiteViewModel);
 
         }
-
+        [Authorize(Policy = "researcherpolicy")]
         [HttpPost]
         public IActionResult SaveBurial(Burial burial)
         {
@@ -131,6 +137,7 @@ namespace BurialSite.Controllers
         }
         //Edit Burial Site/////////////////////////////////////////////
         [HttpPost]
+        [Authorize(Policy = "researcherpolicy")]
         public IActionResult EditBurial(int BurialId)
         {
             Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
@@ -149,7 +156,7 @@ namespace BurialSite.Controllers
 
             if (ModelState.IsValid)
             {
-              
+             
                 return View();
             }
             else{
@@ -164,8 +171,10 @@ namespace BurialSite.Controllers
         //Read Burial Site Details
 
         //Upload Photos/////////////////////////////////////////////
+        [Authorize(Policy = "researcherpolicy")]
         public IActionResult UploadPhotos(int BurialId)
         {
+
             Burial burial = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
 
             return View(new SavePhotoViewModel {
@@ -173,47 +182,39 @@ namespace BurialSite.Controllers
             });
         }
 
-
-       public IActionResult SavePhoto()
-        {
-
-            return View();
-        }
         [HttpPost]
-
-        public async Task<IActionResult> SavePhotos(SavePhotoViewModel SavePhoto)
+        [Authorize(Policy = "researcherpolicy")]
+        public async Task<IActionResult> SavePhotos(SavePhotoViewModel SavePhoto, int BurialId)
         {
             // save iploaded photo yeet
             if (ModelState.IsValid)
             {
                 string url =  await _s3storage.AddItem(SavePhoto.PhotoFile, "testGuy");
+                Burial burial_to_add = _context.Burials.Where(b => b.BurialID == BurialId).FirstOrDefault();
 
-                FileUrl FileRecord = new FileUrl
+                FileUrl FileRecord = new FileUrl(_context)
                 {
-          
                     Url = url,
-                    Type = "Photo"
-                    
-    };
-                
-                return View("AddSite");
+                    Type = SavePhoto.Type,
+                    Burial = burial_to_add,
+                    BurialID =  burial_to_add.BurialID
+                 };
+
+
+                _context.Add(FileRecord);
+                _context.SaveChanges();
+                return Redirect("/Research/AddSite");
             }
             else
             {
                 return View("UploadPhotos");
-            }
 
-          
+            } 
         }
 
-        public IActionResult CreatePhoto()
-        {
-
-            return View();
-        }
 
         // Delete Burial Site?? ///////////////////////////////////////////
-
+        [Authorize(Policy = "superadminpolicy")]
         public IActionResult DeleteBurialSite(int BurialId)
         {
 
@@ -223,18 +224,47 @@ namespace BurialSite.Controllers
             return View();
         }
 
-        // ADMIN CRUD----------------------------------------
-
-        // link to portal
-        public IActionResult ManageUsers()
+        // NOTES CRUD----------------------------------------
+        [Authorize(Policy = "researcherpolicy")]
+        public IActionResult AddNote(string NoteData, string NoteType, int BurialId)
         {
+            // make new note
+            try {
+                Notes note_to_add = new Notes
+                {
+                    Data = NoteData,
+                    Type = NoteType,
+                    BurialID = BurialId
+                };
 
-            return View();
+                _context.Add(note_to_add);
+                _context.SaveChanges();
+
+                Burial burial = _context.Burials.Include(b => b.BurialLocation).Where(b => b.BurialID == BurialId).FirstOrDefault();
+                BurialDetailsViewModels burialDetails = new BurialDetailsViewModels(_context,BurialId);
+                
+                return View("BurialDetails",burialDetails);
+            }
+            catch
+            {
+                return View("AddNoteError");
+            }
+          
         }
 
-        //Add Researcher/////////////////////////////////////////////
+        public IActionResult DeleteNote(int NoteId,int BurialId)
+        {
+            Notes note = _context.Notes.Where(b => b.NotesId == NoteId).FirstOrDefault();
+            // remove note
+            _context.Remove(note);
+            _context.SaveChanges();
+            // New Details
+            BurialDetailsViewModels burialDetails = new BurialDetailsViewModels(_context, BurialId);
+            return View("BurialDetails",burialDetails);
+            
+        }
 
-        //Edit Researcher/////////////////////////////////////////////
+        //ADMIN CRUD LOCATED IN ROLE CONTROLLER/////////////////////////////////////////////
 
         // Delete Researcher/////////////////////////////////////////////
     }

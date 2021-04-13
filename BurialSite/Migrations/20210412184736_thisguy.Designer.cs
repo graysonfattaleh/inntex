@@ -3,15 +3,17 @@ using System;
 using BurialSite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BurialSite.Migrations
 {
     [DbContext(typeof(ArcDBContext))]
-    partial class ArcDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210412184736_thisguy")]
+    partial class thisguy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,7 +470,7 @@ namespace BurialSite.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("BurialID")
+                    b.Property<int?>("BurialID")
                         .HasColumnType("integer");
 
                     b.Property<string>("Type")
@@ -817,9 +819,7 @@ namespace BurialSite.Migrations
                 {
                     b.HasOne("BurialSite.Models.Burial", "Burial")
                         .WithMany("FileUrl")
-                        .HasForeignKey("BurialID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BurialID");
 
                     b.Navigation("Burial");
                 });
