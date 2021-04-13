@@ -585,6 +585,46 @@ pre code {
   margin-left: auto;
 }
 
+.con {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 576px) {
+    .con {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 768px) {
+    .con {
+        max-width: 800px;
+    }
+}
+
+@media (min-width: 992px) {
+    .con {
+        max-width: 1100px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .con {
+        max-width: 1200px;
+    }
+}
+
+.con-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .row {
   display: -ms-flexbox;
   display: flex;

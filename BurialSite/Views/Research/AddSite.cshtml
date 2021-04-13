@@ -5,120 +5,165 @@
 }
 
 @model AddSiteViewModel
+@*
+    <div class="text-center">*@
+<div class="con">
+    <h1 style="text-align:center; font-size:64px;">Burial Sites</h1>
+    <div class="manegesites">
+        @*<div class="row justify-content-between">
+            <div class="col col-2 ">*@
+        @*<div class="navvy">*@
 
-<div class="text-center">
-    <h1 class="display-4">Burial Sites</h1>
-    <div class="row justify-content-between">
-        <div class="col col-2 ">
-            <div class="navvy">
-                <h2>Tools</h2>
+        <div class="manegesites1">
+            <div style="text-align:center">
+                <h2 style="color:white;">Tools</h2>
                 <a asp-controller="Research" asp-action="CreateBurial">
-                <button class="btn btn-secondary text-center"> Add New Site </button></a>
+                    <button class="signinbutton"> Add New Site </button>
+                </a>
                 <br />
-                <h3>Filters</h3>
+                <h3 style="color:white;">Filters</h3>
                 <vc:filter-list name="FilterList"></vc:filter-list>
                 <!--The url helpers make it happen-->
                 <div pagination-info="@Model.PaginationInfo"
                      url-helper-depthfilter="@Context.Request.Query["depthfilter"]"
                      url-helper-genderfilter="@Context.Request.Query["genderfilter"]"
-                     url-helper-locationfilter="@Context.Request.Query["locationfilter"]"></div>
+                     url-helper-locationfilter="@Context.Request.Query["locationfilter"]" style="color:white"></div>
+                @* </div>
+                    </div>*@
             </div>
         </div>
-        <div class="col col-8>">
+        <div class="manegesites2">
+            <div class="scroll">
+                <div class="col col-8>" style="border-radius: 3px;">
+                    <div style="border-radius: 3px;">
+                        <table class="table table-light table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <p>Burial Number</p>
+                                    </td>
+                                    <td>
+                                        <p>Burial Location</p>
+                                    </td>
+                                    <td>
+                                        <p>Burial Site Location</p>
+                                    </td>
+                                    <td>
+                                        <p>Burial Depth</p>
+                                    </td>
+                                    <td>
+                                        <p>Sex</p>
+                                    </td>
 
-            <table class="table table-light table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <td>
-                            <p>Burial Number</p>
-                        </td>
-                        <td>
-                            <p>Burial Location</p>
-                        </td>
-                        <td>
-                            <p>Burial Site Location</p>
-                        </td>
-                        <td>
-                            <p>Burial Depth</p>
-                        </td>
-                        <td>
-                            <p>Sex</p>
-                        </td>
+                                    <td>
+                                    </td>
 
-                        <td>
-                        </td>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                    </tr>
-                </thead>
-                <tbody>
+                                @foreach (Burial burial in Model.Burials)
+                                {
+                                    <tr>
+                                        <td class="thetd">
+                                            <p> @burial.Burial_Number</p>
+                                        </td>
+                                        <td class="thetd2">
+                                            <p>
+                                                @burial.BurialLocation.Dig_Site_Name
 
-                    @foreach (Burial burial in Model.Burials)
-                    {
-                        <tr>
-                            <td>
-                                <p> @burial.Burial_Number</p>
-                            </td>
-                            <td>
-                                <p>
-                                    @burial.BurialLocation.Dig_Site_Name
+                                                NS: @burial.BurialLocation.N_S_Grid_Site_Lower / @burial.BurialLocation.N_S_Grid_Site_Upper <br />
+                                                EW: @burial.BurialLocation.E_W_Grid_Site_Lower / @burial.BurialLocation.E_W_Grid_Site_Upper
 
-                                    NS: @burial.BurialLocation.N_S_Grid_Site_Lower / @burial.BurialLocation.N_S_Grid_Site_Upper <br />
-                                    EW: @burial.BurialLocation.E_W_Grid_Site_Lower / @burial.BurialLocation.E_W_Grid_Site_Upper
+                                            </p>
 
-                                </p>
+                                            <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
+                                                <form method="post" asp-controller="Research" asp-action="BurialDetails">
+                                                    <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                    <button class="signinbutton">View Details</button>
+                                                </form>
+                                            </div>
 
-                            </td>
-                            <td>
-                                <p>
-                                    # @burial.Burial_Number
+                                        </td>
+                                        <td class="thetd3">
 
-                                    East to Feet/Head: @burial.East_To_Feet / @burial.East_To_Head <br />
-                                    South to Feet/Head: @burial.South_To_Feet / @burial.South_To_Head
+                                            <p>
+                                                # @burial.Burial_Number
 
-                                </p>
+                                                East to Feet/Head: @burial.East_To_Feet / @burial.East_To_Head <br />
+                                                South to Feet/Head: @burial.South_To_Feet / @burial.South_To_Head
 
-                            </td>
-                            <td>
-                                @burial.Depth
-                            </td>
-                            <td>
-                                @burial.Sex
-                            </td>
+                                            </p>
+                                            <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
+                                                <form method="post" asp-controller="Research" asp-action="UploadPhotos">
+                                                    <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                    <button type="submit" class="signinbutton"> Upload Photos </button>
+                                                </form>
+                                            </div>
 
-                            <td>
-                                <a href ="#OptionButtons-@burial.BurialID" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
-                                    <button class="btn btn-warning">Options</button></a>
-                                    <br /> <br />
-                                    <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
-                                        <form method="post" asp-controller="Research" asp-action="UploadPhotos">
-                                            <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                            <button class="btn btn-primary text-center"> Upload Photos </button>
-                                        </form>
-                                        <br />
-                                        <form method="post" asp-controller="Research" asp-action="EditBurial">
-                                            <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                            <button class="btn btn-primary text-center">Edit </button>
-                                        </form>
-                                        <br />
-                                        <form method="post" asp-controller="Research" asp-action="BurialDetails">
-                                            <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                            <button class="btn btn-primary text-center">View Details</button>
-                                        </form>
-                                        <br />
-                                        <form method="post" asp-controller="Research" asp-action="DeleteBurialSite">
-                                            <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                            <button type="submit" class="btn btn-danger text-center">Delete</button>
-                                        </form>
-                                    </div>
-                                </td>
-                         </tr>
-        }
+                                        </td>
+                                        <td class="thetd4">
+                                            <p> @burial.Depth</p>
+                                            <br />
 
-                    </tbody>
-                    </table>
+                                            <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
+                                                <form method="post" asp-controller="Research" asp-action="EditBurial">
+                                                    <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                    <button class="signinbuttonedit">Edit </button>
+                                                </form>
+                                            </div>
+
+                                        </td>
+                                        <td class="thetd5">
+                                            <p>@burial.Sex</p>
+                                            <br />
+                                            <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
+                                                <form method="post" asp-controller="Research" asp-action="DeleteBurialSite">
+                                                    <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                    <button type="submit" class="btn btn-danger text-center">Delete</button>
+                                                </form>
+                                            </div>
+                                        </td>
+
+
+                                        <td class="thetd6">
+                                            <a href="#OptionButtons-@burial.BurialID" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
+                                                <button class="signinbutton">Options</button>
+                                            </a>
+                                            @* <br /> <br />
+                                                <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
+                                                    <form method="post" asp-controller="Research" asp-action="UploadPhotos">
+                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                        <button class="btn btn-primary text-center"> Upload Photos </button>
+                                                    </form>
+                                                    <br />
+                                                    <form method="post" asp-controller="Research" asp-action="EditBurial">
+                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                        <button class="btn btn-primary text-center">Edit </button>
+                                                    </form>
+                                                    <br />
+                                                    <form method="post" asp-controller="Research" asp-action="BurialDetails">
+                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                        <button class="btn btn-primary text-center">View Details</button>
+                                                    </form>
+                                                    <br />
+                                                    <form method="post" asp-controller="Research" asp-action="DeleteBurialSite">
+                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                        <button type="submit" class="btn btn-danger text-center">Delete</button>
+                                                    </form>
+                                                </div>*@
+                                        </td>
+
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
+            </div>
+        </div>
     </div>
-  
-
 </div>
+
+

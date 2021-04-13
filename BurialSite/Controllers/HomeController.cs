@@ -86,7 +86,7 @@ namespace BurialSite.Controllers
                 {
                     CurrentPage = pagenumber,
                     NumItemsPerPage = pageSize,
-                    // either uses all books or just books in cat
+                    // either uses all books or just books in cat 
                     TotalNumItems = TotalBurialsInt
                 },
 
