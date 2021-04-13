@@ -19,7 +19,7 @@ namespace BurialSite.Services
         private readonly AmazonS3Client s3Client;
         private const string BUCKET_NAME = "arn:aws:s3:us-west-2:249897624530:accesspoint/readwriteinternet";
         //private const string BUCKET_NAME = "arn:aws:s3:::elasticbeanstalk-us-west-2-249897624530";
-        private const string FOLDER_NAME = "NewFolder";
+        private const string FOLDER_NAME = "BurialPhotos";
         private const double DURATION = 24;
 
         public S3Service()
@@ -38,14 +38,14 @@ namespace BurialSite.Services
       
        
 
-        public async Task<string> AddItem(IFormFile file, string readerName)
+        public async Task<string> AddItem(IFormFile file, string burialName, string photoType)
         {
 
             
 
             // implementation for S3 bucket
             string fileName = file.FileName;
-            string objectKey = $"{FOLDER_NAME}/{fileName}";
+            string objectKey = $"{FOLDER_NAME}/{burialName}/{photoType}/{fileName}";
             // string objectKey = $"{FOLDER_NAME}/{readerName}/{fileName}";
 
             using (Stream fileToUpload = file.OpenReadStream())

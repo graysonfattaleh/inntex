@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model EditNoteViewModel
+
+    <div class="container">
+        <form asp-action="SaveEditedNote" method="post">
+            <br />
+<textarea asp-for="@Model.Note.Data" class="textareaguy center_guy"></textarea>
+            <br />
+
+            <br />
+            <input type="hidden" name="BurialId" id="BurialId" value="@Model.BurialId" />
+
+            <input type="hidden" asp-for="@Model.Note.NotesId" value="@Model.Note.NotesId" />
+            <input type="hidden" asp-for="@Model.Note.BurialID" value="@Model.Note.BurialID" />
+            <input type="hidden" asp-for="@Model.Note.Type " value="@Model.Note.Type" />
+            <br />
+
+
+
+            <button value="SaveEdit" name="ButtonValue" id="ButtonValue" class="btn btn-primary"> Save Edit Note </button>
+
+            <button value="AbandonEdit" name="ButtonValue" id="ButtonValue" class="btn btn-danger"> Abandon Edit </button>
+        </form>
+</div>

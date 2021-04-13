@@ -17,17 +17,17 @@ namespace BurialSite.Models
         {
             OneToOneValues = new HashSet<OneToOneValue>();
             Notes = new HashSet<Notes>();
-           // FileUrl = new HashSet<FileUrl>();
-           FileUrl = new HashSet<FileUrl>();
+            // FileUrl = new HashSet<FileUrl>();
+            FileUrl = new HashSet<FileUrl>();
         }
 
         [Key]
         [Required]
         public int BurialID { get; set; }
 
-        
+
         // foreign key
-        public int? Gamous { get; set; } 
+        public int? Gamous { get; set; }
         [Required]
         public string Burial_Number { get; set; }
 
@@ -250,7 +250,7 @@ namespace BurialSite.Models
         public string? Initials { get; set; }
         // options are MBB, GM, AWA, and CIE for now
 
-        
+
         public int BurialLocationId { get; set; }
 
         public virtual BurialLocation? BurialLocation { get; set; }
@@ -266,6 +266,12 @@ namespace BurialSite.Models
             FileUrl = new List<FileUrl>();
             FileUrl.Add(PhotoFile);
         }
+
+        public string DisplayBurialLocation(){
+
+            return $"{this.BurialLocation}-EF-{this.East_To_Feet}-{this.East_To_Head}-NS-{this.South_To_Feet}" +
+                $"-{this.South_To_Head}-{this.Burial_Number}";
+            }
 
     }
 }

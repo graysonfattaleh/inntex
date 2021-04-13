@@ -29,3 +29,9 @@ function StaySelected() {
 }
 
 StaySelected()
+
+function DeleteWarning(numberid) {
+    document.getElementById("DeleteForm-" + numberid).style.display = "inline-block";
+    document.getElementById("DeletePrecursor-" + numberid).style.display = "none";
+
+}

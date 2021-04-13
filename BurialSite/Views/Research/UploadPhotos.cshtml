@@ -9,13 +9,13 @@
 
     <div class="col col-6">
         <form method="post" asp-action="SavePhotos" enctype="multipart/form-data">
-            >
+            
             <input type="hidden" id="BurialId" name="BurialId" value="@Model.Burial.BurialID" />
 
-            <label asp-for="PhotoFile">Upload Photo</label>
+            <label asp-for="PhotoFile"> Upload Photo</label>
             <input type ="file" asp-for="PhotoFile" class="form-control" />
 
-            <label asp-for="Type">Upload Photo</label>
+            <label asp-for="Type"> Photo Type </label>
             <select asp-for="Type" class="form-control">
 
                 <option value="Photo" selected>
@@ -29,6 +29,7 @@
                 </option>
             </select>
 
+            <br />
             <button class="btn btn-primary" type="submit">Save Photo</button>
         </form>
 
