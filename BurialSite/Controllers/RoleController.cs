@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Logging;
+using BurialSite.Infrstructure;
 
 namespace BurialSite.Controllers
 {
@@ -21,6 +22,8 @@ namespace BurialSite.Controllers
     public class RoleController : Controller
     {
         private RoleManager<Role> roleManager;
+
+        private DynamicFieldManager fieldManager;
 
         private ArcDBContext _context;
 
@@ -89,7 +92,21 @@ namespace BurialSite.Controllers
             await roleManager.CreateAsync(role);
             return RedirectToAction("Index");
         }
-       
+
+        [Authorize(Policy = "superadminpolicy")]
+        public IActionResult CreateField()
+        {
+            return View(new OneToOneField());
+        }
+
+        [Authorize(Policy = "superadminpolicy")]
+        [HttpPost]
+        public IActionResult CreateField(OneToOneField field)
+        {
+            fieldManager.CreateField(field);
+            return View("Index");
+        }
+
         /// <summary>
         /// This is to manage a single user's roles
         /// </summary>

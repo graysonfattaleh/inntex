@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="LoginPage\Shared\" />
-    <Folder Include="Infrstructure\" />
     <Folder Include="Services\" />
     <Folder Include="Components\" />
     <Folder Include="Views\Shared\Components\" />
