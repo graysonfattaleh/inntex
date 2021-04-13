@@ -100,7 +100,7 @@ button.accept-policy {
 
 .nested {
     display: grid;
-    grid-template-columns: 6fr 1fr 2fr 5fr;
+    grid-template-columns: 6fr 1fr 3fr 5fr;
     
     
 }
@@ -349,3 +349,118 @@ img:hover {
 
 
 /* professors ----------------------------------------------------------*/
+
+.bottom-footer {
+    background: #002D5F;
+    color: white;
+   
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.signinbuttonedit {
+    width: 4em;
+    height: 2em;
+    background-color: #0062B8;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+}
+.signinbuttonoptions {
+    width: 5em;
+    height: 2em;
+    background: #001832;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+}
+.signinbutton {
+    width: 8em;
+    height: 2em;
+    background-color: #0062B8;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    /*padding: 15px 32px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------------------
+   
+    
+    
+    --------------------------------------------------------
+*/
+
+.manegesites {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    /*grid-template-rows: 500px;*/
+    grid-column-gap: 2em;
+    
+}
+
+/*.locationfilter {
+    width: 150px;
+}*/
+
+.manegesites1 {
+    padding-left: 20px;
+    justify-self: left;
+    align-self: start;
+    /* grid-column: 1/1;
+    grid-row: 1/4;*/
+}
+
+.manegesites2 {
+   /* justify-self: stretch;*/
+    /*position:absolute;*/
+    /*margin-left:0;
+    margin-right:0;*/
+    /*grid-column: 2/3;*/
+   /* grid-row: 1/4;*/
+}
+.input {
+    width: 50%;
+    padding: 4px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.thetd {
+    width: 10%
+}
+
+.thetd2 {
+    width: 26%
+}
+.thetd3 {
+    width: 20%
+}
+.thetd4 {
+    width: 12%
+}
+.thetd5{
+    width: 8%
+}
+.thetd6 {
+    width: 10%
+}

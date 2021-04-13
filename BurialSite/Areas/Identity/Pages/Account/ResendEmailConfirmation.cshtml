@@ -3,24 +3,35 @@
 @{
     ViewData["Title"] = "Resend email confirmation";
 }
+<br />
+<br />
+<div class="loginpage">
+    <div class="loginpage-1">
+        <img style="opacity: 1.0;" src="~/img/byuimg.jpg" width="364" height="220" />
 
-<h1>@ViewData["Title"]</h1>
-<h4>Enter your email.</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">Resend</button>
-        </form>
     </div>
-</div>
+    <div @*class="loginpage-3"*@>
+        <div @*class="arrow-left"*@></div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    </div>
+
+    <div class="loginpage-2">
+        <h4>Enter your email.</h4>
+        <hr />
+       @* <div class="row">
+            <div class="col-md-4">*@
+                <form method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="input"  />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="signinbutton">Resend</button>
+                </form>
+            </div>
+        </div>
+        @*</div>*@
+        @section Scripts {
+            <partial name="_ValidationScriptsPartial" />
+        }
