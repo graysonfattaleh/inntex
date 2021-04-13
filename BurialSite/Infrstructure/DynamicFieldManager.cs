@@ -36,7 +36,7 @@ namespace BurialSite.Infrstructure
 
         public bool SaveValueForBurial(int onetoonefieldid, int burialid, string value)
         {
-            OneToOneValue possiblevalue = await _context.OneToOneValues.Where(v => v.BurialId == burialid && v.OneToOneFieldId == onetoonefieldid).FirstOrDefault();
+            OneToOneValue possiblevalue = _context.OneToOneValues.Where(v => v.BurialId == burialid && v.OneToOneFieldId == onetoonefieldid).FirstOrDefault();
 
             if (possiblevalue != null)
             {
