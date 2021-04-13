@@ -118,9 +118,10 @@
                                             <p>@burial.Sex</p>
                                             <br />
                                             <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
+                                                <button id="DeletePrecursor-@burial.BurialID" onclick="DeleteWarning(@burial.BurialID)" class="btn btn-secondary">Delete</button>
                                                 <form method="post" asp-controller="Research" asp-action="DeleteBurialSite">
                                                     <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                                    <button type="submit" class="btn btn-danger text-center">Delete</button>
+                                                    <button style="display:none;"  id="DeleteForm-@burial.BurialID" type="submit" class="btn btn-danger text-center">Confirm</button>
                                                 </form>
                                             </div>
                                         </td>
