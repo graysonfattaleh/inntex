@@ -37,12 +37,12 @@
 
                         @inject SignInManager<ResearchUser> SignInManager
                         @inject UserManager<ResearchUser> UserManager
-                         @inject IAuthorizationService AuthorizationService
+                        @inject IAuthorizationService AuthorizationService
 
-                            @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
-                            {
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
+                        {
 
-                            }
+                        }
 
 
 
@@ -104,7 +104,7 @@
                         }
                         else
                         {
-                            <a class="box5-1" asp-area="" asp-controller="Research" asp-action="AddSite">View Sites</a>
+                            <a class="box5-1" asp-area="" asp-controller="Home" asp-action="ViewSites">View Sites</a>
                         }
                     </div>
                     <div>
@@ -213,26 +213,35 @@
             </div>
         </div>
 
-        <div class="container d-md-flex py-4">
+        <div class="bottom-footer">
+            <div class="container d-md-flex py-4">
 
-            <div class="mr-md-auto text-center text-md-left">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Fag el Gamous </span></strong>. All Rights Reserved
+                <div class="mr-md-auto text-center text-md-left">
+                    <div>
+                        <img src="https://brightspotcdn.byu.edu/e4/0a/b679ee0a41d9b1675fc78cd03239/byu-logo-white-small.svg" />
+                    </div>
+
                 </div>
-                <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
-                    Designed by the Ice Wolves
+                <div style="text-align:center;" class="col-sm">
+                    <div class="copyright">
+                        Provo, UT 84602, USA
+                        &copy; Copyright <strong><span style="color:white">Fag el Gamous</span></strong>. All Rights Reserved
+                    </div>
+                    <div class="credits">
+                        <!-- All the links in the footer should remain intact. -->
+                        <!-- You can delete the links only if you purchased the pro version. -->
+                        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
+                        <a href="https://infosec.byu.edu/privacy-notice">Privacy Notice</a>
+                    </div>
                 </div>
-            </div>
-            <div class="social-links text-center text-md-right pt-3 pt-md-0">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <div class="social-links text-center text-md-right pt-3 pt-md-0">
+                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                </div>
             </div>
         </div>
     </footer><!-- End Footer -->
@@ -242,4 +251,3 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-

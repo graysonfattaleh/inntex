@@ -12,97 +12,117 @@
 
 @model AddSiteViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Burial Sites</h1>
-    <div class="row ">
-        <div class="col col-2 ">
-            <div class="navvy">
-                <h2>Tools</h2>
-                <br />
-                <h3>Filters</h3>
-                <vc:unauthorized-filter-list name="FilterList"></vc:unauthorized-filter-list>
-                <!--The url helpers make it happen-->
-                <div pagination-info="@Model.PaginationInfo"
-                     url-helper-depthfilter="@Context.Request.Query["depthfilter"]"
-                     url-helper-genderfilter="@Context.Request.Query["genderfilter"]"
-                     url-helper-locationfilter="@Context.Request.Query["locationfilter"]"></div>
+<div class="con">
+    <h1 style="text-align:center; font-size:24px;">Burial Sites</h1>
+    <div class="manegesites">
+        
+            @*<div class="row justify-content-between">
+        <div class="col col-2 ">*@
+            @*<div class="navvy">*@
+
+        <div class="manegesites1">
+           
+                <div style="text-align:center">
+                    <h2 style="color:white;">Tools</h2>
+                   @* <a asp-controller="Research" asp-action="CreateBurial">
+                        <button class="signinbutton"> Add New Site </button>
+                    </a>
+                    <br />*@
+                    <h3 style="color:white;">Filters</h3>
+                    <vc:filter-list name="FilterList"></vc:filter-list>
+                    <!--The url helpers make it happen-->
+                    <div pagination-info="@Model.PaginationInfo"
+                         url-helper-depthfilter="@Context.Request.Query["depthfilter"]"
+                         url-helper-genderfilter="@Context.Request.Query["genderfilter"]"
+                         url-helper-locationfilter="@Context.Request.Query["locationfilter"]" style="color:white"></div>
+                    @* </div>
+                </div>*@
+                </div>
+            </div>
+       
+
+
+        <div class="manegesites2">
+            <div class="scroll">
+                <div class="col col-8>" style="border-radius: 3px;">
+                    <div style="border-radius: 3px;">
+                        <table class="table table-light table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>
+                                        <p>Burial Number</p>
+                                    </td>
+                                    <td>
+                                        <p>Burial Location</p>
+                                    </td>
+                                    <td>
+                                        <p>Burial Site Location</p>
+                                    </td>
+                                    <td>
+                                        <p>Burial Depth</p>
+                                    </td>
+                                    <td>
+                                        <p>Sex</p>
+                                    </td>
+
+                                    <td>
+                                    </td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (Burial burial in Model.Burials)
+                                {
+                                    <tr>
+                                        <td>
+                                            <p> @burial.Burial_Number</p>
+                                        </td>
+                                        <td>
+                                            <p>
+                                                @burial.BurialLocation.Dig_Site_Name
+
+                                                NS: @burial.BurialLocation.N_S_Grid_Site_Lower / @burial.BurialLocation.N_S_Grid_Site_Upper <br />
+                                                EW: @burial.BurialLocation.E_W_Grid_Site_Lower / @burial.BurialLocation.E_W_Grid_Site_Upper
+
+                                            </p>
+
+                                        </td>
+                                        <td>
+                                            <p>
+                                                # @burial.Burial_Number
+
+                                                East to Feet/Head: @burial.East_To_Feet / @burial.East_To_Head <br />
+                                                South to Feet/Head: @burial.South_To_Feet / @burial.South_To_Head
+
+                                            </p>
+
+                                        </td>
+                                        <td>
+                                            @burial.Depth
+                                        </td>
+                                        <td>
+                                            @burial.Sex
+                                        </td>
+
+                                        <td>
+                                            <form method="post" asp-controller="Research" asp-action="BurialDetails">
+                                                <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
+                                                <button class="btn btn-secondary text-center">View Details</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
             </div>
         </div>
-        <div class="col col-9>">
-
-            <table class="table table-light table-hover table-bordered">
-                <thead>
-                    <tr>
-                        <td>
-                            <p>Burial Number</p>
-                        </td>
-                        <td>
-                            <p>Burial Location</p>
-                        </td>
-                        <td>
-                            <p>Burial Site Location</p>
-                        </td>
-                        <td>
-                            <p>Burial Depth</p>
-                        </td>
-                        <td>
-                            <p>Sex</p>
-                        </td>
-
-                        <td>
-                        </td>
-
-                    </tr>
-                </thead>
-                <tbody>
-
-                    @foreach (Burial burial in Model.Burials)
-                    {
-                        <tr>
-                            <td>
-                                <p> @burial.Burial_Number</p>
-                            </td>
-                            <td>
-                                <p>
-                                    @burial.BurialLocation.Dig_Site_Name
-
-                                    NS: @burial.BurialLocation.N_S_Grid_Site_Lower / @burial.BurialLocation.N_S_Grid_Site_Upper <br />
-                                    EW: @burial.BurialLocation.E_W_Grid_Site_Lower / @burial.BurialLocation.E_W_Grid_Site_Upper
-
-                                </p>
-
-                            </td>
-                            <td>
-                                <p>
-                                    # @burial.Burial_Number
-
-                                    East to Feet/Head: @burial.East_To_Feet / @burial.East_To_Head <br />
-                                    South to Feet/Head: @burial.South_To_Feet / @burial.South_To_Head
-
-                                </p>
-
-                            </td>
-                            <td>
-                                @burial.Depth
-                            </td>
-                            <td>
-                                @burial.Sex
-                            </td>
-
-                            <td>     
-                                    <form method="post" asp-controller="Research" asp-action="BurialDetails">
-                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                        <button class="btn btn-secondary text-center">View Details</button>
-                                    </form> 
-                            </td>
-                        </tr>
-                    }
-
-                </tbody>
-            </table>
-        </div>
-
     </div>
-
-
 </div>
+

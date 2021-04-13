@@ -476,3 +476,37 @@ ul {
     font-size: 8px;
 }
 
+
+.profile {
+    display: grid;
+    grid-template-columns: 50% 50% ;
+    grid-column-gap: 1em;
+    
+    /* padding-top: 20px;
+    padding-bottom: 50px;
+    padding-right: 25px;
+    padding-left: 35px;
+    justify-self: start;*/
+}
+
+.profile1 {
+
+
+}
+
+.profile2 {
+    background: #002E5D;
+    color: white;
+    grid-column: 1/2;
+    justify-items: end;
+}
+
+.profile3 {
+    background: white;
+    color: #002E5D;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    justify-items: start;
+    text-align:center;
+}
+
