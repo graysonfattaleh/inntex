@@ -5,7 +5,6 @@
 
 <h1 style="text-align:center; font-size:24px;">Researcher Roles</h1>
 <div class="container">
-    <h1 style="text-align:center; font-size:24px;">Burial Sites</h1>
     <div class="manegesites">
         @*<div class="row justify-content-between">
         <div class="col col-2 ">*@
@@ -38,7 +37,7 @@
             </div>
         </div>
         @*<h2>Users</h2>*@
-        <div class="manegesites2-1">
+        <div class="manegesites2">
             <div class="scroll">
                 <div class="col col-8>" style="border-radius: 3px;">
                     <div style="border-radius: 3px;">
@@ -83,7 +82,44 @@
                     </div>
 
                 </div>
+                <div>
+                    <h1 class="btn btn-block text-white" style="font-size:64px;"><a asp-action="CreateField">Add Custom Field</a></h1>
+                </div>
+                <div class="col col-8>" style="border-radius: 3px;">
+                    <div style="border-radius: 3px;">
+                        <table class="table table-light table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>Field Name</td>
+                                    <td colspan="3">Description</td>
+                                    <td>Type</td>
+                                    <td>
+                                        Manage
+                                    </td>
+                                </tr>
 
+                            </thead>
+                            <tbody>
+
+                                @foreach (var field in Model.Fields)
+                                {
+                                    <tr>
+                                        <td>@field.Name</td>
+                                        <td colspan="3">@field.Description</td>
+                                        <td>@field.Type</td>
+                                        <td>
+                                            <form asp-action="EditField" asp-controller="Role" method="get">
+                                                <input type="hidden" name="onetoonefieldid" value="@field.OneToOneFieldId" hidden />
+                                                <button type="submit" class="signinbutton">Edit Field</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
 
             </div>
         </div>
