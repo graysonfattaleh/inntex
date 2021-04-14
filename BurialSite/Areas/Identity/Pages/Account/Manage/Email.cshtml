@@ -17,11 +17,12 @@
                 @if (Model.IsEmailConfirmed)
                 {
                     <div style="text-align:center">
-                        <div class="input-group">
+                        <div @*class="input-group"*@>
                             <input asp-for="Email" class="input" disabled />
-                            <div class="input-group-append">
-                                <label class="input-group-text text-success font-weight-bold">✓</label>
-                            </div>
+                            @*<br />*@
+                            @*class="input-group-append"*@
+                              @*  <label class="input-group-text text-success font-weight-bold">✓</label>*@
+                           @* </div>*@
                         </div>
                      </div>
                 }
