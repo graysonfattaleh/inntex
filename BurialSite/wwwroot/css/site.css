@@ -531,9 +531,16 @@ img:hover {
     box-sizing: border-box;
     border-radius: 5px;
 }
+.input5 {
+    width: 85%;
+    padding: 4px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
 
 .filtersite {
-    width: 50%;
+    width: 85%;
     padding: 4px 10px;
     margin: 8px 0;
     box-sizing: border-box;

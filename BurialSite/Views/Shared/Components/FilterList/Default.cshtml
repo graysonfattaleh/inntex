@@ -17,7 +17,7 @@
 
     <div class="form-group" style="width:100%;">
         <label for="genderfilter" style="color:white;"> Gender </label><br />
-        <select id="genderfilter" name="genderfilter" class="input">
+        <select id="genderfilter" name="genderfilter" class="input5">
 
 
 
@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
         <label for="depthfilter" style="color:white;"> Max Depth</label><br />
-        <input value="@Context.Request.Query["depthfilter"]" type="number" id="depthfilter" name="depthfilter" class="input" />
+        <input value="@Context.Request.Query["depthfilter"]" type="number" id="depthfilter" name="depthfilter" class="input5" />
     </div>
     <div class="form-group" style="color:white">
         <label for="locationfilter" style="color:white;">Location</label><br />
@@ -61,7 +61,7 @@
             }
         </select>
         <br />
-        <input value="@Context.Request.Query["customfiltervalue"]" name="customfiltervalue" id="customfiltervalue" placeholder="Custom Filter Value"/> 
+        <input value="@Context.Request.Query["customfiltervalue"]" name="customfiltervalue" id="customfiltervalue" placeholder="Custom Filter Value" class="input5"/> 
 
 
 
