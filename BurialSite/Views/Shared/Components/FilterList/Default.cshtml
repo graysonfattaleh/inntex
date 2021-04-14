@@ -39,9 +39,6 @@
     <div class="form-group" style="color:white">
         <label for="locationfilter" style="color:white;">Location</label><br />
         <select id="locationfilter" name="locationfilter" class="filtersite">
-
-
-
             @foreach (KeyValuePair<string, int> entry in Model.Locations)
             {
                 <option url-helper-locationfilter="" value="@entry.Value">
@@ -49,9 +46,22 @@
                 </option>
             }
 
-
-
         </select>
+    </div>
+
+    <div class="form-group" style="color:white">
+        <label for="customfilter" style="color:white;">Custom Filter</label><br />
+        <select style="width:80%;"id="customfilter" name="customfilter" class="filtersite">
+
+            @foreach (string entry in Model.CustomFilterOptions)
+            {
+                <option value="@entry">
+                    @entry
+                </option>
+            }
+        </select>
+        <br />
+        <input value="@Context.Request.Query["customfiltervalue"]" name="customfiltervalue" id="customfiltervalue" placeholder="Custom Filter Value"/> 
 
 
 
@@ -59,9 +69,15 @@
 
 
 
+    <br />
 
+<<<<<<< Updated upstream
     <br /> 
     <button type="submit" class="signinbuttonadd"> Filter </button>
+=======
+    <br />
+    <button type="submit" class="btn btn-primary text-center"> Filter </button>
+>>>>>>> Stashed changes
 
 
 

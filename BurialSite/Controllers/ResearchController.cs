@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using BurialSite.Models;
 using BurialSite.Models.ViewModels;
 using BurialSite.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
@@ -23,6 +26,7 @@ namespace BurialSite.Controllers
         private readonly ILogger<HomeController> _logger;
         private ArcDBContext _context;
         private readonly IS3Service _s3storage;
+        
         // get context stuff
         public ResearchController(ILogger<HomeController> logger, ArcDBContext context, IS3Service storage)
         {
@@ -60,41 +64,76 @@ namespace BurialSite.Controllers
         }
 
         // Filter Burial List///////////////////////////////////////////////
-        [Authorize(Policy = "researcherpolicy")]
+       // checks user in controller
 
-        public IActionResult FilterBurials(int locationfilter,string genderfilter,decimal depthfilter, int pagenumber = 1)
+        public IActionResult FilterBurials(string customfilter, string customfiltervalue,int locationfilter,string genderfilter,decimal depthfilter, int pagenumber = 1 )
         {
-            // get filteted list
+            // get filteted from initial filters list
 
-            IEnumerable<Burial> burials = _context.Burials.
-                Where(b => (genderfilter == null || genderfilter == b.Sex) &
-                (depthfilter == 0 || b.Depth < depthfilter) &
-                (locationfilter == -1 || locationfilter == 0 || b.BurialLocationId == locationfilter)
-                )
-                .Include(b => b.BurialLocation);
-       
+            IEnumerable<Burial> initburials = _context.Burials.
+            Where(b => (genderfilter == null || genderfilter == b.Sex) &
+            (depthfilter == 0 || b.Depth < depthfilter) &
+            (locationfilter == -1 || locationfilter == 0 || b.BurialLocationId == locationfilter) 
+            
+            );
+
             // fcount full set then filter
-            int TotalBurialsInt = burials.Count();
-            burials = burials.OrderBy(b => b.BurialID).Skip((pagenumber - 1) * pageSize).Take(pageSize);
+            // needed to subtract to get pagination info but optomize speeds
+            
 
+            int TotalBurialsInt = initburials.Count();
+            List<Burial> burials_to_pass = new List<Burial>();
+            // big custom filter guy 
+            if (customfilter != "None"& customfilter != null)
+            {
+                foreach (Burial burial in initburials)
+                {
+                    foreach (PropertyInfo prop in burial.GetType().GetProperties())
+                    {
+                        if (prop.Name == customfilter)
+                        {
+                            var comparevalue = prop.GetValue(burial);
+                                if (comparevalue is string  )
+                                {
+                                    if( comparevalue.ToString().ToLower().Contains(customfiltervalue.ToLower()) == true)
+                                        {
+                                            burials_to_pass.Add(burial);
+                                        }
+                                   
+                                }
+                           
+                        }
+                    }
+                }
+                // get
+                TotalBurialsInt = burials_to_pass.Count();
+                burials_to_pass =  burials_to_pass.OrderBy(b => b.BurialID).Skip((pagenumber - 1) * pageSize).Take(pageSize).ToList();
+                
+            }
+            else
+            {
+                burials_to_pass = initburials.ToList();
+                burials_to_pass = burials_to_pass.OrderBy(b => b.BurialID).Skip((pagenumber - 1) * pageSize).Take(pageSize).ToList();
+            }
             // get stored key values
             AddSiteViewModel FilteredBurialList = new AddSiteViewModel()
             {
                 // get burials
-                Burials = burials,
+                Burials = burials_to_pass,
                 PaginationInfo = new PageNumberingInfo
                 { 
                     CurrentPage = pagenumber,
                     NumItemsPerPage = pageSize,
                     // either uses all books or just books in cat
                     TotalNumItems = TotalBurialsInt
-                },
-                
+                }, 
             };
-
-            return View("AddSite", FilteredBurialList);
+            if (User.Identity.IsAuthenticated)
+            {
+                return View("AddSite", FilteredBurialList);
+            }
+            return View("ViewSites", FilteredBurialList);
         }
-
 
         // View Burial Detials //////////////////////////////////////////////
         [HttpPost]
@@ -105,7 +144,6 @@ namespace BurialSite.Controllers
             return View(burialDetails);
         }
 
-
         // ADD BURIAL ///////////////////////////////////////////////////////
         [Authorize(Policy = "researcherpolicy")]
         public IActionResult CreateBurial()
@@ -113,6 +151,7 @@ namespace BurialSite.Controllers
             AddBurialSiteViewModel burialSiteViewModel = new AddBurialSiteViewModel(_context);
             return View(burialSiteViewModel);
         }
+
         [Authorize(Policy = "researcherpolicy")]
         [HttpPost]
         public IActionResult SaveBurial(Burial burial)
@@ -135,6 +174,7 @@ namespace BurialSite.Controllers
             }
         }
         //Edit Burial Site/////////////////////////////////////////////
+
         [HttpPost]
         [Authorize(Policy = "researcherpolicy")]
         public IActionResult EditBurial(int BurialId)
@@ -235,7 +275,6 @@ namespace BurialSite.Controllers
                     Type = NoteType,
                     BurialID = BurialId
                 };
-
                 _context.Add(note_to_add);
                 _context.SaveChanges();
 

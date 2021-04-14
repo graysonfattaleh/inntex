@@ -9,6 +9,8 @@ function StaySelected() {
     const urlParams = new URLSearchParams(queryString);
     let gender = urlParams.get('genderfilter');
     let location = urlParams.get('locationfilter');
+    let custom = urlParams.get('customfilter');
+
     //get gender
 
     var selectedGenders = document.getElementById('genderfilter');
@@ -23,6 +25,13 @@ function StaySelected() {
     for (var i = 0; i < selectedLocations.length; i++) {
         if (selectedLocations[i].value == location) {
             selectedLocations[i].selected = true;
+        };
+    }
+
+    var selectedCustoms = document.getElementById('customfilter');
+    for (var i = 0; i < selectedCustoms.length; i++) {
+        if (selectedCustoms[i].value == custom) {
+            selectedCustoms[i].selected = true;
         };
     }  
 

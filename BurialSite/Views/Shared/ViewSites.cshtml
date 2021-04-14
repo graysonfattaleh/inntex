@@ -34,7 +34,9 @@
                     <div pagination-info="@Model.PaginationInfo"
                          url-helper-depthfilter="@Context.Request.Query["depthfilter"]"
                          url-helper-genderfilter="@Context.Request.Query["genderfilter"]"
-                         url-helper-locationfilter="@Context.Request.Query["locationfilter"]" style="color:white"></div>
+                         url-helper-locationfilter="@Context.Request.Query["locationfilter"]"
+                         url-helper-customfilter = "@Context.Request.Query["customfilter"]"
+                     url-helper-customfiltervalue = "@Context.Request.Query["customfiltervalue"]"style="color:white"></div>
                     @* </div>
                 </div>*@
                 </div>

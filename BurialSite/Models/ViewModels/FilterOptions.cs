@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Microsoft.AspNetCore.Http;
 
 namespace BurialSite.Models.ViewModels
@@ -13,6 +14,7 @@ namespace BurialSite.Models.ViewModels
         }
         public List<string> genderoptions { get; set; }
         public Dictionary<string,int> Locations { get; set; }
-       
+        public IEnumerable<string> CustomFilterOptions{ get; set; }
+
     }
 }

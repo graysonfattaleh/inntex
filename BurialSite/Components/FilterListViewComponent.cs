@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Collections.Generic;
 using BurialSite.Models.ViewModels;
+using System.Reflection;
 
 namespace BurialSite.Components
 {
@@ -35,12 +36,23 @@ namespace BurialSite.Components
                 locationvalues[namestring] = bl.BurialLocationId;
 
             }
-             
-            // get distinct values dynamically AHH 
-            FilterOptions filterOptions = new FilterOptions
+            // generate all customfilter keys
+     
+            IEnumerable<PropertyInfo> customfilterproperties = _context.Burials.FirstOrDefault().GetType().GetProperties().ToList();
+            List<string> customfilteroptions = new List<string>();
+            // default if nothing selected
+            customfilteroptions.Add("None");
+            foreach(PropertyInfo prop in customfilterproperties)
+            {
+                customfilteroptions.Add(prop.Name);
+            }
+
+        // get distinct values dynamically AHH 
+        FilterOptions filterOptions = new FilterOptions
             {
                 genderoptions = _context.Burials.Select(b => b.Sex).Distinct().ToList(),
-                Locations = locationvalues
+                Locations = locationvalues,
+                CustomFilterOptions = customfilteroptions
                 
                 
             };
