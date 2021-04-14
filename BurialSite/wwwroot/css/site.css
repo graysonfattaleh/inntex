@@ -246,7 +246,7 @@ body {
 
 .landing {
     display: grid;
-    grid-template-rows: 170px 240px 160px;
+    grid-template-rows: 120px 360px 160px;
     text-align: center;
 }
 
