@@ -8,7 +8,13 @@ using System.Threading.Tasks;
 
 namespace BurialSite.Models
 {
-    // Burial Model; comments are associated with the field above them
+    /// <summary>
+    /// Burial Model; comments are associated with the field above them.
+    /// Note that in the future versions, we hope to actually remove this table altogether and
+    /// make all of the columns dynamic, and implement it in a graph database. Because of speed, 
+    /// we had to implement it this way to put in functionality over just trying to perfect the data.
+    /// </summary>
+    // 
     public class Burial
     {
 

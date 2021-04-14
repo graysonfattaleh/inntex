@@ -17,9 +17,6 @@
 
         <div class="wrapper">
             <div class="box box1">
-                @* <p class="box1-1"><a class="box1-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a></p>*@
-
-
 
 
             </div>
@@ -27,9 +24,6 @@
             <div class="box box3">
                 <div class="nested">
                     <div class="nested1">
-                        @*<p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Register">Register</a></p>*@
-                        @* <p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Login">Login</a></p>*@
-
                         @inject SignInManager<ResearchUser> SignInManager
                         @inject UserManager<ResearchUser> UserManager
                         @inject IAuthorizationService AuthorizationService
@@ -39,33 +33,21 @@
 
                         }
 
-
-
-                        @* <ul class="navbar-nav">*@
                         @if (SignInManager.IsSignedIn(User))
                         {
 
                             <a class="nested1-1" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-
-
-                            @* <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                                </form>*@
 
                         }
                         else
                         {
                             <p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Login">Login</a></p>
                         }
-                        @*  </ul>*@
-
-
-                        @* <p class="nested1-1"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers   </a></p>*@
 
                     </div>
                     <div>
 
-                        <span>@*&#124;*@</span>
+                        <span></span>
 
                     </div>
                     <div class="nested2">
@@ -110,15 +92,11 @@
                         @if (SignInManager.IsSignedIn(User))
                         {
 
-
                             <form class="box5-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                                 <button type="submit" class="box5-2">Logout</button>
                             </form>
 
                         }
-
-
-
                     </div>
                     @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
                     {
@@ -134,19 +112,10 @@
 
         </div>
 
-
-
-
-
-
     </header>
-
-    @*<div class="container">*@
-    <main @*role="main" class="pb-3"*@>
+    <main>
         @RenderBody()
     </main>
-    @* </div>*@
-
 
     <footer id="footer">
 
@@ -213,7 +182,7 @@
                     <div>
                         <img src="https://brightspotcdn.byu.edu/e4/0a/b679ee0a41d9b1675fc78cd03239/byu-logo-white-small.svg" />
                     </div>
-                    
+
                 </div>
                 <div style="text-align:center;">
                     <div class="copyright">
@@ -225,7 +194,7 @@
                         <!-- You can delete the links only if you purchased the pro version. -->
                         <!-- Licensing information: https://bootstrapmade.com/license/ -->
                         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bethany-free-onepage-bootstrap-theme/ -->
-                       <a href="https://infosec.byu.edu/privacy-notice">Privacy Notice</a>
+                        <a href="https://infosec.byu.edu/privacy-notice">Privacy Notice</a>
                     </div>
                 </div>
                 <div class="social-links text-center text-md-right pt-3 pt-md-0">

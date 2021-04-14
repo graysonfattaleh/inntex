@@ -5,14 +5,9 @@
 }
 
 @model AddSiteViewModel
-@*
-    <div class="text-center">*@
 <div class="con">
     <h1 style="text-align:center; font-size:64px;">Burial Sites</h1>
     <div class="manegesites">
-        @*<div class="row justify-content-between">
-            <div class="col col-2 ">*@
-        @*<div class="navvy">*@
 
         <div class="manegesites1">
             <div style="text-align:center">
@@ -31,8 +26,6 @@
                      url-helper-customfilter = "@Context.Request.Query["customfilter"]"
                      url-helper-customfiltervalue = "@Context.Request.Query["customfiltervalue"]"
                      style="color:white"></div>
-                @* </div>
-                    </div>*@
             </div>
         </div>
         <div class="manegesites2">
@@ -134,28 +127,6 @@
                                             <a href="#OptionButtons-@burial.BurialID" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
                                                 <button class="signinbutton">Options</button>
                                             </a>
-                                            @* <br /> <br />
-                                                <div id="OptionButtons-@burial.BurialID" class="collapse multi-collapse">
-                                                    <form method="post" asp-controller="Research" asp-action="UploadPhotos">
-                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                                        <button class="btn btn-primary text-center"> Upload Photos </button>
-                                                    </form>
-                                                    <br />
-                                                    <form method="post" asp-controller="Research" asp-action="EditBurial">
-                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                                        <button class="btn btn-primary text-center">Edit </button>
-                                                    </form>
-                                                    <br />
-                                                    <form method="post" asp-controller="Research" asp-action="BurialDetails">
-                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                                        <button class="btn btn-primary text-center">View Details</button>
-                                                    </form>
-                                                    <br />
-                                                    <form method="post" asp-controller="Research" asp-action="DeleteBurialSite">
-                                                        <input type="hidden" name="BurialId" id="BurialId" value="@burial.BurialID" />
-                                                        <button type="submit" class="btn btn-danger text-center">Delete</button>
-                                                    </form>
-                                                </div>*@
                                         </td>
 
                                     </tr>

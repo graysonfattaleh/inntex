@@ -2,6 +2,9 @@ using System;
 
 namespace BurialSite.Models
 {
+    /// <summary>
+    /// Error model
+    /// </summary>
     public class ErrorViewModel
     {
         public string RequestId { get; set; }

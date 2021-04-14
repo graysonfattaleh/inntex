@@ -3,45 +3,30 @@
 *@
 @{
 }
-
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
 @model AddSiteViewModel
 
 <div class="con">
     <h1 style="text-align:center; font-size:24px;">Burial Sites</h1>
     <div class="manegesites">
-        
-            @*<div class="row justify-content-between">
-        <div class="col col-2 ">*@
-            @*<div class="navvy">*@
+
 
         <div class="manegesites1">
-           
-                <div style="text-align:center">
-                    <h2 style="color:white;">Tools</h2>
-                   @* <a asp-controller="Research" asp-action="CreateBurial">
-                        <button class="signinbutton"> Add New Site </button>
-                    </a>
-                    <br />*@
-                    <h3 style="color:white;">Filters</h3>
-                    <vc:filter-list name="FilterList"></vc:filter-list>
-                    <!--The url helpers make it happen-->
-                    <div pagination-info="@Model.PaginationInfo"
-                         url-helper-depthfilter="@Context.Request.Query["depthfilter"]"
-                         url-helper-genderfilter="@Context.Request.Query["genderfilter"]"
-                         url-helper-locationfilter="@Context.Request.Query["locationfilter"]"
-                         url-helper-customfilter = "@Context.Request.Query["customfilter"]"
-                     url-helper-customfiltervalue = "@Context.Request.Query["customfiltervalue"]"style="color:white"></div>
-                    @* </div>
-                </div>*@
-                </div>
+
+            <div style="text-align:center">
+                <h2 style="color:white;">Tools</h2>
+                <h3 style="color:white;">Filters</h3>
+                <vc:filter-list name="FilterList"></vc:filter-list>
+                <!--The url helpers make it happen-->
+                <div pagination-info="@Model.PaginationInfo"
+                     url-helper-depthfilter="@Context.Request.Query["depthfilter"]"
+                     url-helper-genderfilter="@Context.Request.Query["genderfilter"]"
+                     url-helper-locationfilter="@Context.Request.Query["locationfilter"]"
+                     url-helper-customfilter="@Context.Request.Query["customfilter"]"
+                     url-helper-customfiltervalue="@Context.Request.Query["customfiltervalue"]" style="color:white"></div>
+
             </div>
-       
+        </div>
+
 
 
         <div class="manegesites2">

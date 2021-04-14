@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace BurialSite.Models
 {
+    /// <summary>
+    /// The necessary wrapper class to have our FileUrl class use the primary database context.
+    /// </summary>
     public class FileUrl
     {
         private readonly ArcDBContext _context;

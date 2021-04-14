@@ -13,12 +13,14 @@ using static BurialSite.Services.S3Service;
 
 namespace BurialSite.Services
 {
+    /// <summary>
+    /// This is our service for connecting to and using S3. 
+    /// </summary>
     public class S3Service : IS3Service
     {
         //private readonly IAmazonS3 _client;
         private readonly AmazonS3Client s3Client;
         private const string BUCKET_NAME = "arn:aws:s3:us-west-2:249897624530:accesspoint/readwriteinternet";
-        //private const string BUCKET_NAME = "arn:aws:s3:::elasticbeanstalk-us-west-2-249897624530";
         private const string FOLDER_NAME = "BurialPhotos";
         private const double DURATION = 24;
 
@@ -29,6 +31,7 @@ namespace BurialSite.Services
             {
                 RegionEndpoint = RegionEndpoint.USWest2
             };
+            //Test credentials, will be put in environment later. These are only able to access the s3 bucket
            var credentials = new BasicAWSCredentials("AKIATULYPEPJKXC2YSWS", "HyHqKlkiyajtPJjRRmEbnsUZeklrdYNJNna8KDYP");
            AmazonS3Client s3clientGuy = new AmazonS3Client(credentials,amazonS3Config);
             s3Client = s3clientGuy;
@@ -82,55 +85,5 @@ namespace BurialSite.Services
             return url;
         }
 
-        /* public async Task<S3Response> CreateBucketAsync(string bucketName)
-         {
-             try
-             {   // gets bucket from amazon
-                 if(await AmazonS3Util.DoesS3BucketExistV2Async(_client,bucketName) == false)
-                 {
-                     var putBucketRequest = new PutBucketRequest
-                     {
-                         BucketName = bucketName,
-                         UseClientRegion = true
-                     };
-
-                     var response = await _client.PutBucketAsync(putBucketRequest);
-
-                     return new S3Response
-                     {
-                         Message = response.ResponseMetadata.RequestId,
-                         Status = response.HttpStatusCode
-
-                     };
-                 }
-
-
-             }
-             catch (AmazonS3Exception e)
-             {
-                 return new S3Response
-                 {
-                     Message = e.Message,
-                     Status = HttpStatusCode.InternalServerError
-
-                 };
-             }
-             catch (Exception e )
-             {
-                 return new S3Response
-                 {
-                     Message = e.Message,
-                     Status = HttpStatusCode.InternalServerError
-
-                 };
-             }
-
-             return new S3Response
-             {
-                 Message = "AHHHHH that aint it chief",
-                 Status = HttpStatusCode.InternalServerError
-
-             };
-         }*/
     }
 }

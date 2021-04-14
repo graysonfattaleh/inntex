@@ -20,6 +20,10 @@ using Microsoft.Extensions.Primitives;
 
 namespace BurialSite.Controllers
 {
+    /// <summary>
+    /// Controller for things associated with the research user primarily, although it includes some logic 
+    /// that makes the most sense to be in here.
+    /// </summary>
     public class ResearchController : Controller
     {
         // context stuff

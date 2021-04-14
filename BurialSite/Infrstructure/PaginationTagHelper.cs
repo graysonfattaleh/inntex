@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace BurialSite.Infrastructure
 {
+    /// <summary>
+    /// The tag helper for pagination. 
+    /// </summary>
     [HtmlTargetElement("div", Attributes = "pagination-info")]
     public class PaginationTagHelper : TagHelper
     {

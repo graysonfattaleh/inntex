@@ -5,6 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BurialSite.Models
 {
+    /// <summary>
+    /// Our inherited identity context with the classes we overload it with.
+    /// Built in to aspnet core.
+    /// </summary>
     public class ArcDBContext : IdentityDbContext<ResearchUser,Role,int>
     {
         public ArcDBContext(DbContextOptions<ArcDBContext> options) : base(options)

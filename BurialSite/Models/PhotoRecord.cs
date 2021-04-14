@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace BurialSite.Models
 {
+    /// <summary>
+    /// For storing information about our s3 bucket information
+    /// </summary>
     public class PhotoRecord
     {
         public int PhotRecordId { get; set; }

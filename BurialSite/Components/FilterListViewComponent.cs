@@ -10,6 +10,9 @@ using System.Reflection;
 
 namespace BurialSite.Components
 {
+    /// <summary>
+    /// View component for filtering the list
+    /// </summary>
     public class FilterListViewComponent : ViewComponent
     {
         private ArcDBContext _context;

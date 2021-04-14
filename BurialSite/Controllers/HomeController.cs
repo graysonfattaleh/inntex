@@ -11,6 +11,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BurialSite.Controllers
 {
+    /// <summary>
+    /// The primary controller. All of the functionality in here should be technically ananymously allowed. 
+    /// </summary>
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

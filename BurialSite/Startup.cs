@@ -48,7 +48,8 @@ namespace BurialSite
                 .AddDefaultTokenProviders();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
+            
+            //Authorization that use, we require a superadmin and researcher policy so that superadmins and researchers can have permissions.
             services.AddAuthorization(
                 options =>
                 {

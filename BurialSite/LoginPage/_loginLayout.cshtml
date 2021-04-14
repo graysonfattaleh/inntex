@@ -10,8 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - BurialSite</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    @*<link rel = "shortcut icon" type="image/jpg" href="~/img/d0aa6163-84fc-4bcf-a536-3ce9484a317e.jpg"> *@
-    @*<link rel="stylesheet" href="~/css/site.css" />*@
     <link rel="stylesheet" href="~/css/csslogin.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,19 +21,12 @@
 
         <div class="wrapper">
             <div class="box box1">
-                @* <p class="box1-1"><a class="box1-1" asp-area="" asp-controller="Home" asp-action="Index">Home</a></p>*@
-
-
-
 
             </div>
             <div class="box box2"><a asp-area="" asp-controller="Home" asp-action="Index"><img width="211" height="100" src="https://brightspotcdn.byu.edu/7e/29/0288440343ef99077c183af02377/byu-home-monogram.svg" /></a></div>
             <div class="box box3">
                 <div class="nested">
                     <div class="nested1">
-                        @*<p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Register">Register</a></p>*@
-                        @* <p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Login">Login</a></p>*@
-
                         @inject SignInManager<ResearchUser> SignInManager
                         @inject UserManager<ResearchUser> UserManager
                         @inject IAuthorizationService AuthorizationService
@@ -44,52 +35,28 @@
                         {
 
                         }
-
-
-
                         @* <ul class="navbar-nav">*@
                         @if (SignInManager.IsSignedIn(User))
                         {
-
                             <a class="nested1-1" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-
-
-                            @* <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-                                </form>*@
-
                         }
                         else
                         {
                             <p class="nested1-1"><a asp-area="Identity" asp-page="/Account/Login">Login</a></p>
                         }
-                        @*  </ul>*@
-
-
-                        @* <p class="nested1-1"><a asp-area="" asp-controller="Research" asp-action="ManageUsers">ManageUsers   </a></p>*@
-
                     </div>
                     <div>
-
                         <span>@*&#124;*@</span>
 
                     </div>
                     <div class="nested2">
-
                         <p class="nested1-3"><a href="https://cas.byu.edu/cas/login?service=https%3A%2F%2Flearningsuite.byu.edu%2F">Learning Suite</a></p>
-
-
-
                     </div>
                     <div class="nested3">
                         <a href="/">
                             <p class="nested1-4"><i class="fa fa-search"></i></p>
                         </a>
-
-
                     </div>
-
-
                 </div>
             </div>
             <div class="box box4"></div>
@@ -110,30 +77,15 @@
                     </div>
                     <div>
                         <a class="box5-1" href="https://www.byu.edu/academics">Academics</a>
-
                     </div>
                     <div>
                         @if (SignInManager.IsSignedIn(User))
                         {
-
-
                             <form class="box5-2" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                                 <button type="submit" class="box5-2">Logout</button>
                             </form>
-
                         }
-
                     </div>
-
-                    @*  @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
-        {
-            <div>
-                <a class="box5-1" asp-area="" asp-controller="Role" asp-action="Index">Super User</a>
-            </div>
-        }*@
-
-
-
                     <div>
                         @if ((await AuthorizationService.AuthorizeAsync(User, "superadminpolicy")).Succeeded)
                         {
@@ -143,27 +95,14 @@
                         }
                     </div>
                 </div>
-                </div>
             </div>
-        
-
-
-       
-
-
-
-
-
-
+        </div>
     </header>
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-
     <footer id="footer">
 
 
@@ -174,8 +113,6 @@
                     <div class="col-lg-3 col-md-6 footer-contact">
                         <h3>CONTACT</h3>
                         <p>
-
-
                             <strong>Phone:</strong> 801-422-4636<br>
                             <strong>Email:</strong> fagelgamous@gmail.com<br><br>
                             Some Building <br>

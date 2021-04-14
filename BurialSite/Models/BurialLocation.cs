@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BurialSite.Models
 {
+    /// <summary>
+    /// The burial location information. Separate from a burial, doesn't include the burial number.
+    /// </summary>
     public class BurialLocation
     {
         public BurialLocation()

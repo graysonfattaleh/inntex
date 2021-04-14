@@ -36,6 +36,12 @@ namespace BurialSite.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Phone]
+            [Display(Name = "Last Name")]
+            public string LastName { get; set; }
+            [Phone]
+            [Display(Name = "First Name")]
+            public string FirstName { get; set; }
         }
 
         private async Task LoadAsync(ResearchUser user)
@@ -47,7 +53,9 @@ namespace BurialSite.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                PhoneNumber = phoneNumber
+                PhoneNumber = phoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName
             };
         }
 

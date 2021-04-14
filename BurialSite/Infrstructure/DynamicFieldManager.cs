@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace BurialSite.Infrstructure
 {
+    /// <summary>
+    /// This is the manager of the dbcontext to assist with utilizing the dynamic fields. 
+    /// This is optimized for code speed and database queries.
+    /// </summary>
     public class DynamicFieldManager
     {
         private ArcDBContext _context { get; set; }

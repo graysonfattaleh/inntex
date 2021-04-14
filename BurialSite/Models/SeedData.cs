@@ -7,6 +7,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BurialSite.Models
 {
+    /// <summary>
+    /// Soe seed data for if the DB is not populated.
+    /// </summary>
     public class SeedData
     {
         public static void EnsurePopulated(IApplicationBuilder application)
