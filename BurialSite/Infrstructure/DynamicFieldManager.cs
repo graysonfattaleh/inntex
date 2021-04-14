@@ -41,8 +41,10 @@ namespace BurialSite.Infrstructure
 
             if (possiblevalue != null)
             {
+                possiblevalue.Value = value;
                 _context.Update(possiblevalue);
                 _context.SaveChanges();
+                return true;
             }
             Console.Out.WriteLine("yo, here!");
 
@@ -54,9 +56,21 @@ namespace BurialSite.Infrstructure
             };
             //if (ModelState.IsValid)
             _context.Add(newOneToOneValue);
-
-            return false;
+            _context.SaveChanges();
+            return true;
         }
 
+        public bool EditField(OneToOneField field)
+        {
+            OneToOneField possiblevalue = _context.OneToOneFields.Where(v => v.OneToOneFieldId == field.OneToOneFieldId).FirstOrDefault();
+
+            possiblevalue.Type = field.Type;
+            possiblevalue.Description = field.Description;
+            possiblevalue.Name = field.Name;
+
+            _context.Update(possiblevalue);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }

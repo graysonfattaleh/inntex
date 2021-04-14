@@ -806,6 +806,37 @@
                 <dd class="col-2">
                     @Model.burial.BurialLocation.Dig_Site_Name
                 </dd>
+                @foreach (var entry in Model.CustomFields)
+                {
+                    <dt class="col-3">
+                        @entry.Key.Name
+                    </dt>
+                    @if (entry.Value != null)
+                    {
+                        <dd class="col-2">
+                            @entry.Value.Value
+                        </dd>
+                    }
+                }
+                @*<a href="#OptionButtons-custom" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
+            <label class="btn btn-warning">Custom information</label>
+        </a>
+        <br />
+        <div id="OptionButtons-custom" class="collapse multi-collapse">
+            <div class="row">
+                @foreach (var entry in CustomFields)
+                {
+                    <form method="post" asp-action="SaveCustomFieldValue" class="card-body">
+                        <label name="" class="control-label">@entry.Key.Name</label>
+                        <input type="hidden" name="fieldid" value="@entry.Key.OneToOneFieldId" hidden />
+                        <input type="hidden" name="burialid" value="@entry.Key.OneToOneFieldId" hidden />
+                        <input class="form-control" />
+                        <label asp-validation-for="Burial.Rack" class="text-danger"></label>
+                    </form>
+                }
+            </div>
+        </div>*@
+
             </div>
         </dl>
     </div>

@@ -69,6 +69,14 @@ namespace BurialSite.Controllers
         }
 
         [Authorize(Policy = "superadminpolicy")]
+        [HttpPost]
+        public IActionResult SaveCustomFieldValue(int onetoonefieldid, int burialid, string value)
+        {
+            fieldManager.SaveValueForBurial(onetoonefieldid, burialid, value);
+            return View("Index", GetRoleIndexViewModel());
+        }
+
+        [Authorize(Policy = "superadminpolicy")]
         public IActionResult CreateField()
         {
             return View(new OneToOneField());
@@ -81,6 +89,25 @@ namespace BurialSite.Controllers
             if (ModelState.IsValid)
             {
                 fieldManager.CreateField(field);
+            }
+            return View("Index", GetRoleIndexViewModel());
+        }
+
+        [Authorize(Policy = "superadminpolicy")]
+        public IActionResult EditField(int onetoonefieldid)
+        {
+            OneToOneField field = _context.OneToOneFields.Where(v => v.OneToOneFieldId == onetoonefieldid).FirstOrDefault();
+
+            return View(field);
+        }
+
+        [Authorize(Policy = "superadminpolicy")]
+        [HttpPost]
+        public IActionResult EditField(OneToOneField field)
+        {
+            if (ModelState.IsValid)
+            {
+                fieldManager.EditField(field);
             }
             return View("Index", GetRoleIndexViewModel());
         }

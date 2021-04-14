@@ -6,9 +6,9 @@
 @model EditBurialViewModel
 
 
+<div class="container details_div">
+    <form method="post" asp-controller="Research" asp-action="SaveEditedBurial">
 
-<form method="post" asp-controller="Research" asp-action="SaveEditedBurial">
-    <div class="container details_div">
         <div asp-validation-summary="All" class="text-danger"></div>
         <h1>Edit Burial</h1>
         <div>
@@ -760,5 +760,31 @@
                 </div>
             </div>
         </div>
+    </form>
+    <a href="#OptionButtons-custom" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="BurialDetailsOne">
+        <label class="btn btn-warning">Custom Information (SUBMISSIONS MAY ONLY BE PERFORMED BY SUPERADMIN, AND OVERWRITES PREVIOUS DATA)</label>
+    </a>
+    <br />
+    <div id="OptionButtons-custom" class="collapse multi-collapse">
+        <div class="row">
+            @foreach (var entry in Model.CustomFields)
+            {
+                <form method="post" asp-action="SaveCustomFieldValue" asp-controller="Role" class="card-body">
+                    <label name="" class="control-label">@entry.Key.Name</label>
+                    <input type="hidden" name="onetoonefieldid" value="@entry.Key.OneToOneFieldId" hidden />
+                    <input type="hidden" name="burialid" value="@Model.Burial.BurialID" hidden />
+                    @if (entry.Value == null)
+                    {
+                        <input class="form-control" name="value" value="" />
+
+                    }
+                    else
+                    {
+                        <input class="form-control" name="value" value="@entry.Value.Value" />
+                    }
+                    <button class="btn" type="submit">Submit Changes to @entry.Key.Name</button>
+                </form>
+            }
+        </div>
     </div>
-</form>
+</div>
